@@ -58,7 +58,7 @@ public class PVZGUI extends JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon icon = getImageIcon("fondoFinal.png");
+                ImageIcon icon = getImageIcon("fondoConNombre.png");
                 Image backGroundImage = icon.getImage();
                 g.drawImage(backGroundImage, 0, 0, getWidth(), getHeight(), this);
             }
@@ -69,7 +69,7 @@ public class PVZGUI extends JFrame {
     }
 
     private void changeSizeToImage() {
-        ImageIcon icon = getImageIcon("fondoFinal.png");
+        ImageIcon icon = getImageIcon("fondoConNombre.png");
 
         int imageWidth = icon.getIconWidth();
         int imageHeight = icon.getIconHeight();
@@ -99,11 +99,11 @@ public class PVZGUI extends JFrame {
     }
 
     private void prepareBotones() {
-        PvsP = new JButton("PvsP");
-        MvsM = new JButton("MvsM");
-        PvsM = new JButton("PvsM");
-        controles = new JButton("Opciones");
-        exit = new JButton("Salir");
+        PvsP = new EspecialButton("PvsP");
+        MvsM = new EspecialButton("MvsM");
+        PvsM = new EspecialButton("PvsM");
+        controles = new TransparentButton("       ");
+        exit = new TransparentButton("    ");
 
         // Configurar las posiciones absolutas de los botones
         PvsP.setBounds(550, 70, 120, 60);
@@ -129,15 +129,15 @@ public class PVZGUI extends JFrame {
         });
 
         salir.addActionListener(e -> closeWindowAction());
-        PvsP.addActionListener(e -> JOptionPane.showMessageDialog(PVZGUI.this, "En construcción"));
-        MvsM.addActionListener(e -> openDifficultyWindow());
-        PvsM.addActionListener(e -> openDifficultyWindow());
+        PvsP.addActionListener(e -> openDifficultyWindow("PvsP"));
+        MvsM.addActionListener(e -> openDifficultyWindow("MvsM"));
+        PvsM.addActionListener(e -> openDifficultyWindow("PvsM"));
         controles.addActionListener(e -> JOptionPane.showMessageDialog(PVZGUI.this, "Controles"));
         exit.addActionListener(e -> closeWindowAction());
     }
 
-    private void openDifficultyWindow(){
-        Difficulty difficultyWindow = new Difficulty();
+    private void openDifficultyWindow(String gameMode){
+        Difficulty difficultyWindow = new Difficulty(gameMode);
         difficultyWindow.setVisible(true);
 
         dispose();

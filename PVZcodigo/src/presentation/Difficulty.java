@@ -1,24 +1,33 @@
 package presentation;
 
+import domain.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.ParseException;
+import java.util.HashSet;
 
 public class Difficulty extends JFrame {
     private JMenuItem abrir, salvar, nuevo, salir;
     private JPanel mainPanel; // Panel principal con fondo y botones
-    private JButton dia, retroceder, facil, medio, dificil;
+    private JButton dia, retroceder, facil, medio, dificil,sunflower,peashooter,wallnut, jugar;
+    private JLabel plantasSeleccionadas;
+    //Configuracion del juego para crear el tablero.
+    private HashSet<String> plantasAJugar = new HashSet<>();
+    private String gameMode;
 
-    public Difficulty() {
+    public Difficulty(String gameMode) {
         super("Selección de dificultad");
+        this.gameMode = gameMode;
         prepareElements();
         prepareActions();
         setVisible(true);
     }
 
     private void prepareElements() {
-        changeSizeToImage();
+        changeSizeToImage("PantallaSeleccion.png");
         createMainPanel();
         prepareElementsMenu();
         prepareBotones();
@@ -49,8 +58,8 @@ public class Difficulty extends JFrame {
         setContentPane(mainPanel);
     }
 
-    private void changeSizeToImage() {
-        ImageIcon icon = getImageIcon("PantallaSeleccion.png");
+    private void changeSizeToImage(String imageName) {
+        ImageIcon icon = getImageIcon(imageName);
 
         int imageWidth = icon.getIconWidth();
         int imageHeight = icon.getIconHeight();
@@ -80,18 +89,18 @@ public class Difficulty extends JFrame {
     }
 
     private void prepareBotones() {
-        dia = new JButton("dia");
-        retroceder = new JButton("retroceder");
-        facil = new JButton("facil");
-        medio = new JButton("medio");
-        dificil = new JButton("dificil");
+        dia = new EspecialButton("dia");
+        retroceder = new EspecialButton("retroceder");
+        facil = new EspecialButton("facil");
+        medio = new EspecialButton("medio");
+        dificil = new EspecialButton("dificil");
 
         // Configurar las posiciones absolutas de los botones
         facil.setBounds(300, 170, 120, 60);
         medio.setBounds(550, 170, 120, 60);
         dificil.setBounds(800, 170, 120, 60);
         dia.setBounds(200, 450, 95, 40);
-        retroceder.setBounds(1150, 610, 100, 30);
+        retroceder.setBounds(1100, 610, 150, 30);
 
         // Agregar los botones al fondo
         mainPanel.add(dia);
@@ -111,20 +120,123 @@ public class Difficulty extends JFrame {
 
         dia.addActionListener(e -> JOptionPane.showMessageDialog(Difficulty.this, "En construccion"));
         retroceder.addActionListener(e -> openPrincipalWindow());
-        facil.addActionListener(e -> JOptionPane.showMessageDialog(Difficulty.this, "En construccion"));
-        medio.addActionListener(e -> JOptionPane.showMessageDialog(Difficulty.this, "En construccion"));
-        dificil.addActionListener(e -> JOptionPane.showMessageDialog(Difficulty.this, "En construccion"));
+        facil.addActionListener(e -> plantsElectionToPlay());
+        medio.addActionListener(e -> plantsElectionToPlay());
+        dificil.addActionListener(e -> plantsElectionToPlay());
 
     }
 
-    private void openPrincipalWindow(){
-        int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres volver a la pantalla de inicio?", "Confirmar retroceder",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (opcion == JOptionPane.YES_OPTION){
-        PVZGUI pvzguiwindow = new PVZGUI();
-        pvzguiwindow.setVisible(true);
 
-        dispose();
+    private void openPrincipalWindow() {
+        int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres volver a la pantalla de inicio?", "Confirmar retroceder", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (opcion == JOptionPane.YES_OPTION) {
+            PVZGUI pvzguiwindow = new PVZGUI();
+            pvzguiwindow.setVisible(true);
+
+            dispose();
         }
+    }
+
+    private void plantsElectionToPlay() {
+        prepareElementsToChoosePlants();
+    }
+
+    private void prepareElementsToChoosePlants() {
+        createPlantsElectionPanel();
+        prepareBotonesToPlantsElection();
+        prepareActionsToPlantsElection();
+        setVisible(true);
+
+    }
+
+    private void createPlantsElectionPanel(){
+        ImageIcon icon = getImageIcon("pantallaSeleccion.png");
+        Image originalImage = icon.getImage();
+        icon = getImageIcon("peashooter.png");
+        Image peashooterImage = icon.getImage();
+        icon = getImageIcon("sunflower.png");
+        Image sunflowerImage = icon.getImage();
+        icon = getImageIcon("wallnut.png");
+        Image wallnutImage = icon.getImage();
+
+        mainPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(originalImage, 0, 0, getWidth(), getHeight(), null);
+                //Posibles plantas a agregar.
+                g.drawImage(peashooterImage, 65, 155, 100, 100, null);
+                g.drawImage(sunflowerImage, 385, 155, 100, 100, null);
+                g.drawImage(wallnutImage, 705, 155, 100, 100, null);
+            }
+        };
+        mainPanel.setLayout(null);
+        setContentPane(mainPanel);
+    }
+
+    private void prepareBotonesToPlantsElection() {
+        peashooter = new BorderButton("     ");
+        wallnut = new BorderButton("      ");
+        sunflower = new BorderButton("       ");
+
+        //Boton para jugar
+        jugar = new EspecialButton("Jugar");
+        jugar.setBounds(1100, 550, 150, 30);
+
+        //Botones encima de cada planta para poder elegirlas
+        peashooter.setBounds(65, 155, 100, 100);
+        sunflower.setBounds(385, 155, 100, 100);
+        wallnut.setBounds(705, 155, 100, 100);
+
+
+        mainPanel.add(peashooter);
+        mainPanel.add(sunflower);
+        mainPanel.add(wallnut);
+        mainPanel.add(retroceder);
+        mainPanel.add(jugar);
+
+        //mostrar plantas ya elegidas en un texto.
+        plantasSeleccionadas = new JLabel("La plantas seleccionadas son las siguientes:");
+        plantasSeleccionadas.setBounds(100, 400, 1000, 70);
+        plantasSeleccionadas.setForeground(Color.RED);
+        plantasSeleccionadas.setFont(new Font("Arial", Font.BOLD, 20));
+        mainPanel.add(plantasSeleccionadas);
+    }
+
+    private void prepareActionsToPlantsElection() {
+        peashooter.addActionListener(e -> choosePlant("peashooter"));
+        sunflower.addActionListener(e -> choosePlant("sunflower"));
+        wallnut.addActionListener(e -> choosePlant("wallnut"));
+
+        jugar.addActionListener(e -> openPVZInGameWindow());
+    }
+
+    private void choosePlant(String plant) {
+        String text = plantasSeleccionadas.getText();
+        if(!plantasAJugar.contains(plant+".png")) {
+            plantasSeleccionadas.setText(text + "  " + plant);
+            plantasAJugar.add(plant+".png");
+        }
+    }
+
+    private void openPVZInGameWindow(){
+        try {
+            validePlantasAJugar();
+            PVZInGame pvzInGameWindow = new PVZInGame(gameMode, plantasAJugar);
+            pvzInGameWindow.setVisible(true);
+            dispose();
+        }catch(PVZException e){
+            JOptionPane.showMessageDialog(
+                    null,
+                    e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
+
+    private void validePlantasAJugar() throws PVZException {
+        if(plantasAJugar.isEmpty()) {throw new PVZException(PVZException.NOT_PLANTS_CHOOSED_TO_PLAY);}
     }
 
     private void closeWindowAction() {
@@ -134,8 +246,9 @@ public class Difficulty extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        Difficulty difficulty = new Difficulty();
-    }
+
+
 }
+
+
 
