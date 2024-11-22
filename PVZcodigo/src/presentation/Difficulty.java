@@ -8,7 +8,12 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.util.HashSet;
-
+/**
+ * Esta es la pantalla de configuracion de un nuevo juego para la interfaz del juego POOB vs ZOMBIES.
+ *
+ * @author Miguel Angel Vanegas y Julian Castiblanco.
+ * @version 1.0
+ */
 public class Difficulty extends JFrame {
     private JMenuItem abrir, salvar, nuevo, salir;
     private JPanel mainPanel; // Panel principal con fondo y botones
@@ -18,6 +23,10 @@ public class Difficulty extends JFrame {
     private HashSet<String> plantasAJugar = new HashSet<>();
     private String gameMode;
 
+    /**
+     * constructor de la clase Difficulty..
+     * @param gameMode, el modo de juego elegido.
+     */
     public Difficulty(String gameMode) {
         super("Selección de dificultad");
         this.gameMode = gameMode;
@@ -26,6 +35,10 @@ public class Difficulty extends JFrame {
         setVisible(true);
     }
 
+    /*
+     * prepara los elementos para la ventana.
+     */
+
     private void prepareElements() {
         changeSizeToImage("PantallaSeleccion.png");
         createMainPanel();
@@ -33,6 +46,11 @@ public class Difficulty extends JFrame {
         prepareBotones();
     }
 
+    /*
+     * Busca el ImageIcon de un archivo de imagen.
+     * @param fileName, nombre del archivo.
+     * @return retorna el ImageIcon del archivo.
+     */
     private ImageIcon getImageIcon(String fileName) {
         String baseDir = System.getProperty("user.dir");
         baseDir = baseDir.replace("/", "\\");
@@ -41,6 +59,9 @@ public class Difficulty extends JFrame {
         return new ImageIcon(imagePath);
     }
 
+    /*
+     * crear el panel principal para la eleccion de dificultad de un nuevo juego.
+     */
     private void createMainPanel() {
         // Crear el panel principal con fondo
         ImageIcon icon = getImageIcon("PantallaSeleccion.png");
@@ -58,6 +79,10 @@ public class Difficulty extends JFrame {
         setContentPane(mainPanel);
     }
 
+    /*
+     * cambia el tamaño de la ventana al de la imagen de fondo.
+     */
+
     private void changeSizeToImage(String imageName) {
         ImageIcon icon = getImageIcon(imageName);
 
@@ -70,6 +95,9 @@ public class Difficulty extends JFrame {
         setResizable(false);
     }
 
+    /*
+     * Prepara los elementos para el menu, para los items de abrir, salvar, nuevo y salir.
+     */
     private void prepareElementsMenu() {
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Menu");
@@ -88,6 +116,9 @@ public class Difficulty extends JFrame {
         setJMenuBar(menuBar);
     }
 
+    /*
+     * prepara los botones para elegir la dificultad del juego.
+     */
     private void prepareBotones() {
         dia = new EspecialButton("dia");
         retroceder = new EspecialButton("retroceder");
@@ -110,6 +141,9 @@ public class Difficulty extends JFrame {
         mainPanel.add(dificil);
     }
 
+    /*
+     * prepara las acciones para la eleccion de dificultad y los items del menu.
+     */
     private void prepareActions() {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
@@ -123,32 +157,37 @@ public class Difficulty extends JFrame {
         facil.addActionListener(e -> plantsElectionToPlay());
         medio.addActionListener(e -> plantsElectionToPlay());
         dificil.addActionListener(e -> plantsElectionToPlay());
+        salir.addActionListener(e -> closeWindowAction());
+        nuevo.addActionListener(e -> openPrincipalWindow());
 
     }
 
-
+    /*
+     * Abre la ventana inicial dle juego POOB vs ZOMBIES.
+     */
     private void openPrincipalWindow() {
         int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres volver a la pantalla de inicio?", "Confirmar retroceder", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (opcion == JOptionPane.YES_OPTION) {
-            PVZGUI pvzguiwindow = new PVZGUI();
-            pvzguiwindow.setVisible(true);
+            PVZGUI pvzGUIWindow = new PVZGUI();
+            pvzGUIWindow.setVisible(true);
 
             dispose();
         }
     }
 
+    /*
+     * Prepara los elementos para la eleccion de las plantas para un juego nuevo.
+     */
     private void plantsElectionToPlay() {
-        prepareElementsToChoosePlants();
-    }
-
-    private void prepareElementsToChoosePlants() {
         createPlantsElectionPanel();
         prepareBotonesToPlantsElection();
         prepareActionsToPlantsElection();
         setVisible(true);
-
     }
 
+    /*
+     * Crea el panel para la eleccion de plantas para el inicio de un juego.
+     */
     private void createPlantsElectionPanel(){
         ImageIcon icon = getImageIcon("pantallaSeleccion.png");
         Image originalImage = icon.getImage();
@@ -173,6 +212,10 @@ public class Difficulty extends JFrame {
         mainPanel.setLayout(null);
         setContentPane(mainPanel);
     }
+
+    /*
+     * prepara los elementos para la eleccion de plantas.
+     */
 
     private void prepareBotonesToPlantsElection() {
         peashooter = new BorderButton("     ");
@@ -203,6 +246,10 @@ public class Difficulty extends JFrame {
         mainPanel.add(plantasSeleccionadas);
     }
 
+    /*
+     * prepara las acciones para los botones de eleccion de plantas.
+     */
+
     private void prepareActionsToPlantsElection() {
         peashooter.addActionListener(e -> choosePlant("peashooter"));
         sunflower.addActionListener(e -> choosePlant("sunflower"));
@@ -211,14 +258,21 @@ public class Difficulty extends JFrame {
         jugar.addActionListener(e -> openPVZInGameWindow());
     }
 
+    /*
+     * Al oprimir una planta la selecciona para jugar.
+     */
+
     private void choosePlant(String plant) {
         String text = plantasSeleccionadas.getText();
-        if(!plantasAJugar.contains(plant+".png")) {
+        if(!plantasAJugar.contains(plant)) {
             plantasSeleccionadas.setText(text + "  " + plant);
-            plantasAJugar.add(plant+".png");
+            plantasAJugar.add(plant);
         }
     }
 
+    /*
+     * Al oprimir jugar abre un PVZInGame.
+     */
     private void openPVZInGameWindow(){
         try {
             validePlantasAJugar();
@@ -235,9 +289,16 @@ public class Difficulty extends JFrame {
         }
     }
 
+    /*
+     * valida si se eligieron plantas para jugar.
+     */
     private void validePlantasAJugar() throws PVZException {
         if(plantasAJugar.isEmpty()) {throw new PVZException(PVZException.NOT_PLANTS_CHOOSED_TO_PLAY);}
     }
+
+    /*
+     * configura el comportamiento al cerrar la ventana.
+     */
 
     private void closeWindowAction() {
         int opcion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas salir?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);

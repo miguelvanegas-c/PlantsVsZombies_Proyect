@@ -3,8 +3,18 @@ package presentation;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Es un botono especial con una configuracion visual diferente para la interfaz PVZGUI.
+ *
+ * @author Miguel Angel Vanegas y Julian Castiblanco.
+ * @version 1.0
+ */
+
 public class EspecialButton extends JButton {
-    // Constructor
+    /**
+     * constructor de la clase EspecialButton.
+     * @param text, texto del boton.
+     */
     public EspecialButton(String text) {
         super(text);
         setFont(new Font("Serif", Font.BOLD, 20));

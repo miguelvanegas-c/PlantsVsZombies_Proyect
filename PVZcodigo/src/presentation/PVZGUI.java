@@ -8,6 +8,13 @@ import java.io.File;
 import javax.sound.sampled.*;
 import java.io.IOException;
 
+/**
+ * Esta es la pantalla inicial de la interfaz para el juego POOB vs ZOMBIES.
+ *
+ * @author Miguel Angel Vanegas y Julian Castiblanco.
+ * @version 1.0
+ */
+
 public class PVZGUI extends JFrame {
     private JMenuItem abrir, salvar, nuevo, salir;
     private JPanel fondo; // Cambiado de JLabel a JPanel
@@ -15,6 +22,9 @@ public class PVZGUI extends JFrame {
     private static Clip clip;
     private static boolean isMusicPlaying = false;
 
+    /**
+     * creador de la clase PVZGUI.
+     */
     public PVZGUI() {
         super("POOB vs Zombies");
         prepareElements();
@@ -30,6 +40,9 @@ public class PVZGUI extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * prepara todos los elementos de la interfaz.
+     */
     private void prepareElements() {
         changeSizeToImage();
         createFondo();
@@ -37,6 +50,11 @@ public class PVZGUI extends JFrame {
         prepareBotones();
     }
 
+    /*
+     * Busca la ubicacion de un archivo de audio.
+     * @param fileName, nombre del archivo.
+     * @return retorna la direccion del archivo.
+     */
     private String gertClip(String fileName){
         String baseDir = System.getProperty("user.dir");
         baseDir = baseDir.replace("/", "\\");
@@ -45,6 +63,11 @@ public class PVZGUI extends JFrame {
         return musicPath;
     }
 
+    /*
+     * Busca el ImageIcon de un archivo de imagen.
+     * @param fileName, nombre del archivo.
+     * @return retorna el ImageIcon del archivo.
+     */
     private ImageIcon getImageIcon(String fileName) {
         String baseDir = System.getProperty("user.dir");
         baseDir = baseDir.replace("/", "\\");
@@ -53,6 +76,9 @@ public class PVZGUI extends JFrame {
         return new ImageIcon(imagePath);
     }
 
+    /*
+     * Crea el fondo del PVZGUI.
+     */
     private void createFondo() {
         fondo = new JPanel() {
             @Override
@@ -68,6 +94,10 @@ public class PVZGUI extends JFrame {
         setContentPane(fondo);
     }
 
+
+    /*
+     * configura el tamaño de la PVZGUI a la imagen de fondo.
+     */
     private void changeSizeToImage() {
         ImageIcon icon = getImageIcon("fondoConNombre.png");
 
@@ -80,6 +110,9 @@ public class PVZGUI extends JFrame {
         setResizable(false);
     }
 
+    /*
+     * prepara los elementus del menu, tanto para abrir, salvar, nuevo, salir.
+     */
     private void prepareElementsMenu() {
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Menu");
@@ -98,6 +131,9 @@ public class PVZGUI extends JFrame {
         setJMenuBar(menuBar);
     }
 
+    /*
+     * prepara los botones de la interfaz.
+     */
     private void prepareBotones() {
         PvsP = new EspecialButton("PvsP");
         MvsM = new EspecialButton("MvsM");
@@ -120,6 +156,10 @@ public class PVZGUI extends JFrame {
         fondo.add(exit);
     }
 
+    /*
+     * prepara las acciones tanto de los botones, como de los items del menu.
+     */
+
     private void prepareActions() {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
@@ -136,12 +176,20 @@ public class PVZGUI extends JFrame {
         exit.addActionListener(e -> closeWindowAction());
     }
 
+    /*
+     * Pasa a otra venta para la configuracion de un nuevo juego.
+     * @param gameMode, modo de juego elegido.
+     */
     private void openDifficultyWindow(String gameMode){
         Difficulty difficultyWindow = new Difficulty(gameMode);
         difficultyWindow.setVisible(true);
 
         dispose();
     }
+
+    /*
+     * Configura el comportamiento de la ventana al intentar cerrarla.
+     */
 
     private void closeWindowAction() {
         int opcion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas salir?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -151,6 +199,10 @@ public class PVZGUI extends JFrame {
         }
     }
 
+    /*
+     * Empieza a reproducir la musica.
+     * @param filePath, ubicacion de el archivo de musica.
+     */
     private void playMusic(String filePath) {
         try {
             if (clip != null && clip.isOpen()) {
@@ -173,7 +225,9 @@ public class PVZGUI extends JFrame {
             e.printStackTrace();
         }
     }
-
+    /*
+     * reinicia la reproduccion de la musica en caso de que haya musica reproduciendose.
+     */
     private void restartMusic(){
         if (clip != null) {
             clip.setFramePosition(0);
@@ -181,6 +235,9 @@ public class PVZGUI extends JFrame {
         }
     }
 
+    /*
+     * Para la musica en caso de que se este reproduciendo.
+     */
     private void stopMusic() {
         if (clip != null && clip.isRunning()) {
             clip.stop();
@@ -191,3 +248,4 @@ public class PVZGUI extends JFrame {
         PVZGUI pvzGUI = new PVZGUI();
     }
 }
+
