@@ -13,7 +13,7 @@ public interface GeneralInterface{
      * @param fileName, nombre del archivo.
      * @return retorna la direccion del archivo.
      */
-    default String gertClip(String fileName){
+    default String getClip(String fileName){
         String baseDir = System.getProperty("user.dir");
         baseDir = baseDir.replace("/", "\\");
         String musicPath = baseDir + "\\Sounds" + "\\" + fileName;

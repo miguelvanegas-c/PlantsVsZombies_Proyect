@@ -2,7 +2,6 @@ package presentation;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -32,7 +31,7 @@ public class PVZGUI extends JFrame implements GeneralInterface {
         prepareActions();
 
         if (!isMusicPlaying) {
-            playMusic(gertClip("Plants-vs-Zombies-Main-Theme.wav"));
+            playMusic(getClip("Plants-vs-Zombies-Main-Theme.wav"));
             isMusicPlaying = true;
         } else {
             restartMusic();
@@ -224,4 +223,3 @@ public class PVZGUI extends JFrame implements GeneralInterface {
         PVZGUI pvzGUI = new PVZGUI();
     }
 }
-

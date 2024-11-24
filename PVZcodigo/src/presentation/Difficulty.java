@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.text.ParseException;
 import java.util.HashSet;
 /**
@@ -297,11 +298,11 @@ public class Difficulty extends JFrame implements GeneralInterface{
     private void createZombiesElectionPanel() {
         ImageIcon icon = getImageIcon("pantallaSeleccionZombies.png");
         Image originalImage = icon.getImage();
-        icon = getImageIcon("zombie.png");
+        icon = getImageIcon("zombie.gif");
         Image zombieImage = icon.getImage();
-        icon = getImageIcon("zombieBalde.png");
+        icon = getImageIcon("caraCubeta.gif");
         Image zombieBaldeImage = icon.getImage();
-        icon = getImageIcon("zombieCono.png");
+        icon = getImageIcon("caraCono.gif");
         Image zombieConoImage = icon.getImage();
         mainPanel = new JPanel() {
             @Override
@@ -345,14 +346,11 @@ public class Difficulty extends JFrame implements GeneralInterface{
     }
 
     private void prepareBotonesToZombiesElection() {
-        zombie = new BorderButton("     ");
-        zombieCono = new BorderButton("      ");
-        zombieBalde = new BorderButton("       ");
+        zombie = createGifButton("zombie.gif", 150, 155, 100, 100);
+        zombieCono = createGifButton("caraCono.gif", 250, 155, 100, 100);
+        zombieBalde = createGifButton("caraCubeta.gif", 350, 155, 100, 100);
         seleccionar = new EspecialButton("Seleccionar");
-        zombie.setBounds(150, 155, 100, 100);
-        zombieCono.setBounds(250, 155, 100, 100);
-        zombieBalde.setBounds(350,155,100,100);
-        seleccionar.setBounds(860,460,140,30);
+        seleccionar.setBounds(860, 460, 140, 30);
 
         jugar = new EspecialButton("Jugar");
         jugar.setBounds(1100, 550, 150, 30);
@@ -360,9 +358,10 @@ public class Difficulty extends JFrame implements GeneralInterface{
         mainPanel.add(zombie);
         mainPanel.add(zombieCono);
         mainPanel.add(zombieBalde);
-        mainPanel.add(retroceder);
+        mainPanel.add(seleccionar);
         mainPanel.add(jugar);
     }
+
 
     private void prepareActionsToZombiesElection() {
         zombie.addActionListener(e -> chooseZombie("zombie"));
@@ -400,7 +399,7 @@ public class Difficulty extends JFrame implements GeneralInterface{
     private void openPVZInGameWindow(){
         try {
             valideZombiesAJugar();
-            PVZInGame pvzInGameWindow = new PVZInGame(gameMode, plantasAJugar);
+            PVZInGame pvzInGameWindow = new PVZInGame(gameMode, plantasAJugar, zombiesAJugar);
             pvzInGameWindow.setVisible(true);
             dispose();
         }catch(PVZException e){
@@ -413,13 +412,9 @@ public class Difficulty extends JFrame implements GeneralInterface{
         }
     }
 
-
-
-
     /*
      * configura el comportamiento al cerrar la ventana.
      */
-
     private void closeWindowAction() {
         int opcion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas salir?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (opcion == JOptionPane.YES_OPTION) {
@@ -485,8 +480,27 @@ public class Difficulty extends JFrame implements GeneralInterface{
         if(zombiesAJugar.isEmpty()) {throw new PVZException(PVZException.NOT_ZOMBIES_CHOOSED_TO_PLAY);}
     }
 
+    /*
+     * Crea un botón con un GIF animado.
+     * @param gifFileName El nombre del archivo GIF.
+     * @param x La posición X del botón.
+     * @param y La posición Y del botón.
+     * @param width El ancho del botón.
+     * @param height El alto del botón.
+     * @return Un botón configurado con el GIF animado.
+     */
+    private JButton createGifButton(String gifFileName, int x, int y, int width, int height) {
+        String baseDir = System.getProperty("user.dir");
+        String gifPath = baseDir + File.separator + "gifs" + File.separator + gifFileName;
+
+        ImageIcon gifIcon = new ImageIcon(gifPath);
+        Image scaledImage = gifIcon.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT);
+        ImageIcon scaledGifIcon = new ImageIcon(scaledImage);
+        JButton gifButton = new JButton(scaledGifIcon);
+        gifButton.setBounds(x, y, width, height);
+        gifButton.setContentAreaFilled(false);
+
+        return gifButton;
+    }
 
 }
-
-
-
