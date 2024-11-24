@@ -2,6 +2,7 @@ package presentation;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -15,7 +16,7 @@ import java.io.IOException;
  * @version 1.0
  */
 
-public class PVZGUI extends JFrame {
+public class PVZGUI extends JFrame implements GeneralInterface {
     private JMenuItem abrir, salvar, nuevo, salir;
     private JPanel fondo; // Cambiado de JLabel a JPanel
     private JButton PvsP, MvsM, PvsM, controles, exit;
@@ -50,31 +51,6 @@ public class PVZGUI extends JFrame {
         prepareBotones();
     }
 
-    /*
-     * Busca la ubicacion de un archivo de audio.
-     * @param fileName, nombre del archivo.
-     * @return retorna la direccion del archivo.
-     */
-    private String gertClip(String fileName){
-        String baseDir = System.getProperty("user.dir");
-        baseDir = baseDir.replace("/", "\\");
-        String musicPath = baseDir + "\\Sounds" + "\\" + fileName;
-
-        return musicPath;
-    }
-
-    /*
-     * Busca el ImageIcon de un archivo de imagen.
-     * @param fileName, nombre del archivo.
-     * @return retorna el ImageIcon del archivo.
-     */
-    private ImageIcon getImageIcon(String fileName) {
-        String baseDir = System.getProperty("user.dir");
-        baseDir = baseDir.replace("/", "\\");
-        String imagePath = baseDir + "\\images" + "\\" + fileName;
-
-        return new ImageIcon(imagePath);
-    }
 
     /*
      * Crea el fondo del PVZGUI.

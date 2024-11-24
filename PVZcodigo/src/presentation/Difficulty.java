@@ -14,14 +14,16 @@ import java.util.HashSet;
  * @author Miguel Angel Vanegas y Julian Castiblanco.
  * @version 1.0
  */
-public class Difficulty extends JFrame {
+public class Difficulty extends JFrame implements GeneralInterface{
     private JMenuItem abrir, salvar, nuevo, salir;
     private JPanel mainPanel; // Panel principal con fondo y botones
-    private JButton dia, retroceder, facil, medio, dificil,sunflower,peashooter,wallnut, jugar;
-    private JLabel plantasSeleccionadas;
+    private JButton  retroceder, sunflower, peashooter, wallnut, jugar, seleccionar, siguiente, zombie, zombieCono, zombieBalde ;
     //Configuracion del juego para crear el tablero.
     private HashSet<String> plantasAJugar = new HashSet<>();
-    private String gameMode;
+    private HashSet<String> zombiesAJugar = new HashSet<>();
+    private String gameMode,posiblePlantaAJugar, nombreJugadorPlanta, nombreJugadorZombie, tipoDeZombie, tipoDePlanta, posibleZombieAJugar;
+    private JComboBox<String> eleccionDePlanta,eleccionDeZombie;
+    private JTextField namePlantsPlayer, nameZombiesPlayer;
 
     /**
      * constructor de la clase Difficulty..
@@ -31,7 +33,7 @@ public class Difficulty extends JFrame {
         super("Selección de dificultad");
         this.gameMode = gameMode;
         prepareElements();
-        prepareActions();
+        prepareActionsToPlantsElection();
         setVisible(true);
     }
 
@@ -41,43 +43,13 @@ public class Difficulty extends JFrame {
 
     private void prepareElements() {
         changeSizeToImage("PantallaSeleccion.png");
-        createMainPanel();
+        createPlantsElectionPanel();
         prepareElementsMenu();
-        prepareBotones();
+        prepareBotonesToPlantsElection();
+        prepareNameElectionToPlants();
+        prepareTypeElectionToPlants();
     }
 
-    /*
-     * Busca el ImageIcon de un archivo de imagen.
-     * @param fileName, nombre del archivo.
-     * @return retorna el ImageIcon del archivo.
-     */
-    private ImageIcon getImageIcon(String fileName) {
-        String baseDir = System.getProperty("user.dir");
-        baseDir = baseDir.replace("/", "\\");
-        String imagePath = baseDir + "\\images" + "\\" + fileName;
-
-        return new ImageIcon(imagePath);
-    }
-
-    /*
-     * crear el panel principal para la eleccion de dificultad de un nuevo juego.
-     */
-    private void createMainPanel() {
-        // Crear el panel principal con fondo
-        ImageIcon icon = getImageIcon("PantallaSeleccion.png");
-        Image originalImage = icon.getImage();
-
-        mainPanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.drawImage(originalImage, 0, 0, getWidth(), getHeight(), null);
-            }
-        };
-
-        mainPanel.setLayout(null); // Usar layout absoluto para colocar botones
-        setContentPane(mainPanel);
-    }
 
     /*
      * cambia el tamaño de la ventana al de la imagen de fondo.
@@ -93,6 +65,59 @@ public class Difficulty extends JFrame {
 
         setLocationRelativeTo(null); // Centrar el JFrame en la pantalla
         setResizable(false);
+    }
+
+    /*
+     * Crea el panel para la eleccion de plantas para el inicio de un juego.
+     */
+    private void createPlantsElectionPanel(){
+        ImageIcon icon = getImageIcon("pantallaSeleccion.png");
+        Image originalImage = icon.getImage();
+        icon = getImageIcon("peashooter.png");
+        Image peashooterImage = icon.getImage();
+        icon = getImageIcon("sunflower.png");
+        Image sunflowerImage = icon.getImage();
+        icon = getImageIcon("wallnut.png");
+        Image wallnutImage = icon.getImage();
+        mainPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(originalImage, 0, 0, getWidth(), getHeight(), null);
+
+                //Posibles plantas a agregar.
+                g.drawImage(peashooterImage, 150, 155, 100, 100, null);
+                g.drawImage(sunflowerImage, 250, 155, 100, 100, null);
+                g.drawImage(wallnutImage, 350, 155, 100, 100, null);
+
+                //Informacion de la planta seleccionada.
+                if(posiblePlantaAJugar != null){
+                    ImageIcon icon = getImageIcon(posiblePlantaAJugar+"I.png");
+                    Image image = icon.getImage();
+                    g.drawImage(image, 700, 100, 310, 400, null);
+
+                }
+
+                //Zona de plantas ya seleccionadas.
+                g.setColor(new Color(139, 69, 19));
+                g.fillRect(150, 520, 800, 120);
+
+                g.setColor(new Color(101, 67, 33));
+                g.fillRect(160, 530, 780, 100);
+                int x = 160;
+
+                for(String planta : plantasAJugar){
+                    ImageIcon icon = getImageIcon(planta+".png");
+                    Image image = icon.getImage();
+                    g.drawImage(image, x, 530, 100, 100, null);
+                    x += 100;
+
+                }
+
+            }
+        };
+        mainPanel.setLayout(null);
+        setContentPane(mainPanel);
     }
 
     /*
@@ -117,34 +142,70 @@ public class Difficulty extends JFrame {
     }
 
     /*
-     * prepara los botones para elegir la dificultad del juego.
+     * Prepara los elementos para la eleccion de tipo de maquina de plantas.
      */
-    private void prepareBotones() {
-        dia = new EspecialButton("dia");
-        retroceder = new EspecialButton("retroceder");
-        facil = new EspecialButton("facil");
-        medio = new EspecialButton("medio");
-        dificil = new EspecialButton("dificil");
 
-        // Configurar las posiciones absolutas de los botones
-        facil.setBounds(300, 170, 120, 60);
-        medio.setBounds(550, 170, 120, 60);
-        dificil.setBounds(800, 170, 120, 60);
-        dia.setBounds(200, 450, 95, 40);
-        retroceder.setBounds(1100, 610, 150, 30);
-
-        // Agregar los botones al fondo
-        mainPanel.add(dia);
-        mainPanel.add(retroceder);
-        mainPanel.add(facil);
-        mainPanel.add(medio);
-        mainPanel.add(dificil);
+    private void prepareTypeElectionToPlants() {
+        String[] opcionesPlantas = {"PlantsIntellIgent","PlantsStrategic"};
+        eleccionDePlanta = new JComboBox<>(opcionesPlantas);
+        eleccionDePlanta.setBounds(100,50,200,40);
+        if(gameMode.equals("MvsM")){
+            mainPanel.add(eleccionDePlanta);
+        }
     }
 
     /*
-     * prepara las acciones para la eleccion de dificultad y los items del menu.
+     * Prepara los elementos para la eleccion de nombre de jugador para las plantas.
      */
-    private void prepareActions() {
+    private void prepareNameElectionToPlants(){
+        JLabel nombre = new JLabel("Nombre del jugador:");
+        nombre.setBounds(70,50,150,30);
+
+        namePlantsPlayer = new JTextField();
+        namePlantsPlayer.setBounds(200, 50, 200, 30);
+        if(!gameMode.equals("MvsM")){
+            mainPanel.add(namePlantsPlayer);
+            mainPanel.add(nombre);
+        }
+    }
+
+
+    /*
+     * prepara los elementos para la eleccion de plantas.
+     */
+
+    private void prepareBotonesToPlantsElection() {
+        //Botones encima de cada planta para poder elegirlas
+        retroceder = new EspecialButton("retroceder");
+        retroceder.setBounds(1100, 610, 150, 30);
+
+
+        siguiente = new EspecialButton("siguiente");
+        siguiente.setBounds(1100, 550, 150, 30);
+
+
+        peashooter = new BorderButton("     ");
+        wallnut = new BorderButton("      ");
+        sunflower = new BorderButton("       ");
+        seleccionar = new EspecialButton("Seleccionar");
+        peashooter.setBounds(150, 155, 100, 100);
+        sunflower.setBounds(250, 155, 100, 100);
+        wallnut.setBounds(350, 155, 100, 100);
+        seleccionar.setBounds(845,460,140,30);
+
+        mainPanel.add(peashooter);
+        mainPanel.add(sunflower);
+        mainPanel.add(wallnut);
+        mainPanel.add(retroceder);
+        mainPanel.add(siguiente);
+
+    }
+
+    /*
+     * prepara las acciones para los botones de eleccion de plantas.
+     */
+
+    private void prepareActionsToPlantsElection() {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -152,18 +213,20 @@ public class Difficulty extends JFrame {
             }
         });
 
-        dia.addActionListener(e -> JOptionPane.showMessageDialog(Difficulty.this, "En construccion"));
         retroceder.addActionListener(e -> openPrincipalWindow());
-        facil.addActionListener(e -> plantsElectionToPlay());
-        medio.addActionListener(e -> plantsElectionToPlay());
-        dificil.addActionListener(e -> plantsElectionToPlay());
         salir.addActionListener(e -> closeWindowAction());
         nuevo.addActionListener(e -> openPrincipalWindow());
-
+        peashooter.addActionListener(e -> choosePlant("peashooter"));
+        sunflower.addActionListener(e -> choosePlant("sunflower"));
+        wallnut.addActionListener(e -> choosePlant("wallnut"));
+        siguiente.addActionListener(e -> siguientePanel());
+        seleccionar.addActionListener(e -> selectPlant());
+        eleccionDePlanta.addActionListener(e -> seleccionTipoDePlanta());
+        namePlantsPlayer.addActionListener(e -> seleccionNombreDePlanta());
     }
 
     /*
-     * Abre la ventana inicial dle juego POOB vs ZOMBIES.
+     * Abre la ventana inicial del juego POOB vs ZOMBIES.
      */
     private void openPrincipalWindow() {
         int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres volver a la pantalla de inicio?", "Confirmar retroceder", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -176,106 +239,167 @@ public class Difficulty extends JFrame {
     }
 
     /*
-     * Prepara los elementos para la eleccion de las plantas para un juego nuevo.
+     * Al oprimir una planta la selecciona para jugar.
      */
-    private void plantsElectionToPlay() {
-        createPlantsElectionPanel();
-        prepareBotonesToPlantsElection();
-        prepareActionsToPlantsElection();
-        setVisible(true);
+
+    private void choosePlant(String plant) {
+        posiblePlantaAJugar = plant;
+        mainPanel.add(seleccionar);
+        mainPanel.repaint();
     }
 
     /*
-     * Crea el panel para la eleccion de plantas para el inicio de un juego.
+     *
      */
-    private void createPlantsElectionPanel(){
-        ImageIcon icon = getImageIcon("pantallaSeleccion.png");
-        Image originalImage = icon.getImage();
-        icon = getImageIcon("peashooter.png");
-        Image peashooterImage = icon.getImage();
-        icon = getImageIcon("sunflower.png");
-        Image sunflowerImage = icon.getImage();
-        icon = getImageIcon("wallnut.png");
-        Image wallnutImage = icon.getImage();
+    private void selectPlant() {
+        plantasAJugar.add(posiblePlantaAJugar);
+        mainPanel.repaint();
+    }
+    /*
+     *
+     */
+    private void siguientePanel() {
+        try{
+            validePlantasAJugar();
+            createZombiesElectionPanel();
+            prepareBotonesToZombiesElection();
+            prepareTypeElectionToZombies();
+            prepareNameElectionToZombies();
+            prepareActionsToZombiesElection();
+            setVisible(true);
+        }catch(PVZException e){
+            JOptionPane.showMessageDialog(
+                    null,
+                    e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
 
+    /*
+     *
+     */
+    private void seleccionTipoDePlanta() {
+        String seleccion = (String) eleccionDePlanta.getSelectedItem();
+        tipoDePlanta = seleccion;
+    }
+
+    /*
+     *
+     */
+    private void seleccionNombreDePlanta() {
+        String nombre = namePlantsPlayer.getText();
+        nombreJugadorPlanta = nombre;
+    }
+
+
+    private void createZombiesElectionPanel() {
+        ImageIcon icon = getImageIcon("pantallaSeleccionZombies.png");
+        Image originalImage = icon.getImage();
+        icon = getImageIcon("zombie.png");
+        Image zombieImage = icon.getImage();
+        icon = getImageIcon("zombieBalde.png");
+        Image zombieBaldeImage = icon.getImage();
+        icon = getImageIcon("zombieCono.png");
+        Image zombieConoImage = icon.getImage();
         mainPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(originalImage, 0, 0, getWidth(), getHeight(), null);
+
                 //Posibles plantas a agregar.
-                g.drawImage(peashooterImage, 65, 155, 100, 100, null);
-                g.drawImage(sunflowerImage, 385, 155, 100, 100, null);
-                g.drawImage(wallnutImage, 705, 155, 100, 100, null);
+                g.drawImage(zombieImage, 150, 155, 100, 100, null);
+                g.drawImage(zombieConoImage, 250, 155, 100, 100, null);
+                g.drawImage(zombieBaldeImage, 350, 155, 100, 100, null);
+
+                //Informacion de la planta seleccionada.
+                if(posibleZombieAJugar != null){
+                    ImageIcon icon = getImageIcon(posibleZombieAJugar+"I.png");
+                    Image image = icon.getImage();
+                    g.drawImage(image, 700, 100, 310, 400, null);
+
+                }
+
+                //Zona de plantas ya seleccionadas.
+                g.setColor(new Color(0, 0, 0));
+                g.fillRect(150, 520, 800, 120);
+
+                g.setColor(new Color(64, 64, 64));
+                g.fillRect(160, 530, 780, 100);
+                int x = 160;
+
+                for(String zombie : zombiesAJugar){
+                    ImageIcon icon = getImageIcon(zombie+".png");
+                    Image image = icon.getImage();
+                    g.drawImage(image, x, 530, 100, 100, null);
+                    x += 100;
+
+                }
+
             }
         };
         mainPanel.setLayout(null);
         setContentPane(mainPanel);
     }
 
-    /*
-     * prepara los elementos para la eleccion de plantas.
-     */
+    private void prepareBotonesToZombiesElection() {
+        zombie = new BorderButton("     ");
+        zombieCono = new BorderButton("      ");
+        zombieBalde = new BorderButton("       ");
+        seleccionar = new EspecialButton("Seleccionar");
+        zombie.setBounds(150, 155, 100, 100);
+        zombieCono.setBounds(250, 155, 100, 100);
+        zombieBalde.setBounds(350,155,100,100);
+        seleccionar.setBounds(860,460,140,30);
 
-    private void prepareBotonesToPlantsElection() {
-        peashooter = new BorderButton("     ");
-        wallnut = new BorderButton("      ");
-        sunflower = new BorderButton("       ");
-
-        //Boton para jugar
         jugar = new EspecialButton("Jugar");
         jugar.setBounds(1100, 550, 150, 30);
 
-        //Botones encima de cada planta para poder elegirlas
-        peashooter.setBounds(65, 155, 100, 100);
-        sunflower.setBounds(385, 155, 100, 100);
-        wallnut.setBounds(705, 155, 100, 100);
-
-
-        mainPanel.add(peashooter);
-        mainPanel.add(sunflower);
-        mainPanel.add(wallnut);
+        mainPanel.add(zombie);
+        mainPanel.add(zombieCono);
+        mainPanel.add(zombieBalde);
         mainPanel.add(retroceder);
         mainPanel.add(jugar);
-
-        //mostrar plantas ya elegidas en un texto.
-        plantasSeleccionadas = new JLabel("La plantas seleccionadas son las siguientes:");
-        plantasSeleccionadas.setBounds(100, 400, 1000, 70);
-        plantasSeleccionadas.setForeground(Color.RED);
-        plantasSeleccionadas.setFont(new Font("Arial", Font.BOLD, 20));
-        mainPanel.add(plantasSeleccionadas);
     }
 
-    /*
-     * prepara las acciones para los botones de eleccion de plantas.
-     */
-
-    private void prepareActionsToPlantsElection() {
-        peashooter.addActionListener(e -> choosePlant("peashooter"));
-        sunflower.addActionListener(e -> choosePlant("sunflower"));
-        wallnut.addActionListener(e -> choosePlant("wallnut"));
-
+    private void prepareActionsToZombiesElection() {
+        zombie.addActionListener(e -> chooseZombie("zombie"));
+        zombieCono.addActionListener(e -> chooseZombie("zombieCono"));
+        zombieBalde.addActionListener(e -> chooseZombie("zombieBalde"));
+        seleccionar.addActionListener(e -> selectZombie());
         jugar.addActionListener(e -> openPVZInGameWindow());
+        eleccionDeZombie.addActionListener(e -> seleccionTipoDeZombie());
+        nameZombiesPlayer.addActionListener(e -> seleccionNombreDeZombie());
+
     }
 
     /*
-     * Al oprimir una planta la selecciona para jugar.
+     * Permite elegir un zombie para poder seleccionarlo.
+     * @param zombie, nombre del zombie que se ha elgido
      */
-
-    private void choosePlant(String plant) {
-        String text = plantasSeleccionadas.getText();
-        if(!plantasAJugar.contains(plant)) {
-            plantasSeleccionadas.setText(text + "  " + plant);
-            plantasAJugar.add(plant);
-        }
+    private void chooseZombie(String zombie) {
+        posibleZombieAJugar = zombie;
+        mainPanel.add(seleccionar);
+        mainPanel.repaint();
     }
+
+    /*
+     * Seleccion el zombie que este elegido.
+     */
+    private void selectZombie() {
+        zombiesAJugar.add(posibleZombieAJugar);
+        mainPanel.repaint();
+    }
+
 
     /*
      * Al oprimir jugar abre un PVZInGame.
      */
     private void openPVZInGameWindow(){
         try {
-            validePlantasAJugar();
+            valideZombiesAJugar();
             PVZInGame pvzInGameWindow = new PVZInGame(gameMode, plantasAJugar);
             pvzInGameWindow.setVisible(true);
             dispose();
@@ -289,12 +413,8 @@ public class Difficulty extends JFrame {
         }
     }
 
-    /*
-     * valida si se eligieron plantas para jugar.
-     */
-    private void validePlantasAJugar() throws PVZException {
-        if(plantasAJugar.isEmpty()) {throw new PVZException(PVZException.NOT_PLANTS_CHOOSED_TO_PLAY);}
-    }
+
+
 
     /*
      * configura el comportamiento al cerrar la ventana.
@@ -307,6 +427,63 @@ public class Difficulty extends JFrame {
         }
     }
 
+    /*
+     * Prepara los elementos para la eleccion de tipo de maquina de zombies.
+     */
+
+    private void prepareTypeElectionToZombies() {
+        String[] opcionesZombies = {"ZombiesIntellIgent","ZombiesStrategic"};
+        eleccionDeZombie = new JComboBox<>(opcionesZombies);
+        eleccionDeZombie.setBounds(100,50,200,40);
+        if(gameMode.equals("MvsM") || gameMode.equals("PvsM")){
+            mainPanel.add(eleccionDeZombie);
+        }
+    }
+
+    /*
+     * Prepara los elementos para la eleccion de nombre de jugador para los zombies.
+     */
+    private void prepareNameElectionToZombies(){
+        JLabel nombre = new JLabel("Nombre del jugador:");
+        nombre.setBounds(70,50,150,30);
+
+        nameZombiesPlayer = new JTextField();
+        nameZombiesPlayer.setBounds(200, 50, 200, 30);
+        if(gameMode.equals("PvsP")){
+            mainPanel.add(nameZombiesPlayer);
+            mainPanel.add(nombre);
+        }
+    }
+
+    /*
+     *
+     */
+    private void seleccionTipoDeZombie() {
+        String seleccion = (String) eleccionDePlanta.getSelectedItem();
+        tipoDeZombie = seleccion;
+    }
+
+    /*
+     *
+     */
+    private void seleccionNombreDeZombie() {
+        String nombre = namePlantsPlayer.getText();
+        nombreJugadorZombie = nombre;
+    }
+
+    /*
+     * valida si se eligieron plantas para jugar.
+     */
+    private void validePlantasAJugar() throws PVZException {
+        if(plantasAJugar.isEmpty()) {throw new PVZException(PVZException.NOT_PLANTS_CHOOSED_TO_PLAY);}
+    }
+
+    /*
+     * valida si se eligieron zombies para jugar.
+     */
+    private void valideZombiesAJugar() throws PVZException {
+        if(zombiesAJugar.isEmpty()) {throw new PVZException(PVZException.NOT_ZOMBIES_CHOOSED_TO_PLAY);}
+    }
 
 
 }
