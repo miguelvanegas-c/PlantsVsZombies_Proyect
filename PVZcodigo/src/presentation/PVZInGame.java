@@ -17,7 +17,7 @@ import java.awt.event.WindowEvent;
  * @author Miguel Angel Vanegas y Julian Castiblanco.
  * @version 1.0
  */
-public class PVZInGame extends JFrame {
+public class PVZInGame extends JFrame implements GeneralInterface {
     private JPanel gamePanel;
     private JMenuItem abrir, salvar, nuevo, salir;
     private String gameMode, plantaSeleccionada;
@@ -38,17 +38,6 @@ public class PVZInGame extends JFrame {
         prepareElements();
         prepareAcciones();
         refresh();
-    }
-
-
-
-
-    private ImageIcon getImageIcon(String fileName) {
-        String baseDir = System.getProperty("user.dir");
-        baseDir = baseDir.replace("/", "\\");
-        String imagePath = baseDir + "\\images" + "\\" + fileName;
-
-        return new ImageIcon(imagePath);
     }
 
 
