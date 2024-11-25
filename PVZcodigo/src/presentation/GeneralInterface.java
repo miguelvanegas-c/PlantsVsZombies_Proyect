@@ -34,5 +34,14 @@ public interface GeneralInterface{
         return new ImageIcon(imagePath);
     }
 
+    default ImageIcon getGifsIcon(String fileName) {
+        String baseDir = System.getProperty("user.dir");
+        baseDir = baseDir.replace("/", "\\");
+        String imagePath = baseDir + "\\gifs" + "\\" + fileName;
+
+        return new ImageIcon(imagePath);
+    }
+
+
 
 }
