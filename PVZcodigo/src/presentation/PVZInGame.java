@@ -1,8 +1,9 @@
 package presentation;
 
 
-import domain.PVZ;
+import domain.*;
 
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashSet;
@@ -10,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Random;
 
 /**
  * Esta es la pantalla del tablero para el juego POOB vs ZOMBIES.
@@ -35,10 +37,11 @@ public class PVZInGame extends JFrame implements GeneralInterface {
         this.plantasAJugar = plantasAJugar.toArray(new String[0]);
         botonesPlantas = new JButton[this.plantasAJugar.length];
         this.zombiesAJugar = zombiesAJugar.toArray(new String[0]);
-        pvz = new PVZ();
+        pvz = new PVZ(this.plantasAJugar,this.zombiesAJugar, true);
         prepareElements();
         prepareAcciones();
         refresh();
+        pvz.empiezaElJuego();
     }
 
 
@@ -68,7 +71,7 @@ public class PVZInGame extends JFrame implements GeneralInterface {
                 for (String planta : plantasAJugar) {
                     ImageIcon iconPlant = getImageIcon(planta+".png");
                     Image originalImagePlant = iconPlant.getImage();
-                    g.drawImage(originalImagePlant, 20, count, 70, 70, null);
+                    g.drawImage(originalImagePlant, 20, count, 50, 70, null);
                     count += 80;
                 }
                 count = 20;
@@ -77,6 +80,27 @@ public class PVZInGame extends JFrame implements GeneralInterface {
                     Image originalImageZombie = iconZombie.getImage();
                     g.drawImage(originalImageZombie, 930, count, 70, 70, null);
                     count += 80;
+                }
+                for(Plant[] listaPlanta: pvz.getPlantasTablero()){
+                    for(Plant plant : listaPlanta){
+                        if(plant != null) {
+                            ImageIcon imageIcon = getImageIcon(plant.getName() + "G.png");
+                            Image image = imageIcon.getImage();
+                            g.drawImage(image, plant.getXPosition(), plant.getYPosition(), 60, 65, null);
+                        }
+                    }
+                }
+                for(List<Zombie>[] matrizZombies: pvz.getZombiesTablero()) {
+                    for (List<Zombie> listaDeZombie : matrizZombies) {
+                        for (Zombie zombie : listaDeZombie) {
+                            if (zombie != null) {
+                                ImageIcon iconZombie = getImageIcon("zombieG.png");
+                                Image originalImageZombie = iconZombie.getImage();
+                                g.drawImage(originalImageZombie, zombie.getXPosition(), zombie.getYPosition(), 70, 70, null);
+
+                            }
+                        }
+                    }
                 }
             }
         };
@@ -132,14 +156,15 @@ public class PVZInGame extends JFrame implements GeneralInterface {
     }
 
     private void prepareBotonesPlantas() {
-        int count = 0;
         int fila = 20;
-        for (JButton boton : botonesPlantas) {
-            boton = new BorderButton(plantasAJugar[count]);
-            boton.setBounds(20,fila,70,70);
-            count++;
+        int len;
+        len = plantasAJugar.length;
+        botonesPlantas = new JButton[len];
+        for (int i = 0; i < len; i++) {
+            botonesPlantas[i] = new BorderButton(plantasAJugar[i]);
+            botonesPlantas[i].setBounds(20,fila,50,70);
             fila += 80;
-            gamePanel.add(boton);
+            gamePanel.add(botonesPlantas[i]);
         }
     }
 
@@ -149,12 +174,11 @@ public class PVZInGame extends JFrame implements GeneralInterface {
         int len;
         len = zombiesAJugar.length;
         botonesZombies = new JButton[len];
-        for(JButton boton : botonesZombies) {
-            boton = new BorderButton(zombiesAJugar[count]);
-            boton.setBounds(930,fila,70,70);
-            count++;
+        for (int i = 0; i < len; i++) {
+            botonesZombies[i] = new BorderButton(zombiesAJugar[i]);
+            botonesZombies[i].setBounds(20,fila,70,70);
             fila += 80;
-            gamePanel.add(boton);
+            gamePanel.add(botonesZombies[i]);
         }
     }
 
@@ -183,19 +207,29 @@ public class PVZInGame extends JFrame implements GeneralInterface {
             }
         }
         //El timer es para mover el juego e interactuar con el.
-        Timer timer = new Timer(1000, new ActionListener() {
+        Timer timer = new Timer(400, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 refresh();
-                System.out.println(1);
             }
         });
         timer.start();
+
+
     }
 
     private void addPlant(int row, int col) {
-        pvz.addPlant(row,col);
-        gamePanel.repaint();
+        try {
+            pvz.addPlant(row, col, plantaSeleccionada);
+            gamePanel.repaint();
+        }catch(PVZException e) {
+            JDialog dialog = new JDialog();
+            dialog.setTitle(e.getMessage());
+            dialog.setSize(300, 150);
+            dialog.setLocationRelativeTo(null); // Centrar en la pantalla
+            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            new Timer(2000, s -> dialog.dispose()).start();
+        }
     }
 
     private void seleccionarPlanta(String planta){

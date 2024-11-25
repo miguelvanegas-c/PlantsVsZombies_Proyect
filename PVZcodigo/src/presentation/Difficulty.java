@@ -74,11 +74,11 @@ public class Difficulty extends JFrame implements GeneralInterface{
     private void createPlantsElectionPanel(){
         ImageIcon icon = getImageIcon("pantallaSeleccion.png");
         Image originalImage = icon.getImage();
-        icon = getImageIcon("peashooter.png");
+        icon = getImageIcon("peashooter1.png");
         Image peashooterImage = icon.getImage();
-        icon = getImageIcon("sunflower.png");
+        icon = getImageIcon("sunflower1.png");
         Image sunflowerImage = icon.getImage();
-        icon = getImageIcon("wallnut.png");
+        icon = getImageIcon("wallnut1.png");
         Image wallnutImage = icon.getImage();
         mainPanel = new JPanel() {
             @Override
@@ -108,7 +108,7 @@ public class Difficulty extends JFrame implements GeneralInterface{
                 int x = 160;
 
                 for(String planta : plantasAJugar){
-                    ImageIcon icon = getImageIcon(planta+".png");
+                    ImageIcon icon = getImageIcon(planta+"1.png");
                     Image image = icon.getImage();
                     g.drawImage(image, x, 530, 100, 100, null);
                     x += 100;
@@ -191,7 +191,7 @@ public class Difficulty extends JFrame implements GeneralInterface{
         seleccionar = new EspecialButton("Seleccionar");
         peashooter.setBounds(150, 155, 100, 100);
         sunflower.setBounds(250, 155, 100, 100);
-        wallnut.setBounds(350, 155, 100, 100);
+        wallnut.setBounds(350, 155, 100,100);
         seleccionar.setBounds(845,460,140,30);
 
         mainPanel.add(peashooter);
@@ -310,7 +310,7 @@ public class Difficulty extends JFrame implements GeneralInterface{
                 super.paintComponent(g);
                 g.drawImage(originalImage, 0, 0, getWidth(), getHeight(), null);
 
-                //Posibles plantas a agregar.
+                //Posibles zombies a agregar.
                 g.drawImage(zombieImage, 150, 155, 100, 100, null);
                 g.drawImage(zombieConoImage, 250, 155, 100, 100, null);
                 g.drawImage(zombieBaldeImage, 350, 155, 100, 100, null);
