@@ -1,4 +1,3 @@
-package presentation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,21 +8,21 @@ import javax.sound.sampled.*;
 import java.io.IOException;
 
 /**
- * Esta es la pantalla inicial de la interfaz para el juego POOB vs ZOMBIES.
+ * This is the main screen of the interface for the game POOB vs ZOMBIES.
  *
- * @author Miguel Angel Vanegas y Julian Castiblanco.
+ * @author Miguel Angel Vanegas and Julian Castiblanco.
  * @version 1.0
  */
 
 public class PVZGUI extends JFrame implements GeneralInterface {
-    private JMenuItem abrir, salvar, nuevo, salir;
-    private JPanel fondo; // Cambiado de JLabel a JPanel
-    private JButton PvsP, MvsM, PvsM, controles, exit;
+    private JMenuItem open, save, newItem, exitMenuItem;
+    private JPanel background; // Changed from JLabel to JPanel
+    private JButton PvsP, MvsM, PvsM, controls, exit;
     private static Clip clip;
     private static boolean isMusicPlaying = false;
 
     /**
-     * creador de la clase PVZGUI.
+     * Constructor for the PVZGUI class.
      */
     public PVZGUI() {
         super("POOB vs Zombies");
@@ -41,39 +40,37 @@ public class PVZGUI extends JFrame implements GeneralInterface {
     }
 
     /**
-     * prepara todos los elementos de la interfaz.
+     * Prepares all the interface elements.
      */
     private void prepareElements() {
-        changeSizeToImage();
-        createFondo();
-        prepareElementsMenu();
-        prepareBotones();
+        resizeToBackgroundImage();
+        createBackground();
+        prepareMenuElements();
+        prepareButtons();
     }
 
-
     /*
-     * Crea el fondo del PVZGUI.
+     * Creates the background for PVZGUI.
      */
-    private void createFondo() {
-        fondo = new JPanel() {
+    private void createBackground() {
+        background = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 ImageIcon icon = getImageIcon("fondoConNombre.png");
-                Image backGroundImage = icon.getImage();
-                g.drawImage(backGroundImage, 0, 0, getWidth(), getHeight(), this);
+                Image backgroundImage = icon.getImage();
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
             }
         };
 
-        fondo.setLayout(null); // Para colocar componentes de forma absoluta
-        setContentPane(fondo);
+        background.setLayout(null); // Allows absolute positioning of components
+        setContentPane(background);
     }
 
-
     /*
-     * configura el tamaño de la PVZGUI a la imagen de fondo.
+     * Sets the size of PVZGUI to match the background image.
      */
-    private void changeSizeToImage() {
+    private void resizeToBackgroundImage() {
         ImageIcon icon = getImageIcon("fondoConNombre.png");
 
         int imageWidth = icon.getIconWidth();
@@ -81,60 +78,59 @@ public class PVZGUI extends JFrame implements GeneralInterface {
 
         setSize(imageWidth, imageHeight);
 
-        setLocationRelativeTo(null); // Centrar el JFrame en la pantalla
+        setLocationRelativeTo(null); // Centers the JFrame on the screen
         setResizable(false);
     }
 
     /*
-     * prepara los elementus del menu, tanto para abrir, salvar, nuevo, salir.
+     * Prepares the menu elements for opening, saving, creating new files, and exiting.
      */
-    private void prepareElementsMenu() {
+    private void prepareMenuElements() {
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Menu");
 
-        abrir = new JMenuItem("Abrir");
-        salvar = new JMenuItem("Salvar");
-        nuevo = new JMenuItem("Nuevo");
-        salir = new JMenuItem("Salir");
+        open = new JMenuItem("Open");
+        save = new JMenuItem("Save");
+        newItem = new JMenuItem("New");
+        exitMenuItem = new JMenuItem("Exit");
 
         menuBar.add(menu);
-        menu.add(abrir);
-        menu.add(salvar);
-        menu.add(nuevo);
-        menu.add(salir);
+        menu.add(open);
+        menu.add(save);
+        menu.add(newItem);
+        menu.add(exitMenuItem);
 
         setJMenuBar(menuBar);
     }
 
     /*
-     * prepara los botones de la interfaz.
+     * Prepares the buttons for the interface.
      */
-    private void prepareBotones() {
+    private void prepareButtons() {
         PvsP = new EspecialButton("PvsP");
         MvsM = new EspecialButton("MvsM");
         PvsM = new EspecialButton("PvsM");
-        controles = new TransparentButton("       ");
+        controls = new TransparentButton("       ");
         exit = new TransparentButton("    ");
 
-        // Configurar las posiciones absolutas de los botones
+        // Configuring absolute positions for buttons
         PvsP.setBounds(550, 70, 120, 60);
         MvsM.setBounds(550, 170, 120, 60);
         PvsM.setBounds(550, 270, 120, 60);
-        controles.setBounds(625, 440, 88, 30);
+        controls.setBounds(625, 440, 88, 30);
         exit.setBounds(790, 450, 60, 30);
 
-        // Agregar los botones al fondo
-        fondo.add(PvsP);
-        fondo.add(MvsM);
-        fondo.add(PvsM);
-        fondo.add(controles);
-        fondo.add(exit);
+        // Adding buttons to the background
+        background.add(PvsP);
+        background.add(MvsM);
+        background.add(PvsM);
+        background.add(controls);
+        background.add(exit);
     }
 
     /*
-     * prepara las acciones tanto de los botones, como de los items del menu.
+     * Prepares actions for the buttons and menu items.
      */
-
     private void prepareActions() {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
@@ -143,19 +139,19 @@ public class PVZGUI extends JFrame implements GeneralInterface {
             }
         });
 
-        salir.addActionListener(e -> closeWindowAction());
+        open.addActionListener(e -> closeWindowAction());
         PvsP.addActionListener(e -> openDifficultyWindow("PvsP"));
         MvsM.addActionListener(e -> openDifficultyWindow("MvsM"));
         PvsM.addActionListener(e -> openDifficultyWindow("PvsM"));
-        controles.addActionListener(e -> JOptionPane.showMessageDialog(PVZGUI.this, "Controles"));
+        controls.addActionListener(e -> JOptionPane.showMessageDialog(PVZGUI.this, "Controls"));
         exit.addActionListener(e -> closeWindowAction());
     }
 
     /*
-     * Pasa a otra venta para la configuracion de un nuevo juego.
-     * @param gameMode, modo de juego elegido.
+     * Opens another window for configuring a new game.
+     * @param gameMode, selected game mode.
      */
-    private void openDifficultyWindow(String gameMode){
+    private void openDifficultyWindow(String gameMode) {
         Difficulty difficultyWindow = new Difficulty(gameMode);
         difficultyWindow.setVisible(true);
 
@@ -163,20 +159,19 @@ public class PVZGUI extends JFrame implements GeneralInterface {
     }
 
     /*
-     * Configura el comportamiento de la ventana al intentar cerrarla.
+     * Configures window behavior when attempting to close it.
      */
-
     private void closeWindowAction() {
-        int opcion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas salir?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (opcion == JOptionPane.YES_NO_OPTION) {
+        int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirm Exit", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (option == JOptionPane.YES_NO_OPTION) {
             stopMusic();
             System.exit(0);
         }
     }
 
     /*
-     * Empieza a reproducir la musica.
-     * @param filePath, ubicacion de el archivo de musica.
+     * Starts playing the music.
+     * @param filePath, path to the music file.
      */
     private void playMusic(String filePath) {
         try {
@@ -187,23 +182,24 @@ public class PVZGUI extends JFrame implements GeneralInterface {
 
             File musicFile = new File(filePath);
             if (!musicFile.exists()) {
-                System.out.println("El archivo de música no existe: " + filePath);
+                System.out.println("Music file does not exist: " + filePath);
                 return;
             }
 
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(musicFile);
             clip = AudioSystem.getClip();
             clip.open(audioStream);
-            clip.loop(Clip.LOOP_CONTINUOUSLY); // Reproducir en bucle
+            clip.loop(Clip.LOOP_CONTINUOUSLY); // Play in loop
             clip.start();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
     }
+
     /*
-     * reinicia la reproduccion de la musica en caso de que haya musica reproduciendose.
+     * Restarts the music if it is currently playing.
      */
-    private void restartMusic(){
+    private void restartMusic() {
         if (clip != null) {
             clip.setFramePosition(0);
             clip.start();
@@ -211,7 +207,7 @@ public class PVZGUI extends JFrame implements GeneralInterface {
     }
 
     /*
-     * Para la musica en caso de que se este reproduciendo.
+     * Stops the music if it is currently playing.
      */
     private void stopMusic() {
         if (clip != null && clip.isRunning()) {

@@ -1,18 +1,18 @@
-package domain;
 
+/**
+ * This is an interface to all the zombies.
+ *
+ * @author Miguel Angel Vanegas y Julian Castiblanco.
+ * @version 1.0
+ */
 public interface Zombie {
 
-    default void move(){
-    }
+    String getName();
 
-    default void atacar(){
-    }
-
-    default int getXPosition(){
-        return 0;
-    }
-
-    default int getYPosition(){
-        return 0;
-    }
+    /**
+     * move the zombie.
+     */
+    void move();
+    int getXPosition();
+    int getYPosition();
 }
