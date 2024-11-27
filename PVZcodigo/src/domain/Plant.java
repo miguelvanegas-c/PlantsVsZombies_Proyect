@@ -1,7 +1,12 @@
-package domain;
 
+/**
+ * This is an interfaces to all the plants.
+ *
+ * @author Miguel Angel Vanegas y Julian Castiblanco.
+ * @version 1.0
+ */
 public interface Plant {
-    public abstract String getName();
-    public abstract int getXPosition();
-    public abstract int getYPosition();
+    String getName();
+    int getXPosition();
+    int getYPosition();
 }

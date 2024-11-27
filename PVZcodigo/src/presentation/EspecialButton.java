@@ -1,4 +1,4 @@
-package presentation;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ import java.awt.*;
 
 public class EspecialButton extends JButton {
     /**
-     * constructor de la clase EspecialButton.
+     * Constructor de la clase EspecialButton.
      * @param text, texto del boton.
      */
     public EspecialButton(String text) {

@@ -1,6 +1,4 @@
-package test;
 
-import domain.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,6 +8,7 @@ public class PVZTest {
     private String[] plantasDeJuego;
     private String[] zombiesDeJuego;
     private PVZ pvz;
+
     @Before
     public void setUp() throws Exception {
         String[] plantasDeJuego = {"peashooter,sunflower"};
