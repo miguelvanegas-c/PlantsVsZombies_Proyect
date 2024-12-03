@@ -5,8 +5,8 @@
  * @version 1.0
  */
 
-public class BasicZombie extends Element implements Zombie{
-    private final String name = "zombie";
+public class BasicZombie extends Zombie{
+
 
     /**
      * Constructor of the basic zombie
@@ -14,6 +14,7 @@ public class BasicZombie extends Element implements Zombie{
      */
     public BasicZombie(int row) {
         super(row,10);
+        name = "zombie";
     }
 
     /**
@@ -24,18 +25,4 @@ public class BasicZombie extends Element implements Zombie{
         xPosition -= 1;
     }
 
-    @Override
-    public int getXPosition(){
-        return xPosition;
-    }
-
-    @Override
-    public int getYPosition(){
-        return yPosition;
-    }
-
-    @Override
-    public String getName(){
-        return name;
-    }
 }

@@ -7,25 +7,17 @@
  */
 
 
-public class Peashooter extends Element implements Plant {
-    private String name = "peashooter";
+public class Peashooter extends Plant {
 
+    /**
+     * Creator to peashooter
+     * @param row, row of the peashooter.
+     * @param col, col of the peashooter.
+     */
     public Peashooter(int row,int col) {
         super(row,col);
+        name = "peashooter";
     }
 
-    @Override
-    public String getName() {
-        return name;
-    }
 
-    @Override
-    public int getXPosition() {
-        return xPosition;
-    }
-
-    @Override
-    public int getYPosition() {
-        return yPosition;
-    }
 }
