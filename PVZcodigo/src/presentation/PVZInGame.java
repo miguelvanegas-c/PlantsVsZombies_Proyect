@@ -19,13 +19,14 @@ import java.awt.event.WindowEvent;
 public class PVZInGame extends JFrame implements GeneralInterface {
     private JPanel gamePanel;
     private JMenuItem open, save, newItem, exit;
-    private String gameMode, selectedPlant;
+    private String gameMode, selectedPlant, plantPlayer,zombiePlayer,plantsType,zombieType;
     private String[] plantsToPlay;
     private String[] zombiesToPlay;
     private JButton[] plantsButtons;
     private JButton[] zombiesButtons;
     private JButton[][] cells = new JButton[5][11];
     private PVZ pvz;
+    private int sunCount = 0;
 
 
     /**
@@ -35,12 +36,14 @@ public class PVZInGame extends JFrame implements GeneralInterface {
      * @param plantasToPlay  The set of plants available to play.
      * @param zombiesToPlay  The set of zombies available to play.
      */
-    public PVZInGame(String gameMode, HashSet<String> plantasToPlay,HashSet<String> zombiesToPlay) {
+    public PVZInGame(String gameMode, HashSet<String> plantasToPlay,HashSet<String> zombiesToPlay,String plantPlayer,String zombieType) {
         this.gameMode = gameMode;
         this.plantsToPlay = plantasToPlay.toArray(new String[0]);
         plantsButtons = new JButton[this.plantsToPlay.length];
         this.zombiesToPlay = zombiesToPlay.toArray(new String[0]);
         pvz = new PVZ(this.plantsToPlay,this.zombiesToPlay, true);
+        this.plantPlayer = plantPlayer;
+        this.zombieType = zombieType;
         prepareElements();
         prepareActions();
         refresh();
@@ -58,8 +61,33 @@ public class PVZInGame extends JFrame implements GeneralInterface {
     private void prepareElements() {
         prepareElementsMenu();
         createPanel();
-        if(gameMode.equals("PvsP")) prepareButtonsZombies();
-        if(gameMode.equals("PvsP") || gameMode.equals("PvsM")) prepareButtonsPlantas();
+        if(gameMode.equals("PvsP")) {
+            prepareButtonsZombies();
+            prepareButtonsPlants();
+            JLabel label = new JLabel("<html><span style='font-size:20px; letter-spacing:5px;'>"+plantPlayer+"</span></html>");
+            label.setBounds(20,0,plantPlayer.length()*20,50);
+            gamePanel.add(label);
+            JLabel label2 = new JLabel("<html><span style='font-size:20px; letter-spacing:5px;'>"+zombiePlayer+"</span></html>");
+            label2.setBounds(920,0,zombiePlayer.length()*20,50);
+            gamePanel.add(label2);
+        }
+        if(gameMode.equals("PvsM")){
+            prepareButtonsPlants();
+            JLabel label = new JLabel("<html><span style='font-size:20px; letter-spacing:5px;'>"+plantPlayer+"</span></html>");
+            label.setBounds(20,0,plantPlayer.length()*20,50);
+            gamePanel.add(label);
+            JLabel label2 = new JLabel("<html><span style='font-size:20px; letter-spacing:5px;'>"+zombieType+"</span></html>");
+            label2.setBounds(920,0,zombieType.length()*20,50);
+            gamePanel.add(label2);
+        }
+        if(gameMode.equals("MvsM")){
+            JLabel label = new JLabel("<html><span style='font-size:20px; letter-spacing:5px;'>"+plantsType+"</span></html>");
+            label.setBounds(20,0,plantsType.length()*20,50);
+            gamePanel.add(label);
+            JLabel label2 = new JLabel("<html><span style='font-size:20px; letter-spacing:5px;'>"+zombieType+"</span></html>");
+            label2.setBounds(920,0,zombieType.length()*20,50);
+            gamePanel.add(label2);
+        }
         changeSizeToImage("fondoTablero.png");
         if(!gameMode.equals("MvsM"))prepareButtonsTablero();
 
@@ -76,44 +104,61 @@ public class PVZInGame extends JFrame implements GeneralInterface {
         gamePanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
-                //Toca añadir el dibujo de los zombies ya sea para MvsM o PvsP.
+
                 super.paintComponent(g);
+                //zone of plants anzombies select.
                 g.drawImage(originalImage, 0, 0, getWidth(), getHeight(), null);
-                int count = 20;
+                int count = 50;
                 for (String planta : plantsToPlay) {
                     ImageIcon iconPlant = getImageIcon(planta+".png");
                     Image originalImagePlant = iconPlant.getImage();
-                    g.drawImage(originalImagePlant, 20, count, 50, 70, null);
-                    count += 80;
+                    g.drawImage(originalImagePlant, 20, count, 40, 60, null);
+                    count += 70;
                 }
-                count = 20;
+                count = 50;
                 for (String zombie : zombiesToPlay) {
                     ImageIcon iconZombie = getImageIcon(zombie + ".png");
                     Image originalImageZombie = iconZombie.getImage();
-                    g.drawImage(originalImageZombie, 930, count, 70, 70, null);
-                    count += 80;
+                    g.drawImage(originalImageZombie, 930, count, 60, 60, null);
+                    count += 70;
                 }
-                for(Plant[] listaPlanta: pvz.getPlantsBoard()){
-                    for(Plant plant : listaPlanta){
-                        if(plant != null) {
-                            ImageIcon imageIcon = getImageIcon(plant.getName() + "G.png");
-                            Image image = imageIcon.getImage();
-                            g.drawImage(image, plant.getXPosition(), plant.getYPosition(), 60, 65, null);
-                        }
-                    }
-                }
-                for(List<Zombie>[] matrizZombies: pvz.getZombiesBoard()) {
-                    for (List<Zombie> listaDeZombie : matrizZombies) {
-                        for (Zombie zombie : listaDeZombie) {
-                            if (zombie != null) {
-                                ImageIcon iconZombie = getImageIcon("zombieG.png");
+                for(List<Element>[] matrizElements: pvz.getBoard()) {
+                    for (List<Element> elementList : matrizElements) {
+                        for (Element element : elementList) {
+                            if (element != null) {
+                                ImageIcon iconZombie = getImageIcon(element.getName()+"G.png");
                                 Image originalImageZombie = iconZombie.getImage();
-                                g.drawImage(originalImageZombie, zombie.getXPosition(), zombie.getYPosition(), 70, 70, null);
+                                int width =(element instanceof Plant || element instanceof Coin)? 50:70;
+                                int height = (element instanceof Plant || element instanceof Coin)? 50:70;;
+
+                                g.drawImage(originalImageZombie, element.getXPosition(), element.getYPosition(),width , height, null);
 
                             }
                         }
                     }
                 }
+                //name or type zone
+                int zombieLength;
+                int plantLength;
+                if(zombieType == null) zombieLength = (zombiePlayer.length()+ 1)*20;
+                else zombieLength = (zombieType.length() + 1) * 20;
+                if(plantsType == null) plantLength = (plantPlayer.length()+ 1)*20;
+                else plantLength = (plantsType.length() + 1) * 20;
+                g.setColor(new Color(101, 67, 33));
+                g.fillRect(10, 5,plantLength, 40);
+                g.setColor(new Color(150, 150, 150));
+                g.fillRect(910, 5, zombieLength, 40);
+                //sun counter
+                g.setColor(new Color(139, 69, 19));
+                g.fillRect(30+plantLength, 5, 120, 40);
+                ImageIcon iconZombie = getImageIcon( "sun.png");
+                Image originalImageZombie = iconZombie.getImage();
+                g.drawImage(originalImageZombie, 35+plantLength, 10, 30, 30, null);
+                JLabel sunLabel = new JLabel("<html><span style='font-size:20px; letter-spacing:5px;'>"+sunCount+"</span></html>");
+                sunLabel.setBounds(70 + plantLength,5,50,40);
+                gamePanel.add(sunLabel);
+
+
             }
         };
 
@@ -181,15 +226,15 @@ public class PVZInGame extends JFrame implements GeneralInterface {
      * Prepares the buttons representing plants available for the player.
      * Buttons are aligned vertically on the left side of the game panel.
      */
-    private void prepareButtonsPlantas() {
-        int row = 20;
+    private void prepareButtonsPlants() {
+        int row = 50;
         int len;
         len = plantsToPlay.length;
         plantsButtons = new JButton[len];
         for (int i = 0; i < len; i++) {
-            plantsButtons[i] = new BorderButton(plantsToPlay[i]);
-            plantsButtons[i].setBounds(20,row,50,70);
-            row += 80;
+            plantsButtons[i] = new BorderButton(" ");
+            plantsButtons[i].setBounds(20,row,40,60);
+            row += 70;
             gamePanel.add(plantsButtons[i]);
         }
     }
@@ -199,15 +244,14 @@ public class PVZInGame extends JFrame implements GeneralInterface {
      * Buttons are aligned vertically on the left side of the game panel.
      */
     private void prepareButtonsZombies() {
-        int count = 0;
-        int row = 20;
+        int row = 50;
         int len;
         len = zombiesToPlay.length;
         zombiesButtons = new JButton[len];
         for (int i = 0; i < len; i++) {
-            zombiesButtons[i] = new BorderButton(zombiesToPlay[i]);
-            zombiesButtons[i].setBounds(20,row,70,70);
-            row += 80;
+            zombiesButtons[i] = new BorderButton(" ");
+            zombiesButtons[i].setBounds(930,row,60,60);
+            row += 70;
             gamePanel.add(zombiesButtons[i]);
         }
     }
@@ -266,10 +310,12 @@ public class PVZInGame extends JFrame implements GeneralInterface {
         try {
             pvz.addPlant(row, col, selectedPlant);
             gamePanel.repaint();
+            selectedPlant = null;
         } catch (PVZException e) {
             JDialog dialog = new JDialog();
             JLabel label = new JLabel(e.getMessage());
             label.setBounds(20, 20, 70, 70);
+            label.setFont(new Font("DialogInput", Font.BOLD, 10));
             dialog.setTitle("ERROR");
             dialog.add(label);
             dialog.setSize(300, 150);

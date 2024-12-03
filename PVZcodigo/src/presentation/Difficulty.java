@@ -94,7 +94,7 @@ public class Difficulty extends JFrame implements GeneralInterface{
 
                 }
 
-                //Zona de plantas ya seleccionadas.
+
                 g.setColor(new Color(139, 69, 19));
                 g.fillRect(150, 520, 800, 120);
 
@@ -259,6 +259,8 @@ public class Difficulty extends JFrame implements GeneralInterface{
      */
     private void nextPanel() {
         try{
+            if(gameMode.equals("MvsM"))validePlantsType();
+            else validePlantsName();
             validePlantsToPlay();
             createZombiesElectionPanel();
             prepareButtonsToZombiesElection();
@@ -274,6 +276,22 @@ public class Difficulty extends JFrame implements GeneralInterface{
                     JOptionPane.ERROR_MESSAGE
             );
         }
+    }
+    /*
+     * Validate plant type exist.
+     * @throws PVZException if plant type doesn't exist.
+     */
+    private void validePlantsType() throws PVZException {
+        if(plantType == null) throw new PVZException(PVZException.ERROR_NOT_PLANT_TYPE);
+    }
+
+    /*
+     * Validate plant name exist.
+     * @throws PVZException if plant name doesn't exist.
+     */
+
+    private void validePlantsName() throws PVZException {
+        if(plantPlayerName == null) throw new PVZException(PVZException.ERROR_NOT_PLANT_NAME);
     }
 
     /*
@@ -321,7 +339,7 @@ public class Difficulty extends JFrame implements GeneralInterface{
 
                 }
 
-                //Zona de plantas ya seleccionadas.
+
                 g.setColor(new Color(0, 0, 0));
                 g.fillRect(150, 520, 800, 120);
 
@@ -359,7 +377,6 @@ public class Difficulty extends JFrame implements GeneralInterface{
         mainPanel.add(zombie);
         mainPanel.add(coneZombie);
         mainPanel.add(bucketZombie);
-        mainPanel.add(select);
         mainPanel.add(play);
         mainPanel.add(back);
     }
@@ -402,8 +419,10 @@ public class Difficulty extends JFrame implements GeneralInterface{
      */
     private void openPVZInGameWindow(){
         try {
+            if(gameMode.equals("PvsP")) valideZombiesName();
+            else valideZombiesType();
             valideZombiesToPlay();
-            PVZInGame pvzInGameWindow = new PVZInGame(gameMode, plantsToPlay, zombiesToPlay);
+            PVZInGame pvzInGameWindow = new PVZInGame(gameMode, plantsToPlay, zombiesToPlay,plantPlayerName,zombieType);
             pvzInGameWindow.setVisible(true);
             dispose();
         }catch(Exception e){
@@ -431,7 +450,7 @@ public class Difficulty extends JFrame implements GeneralInterface{
     * Prepare the elements for the choice of zombie machine type.
     */
     private void prepareTypeElectionToZombies() {
-        String[] opcionesZombies = {"ZombiesIntellIgent","ZombiesStrategic"};
+        String[] opcionesZombies = {"ZombiesIntelligent","ZombiesStrategic"};
         selectZombie = new JComboBox<>(opcionesZombies);
         selectZombie.setBounds(100,50,200,40);
         if(gameMode.equals("MvsM") || gameMode.equals("PvsM")){
@@ -469,14 +488,31 @@ public class Difficulty extends JFrame implements GeneralInterface{
     }
 
     /*
-     * valid if plants were chosen to play.
+     * Validate zombie type exist.
+     * @throw PVZException if zombie type doesn't exist.
+     */
+    private void valideZombiesType() throws PVZException{
+        if (zombieType == null) throw new PVZException(PVZException.ERROR_NOT_ZOMBIE_TYPE);
+    }
+    /*
+     * Validate zombie name exist.
+     * @throw PVZException if zombie name doesn't exist.
+     */
+    private void valideZombiesName() throws PVZException{
+        if (zombieType == null) throw new PVZException(PVZException.ERROR_NOT_ZOMBIE_NAME);
+    }
+
+    /*
+     * Validate if plants were chosen to play.
+     * @throws PVZException if plants was chosen.
      */
     private void validePlantsToPlay() throws PVZException {
         if(plantsToPlay.isEmpty()) {throw new PVZException(PVZException.NOT_PLANTS_CHOOSED_TO_PLAY);}
     }
 
     /*
-     * valid if zombies were chosen to play.
+     * Validate if zombies were chosen to play.
+     * @throws PVZException if zombies was chosen.
      */
     private void valideZombiesToPlay() throws PVZException {
         if(zombiesToPlay.isEmpty()) {throw new PVZException(PVZException.NOT_ZOMBIES_CHOOSED_TO_PLAY);}

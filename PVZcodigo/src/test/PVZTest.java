@@ -21,8 +21,8 @@ public class PVZTest {
     public void shouldCreatePVZToPvsM() {
         String[] plantasDeJuegoTest = {"peashooter,sunflower"};
         String[] zombiesDeJuegoTest = {"zombieCono,zombie"};
-        assertArrayEquals(plantasDeJuegoTest,pvz.getPlantasDeJuego());
-        assertArrayEquals(zombiesDeJuegoTest,pvz.getZombiesDeJuego());
+        assertArrayEquals(plantasDeJuegoTest,pvz.getPlantsInGame());
+        assertArrayEquals(zombiesDeJuegoTest,pvz.getZombiesInGame());
     }
 
     @Test
@@ -39,8 +39,8 @@ public class PVZTest {
         }
         String testPlanta = null;
         String testTwoPlanta = null;
-        if(pvz.getPlantasTablero()[1][1] instanceof Peashooter)testPlanta = "peashooter";
-        if(pvz.getTablero()[1][1].getFirst() instanceof Peashooter)testTwoPlanta = "peashooter";
+        if(pvz.getPlantsBoard()[1][1] instanceof Peashooter)testPlanta = "peashooter";
+        if(pvz.getBoard()[1][1].getFirst() instanceof Peashooter)testTwoPlanta = "peashooter";
         assertEquals(testPlanta,"peashooter");
         assertEquals(testTwoPlanta,"peashooter");
 
