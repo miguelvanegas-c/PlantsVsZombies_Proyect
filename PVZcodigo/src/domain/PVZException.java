@@ -13,6 +13,10 @@ public class PVZException extends Exception {
     public static final String ERROR_NOT_ZOMBIE_TYPE = "You don't choose a type to zombie player";
     public static final String ERROR_COIN_NULL = "You don´t selected a coin";
     public static final String ERROR_COIN_NOT_EXIST = "The coin that do you wanna add doesn't exist";
+    public static final String NOT_NUMBER = "The value isn't a number";
+    public static final String ERROR_NOT_STARTING_SUNS = "The suns is less than or equal to the number of suns";
+    public static final String ERROR_NOT_STARTING_BRAINS = "The suns is less than or equal to the number of brains";
+
     public PVZException(String message) {super(message);}
 
 }

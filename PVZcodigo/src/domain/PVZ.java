@@ -130,7 +130,7 @@ public class PVZ{
      * @param plant The type of plant to be added.
      * @throws PVZException if planting is not allowed or the cell is not empty.
      */
-    public void addPlant(int row, int col, String plant)  throws PVZException{
+    public <P extends Plant> void addPlant(int row, int col, String plant)  throws PVZException{
         valideCanPlant(row,col);
         valideEmptyCell(row,col);
         Plant newPlant = searchPlant(plant,row,col);
@@ -148,6 +148,7 @@ public class PVZ{
      * @throws PVZException if the plant is null.
      */
     private Plant searchPlant(String plant,int row,int col) throws PVZException{
+        String paquete = "domain";
         validePlantNotNull(plant);
         switch  (plant){
             case "peashooter":
@@ -213,6 +214,7 @@ public class PVZ{
         Coin newCoin = searchCoin(coin,row,col,startRow,startCol);
         valideCoinExist(newCoin);
         coins[row][col].add(newCoin);
+        board[row][col].add(newCoin);
     }
 
     /*
@@ -248,78 +250,7 @@ public class PVZ{
         }
     }
 
-    /**
-     * Starts the game by setting up timers for generating zombies and moving them.
-     */
-    public void startingGame(){
-        generateZombiesToTheGame();
-        //Generate zombie each 10 seconds.
-        timerGenerateZombies = new Timer(15000, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                generateZombies();
-            }
-        });
-        timerGenerateZombies.start();
 
-        //Move the zombies
-        Timer timerMove = new Timer(100, new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-
-                moveZombies();
-            }
-        });
-        timerMove.start();
-
-        //Generate a zombie horde each minute.
-        timerZombieHorde = new Timer(80000, new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                generateZombiesHorde();
-            }
-        });
-        timerZombieHorde.start();
-
-    }
-
-    /*
-     * Randomly generates a zombie in a random row.
-     */
-    private void generateZombies() {
-        if (countZombiesInHorde >= 9) {
-            timerGenerateZombiesInHorde.stop();
-            countZombiesInHorde = 0;
-        }
-        Random random = new Random();
-        int randomNum = random.nextInt(5) ;
-        addZombie(randomNum, "zombie");
-    }
-
-    /*
-     * Generate a zombie horde.
-     */
-    private void generateZombiesHorde(){
-        timerGenerateZombiesInHorde = new Timer(1000, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                generateZombies();
-                countZombiesInHorde++;
-            }
-        });
-        timerGenerateZombiesInHorde.start();
-    }
-
-    /*
-     * Generate the list of the zombies that will play.
-     */
-    private void generateZombiesToTheGame(){
-        zombiesToGenerate = new String[40];
-        Integer[] numOfZombies = new Integer[5];
-        for(String z: zombiesInGame){
-            switch(z){
-                case "BasicZombie":
-                    numOfZombies[0] = 38;
-            }
-        }
-
-    }
 
 }
 

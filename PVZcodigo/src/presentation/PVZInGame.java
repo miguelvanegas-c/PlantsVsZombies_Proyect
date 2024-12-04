@@ -50,12 +50,6 @@ public class PVZInGame extends JFrame implements GeneralInterface {
 
     }
     /*
-     * Starts the game logic.
-     */
-    private void startGame(){
-        pvz.startingGame();
-    }
-    /*
      * Prepares all the graphical and logical components of the game.
      */
     private void prepareElements() {
@@ -290,14 +284,6 @@ public class PVZInGame extends JFrame implements GeneralInterface {
             }
         });
         repaintTimer.start();
-
-        Timer startGameTimer = new Timer(10000, new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                startGame();
-                ((Timer) e.getSource()).stop();
-            }
-        });
-        startGameTimer.start();
 
     }
     /*
