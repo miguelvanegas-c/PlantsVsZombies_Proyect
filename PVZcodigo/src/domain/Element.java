@@ -7,8 +7,8 @@
  */
 public interface Element {
 
-    public String getName();
-    public int getXPosition();
-    public int getYPosition();
+    String getName();
+    int getXPosition();
+    int getYPosition();
 
 }

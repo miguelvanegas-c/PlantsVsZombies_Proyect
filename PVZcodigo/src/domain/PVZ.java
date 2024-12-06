@@ -81,7 +81,7 @@ public class PVZ{
      * Moves zombies across the board. Zombies advance one cell to the left if possible.
      * If a zombie reaches the leftmost column, it is removed from the board.
      */
-    private void moveZombies() {
+    public void moveZombies() {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
                 int len = zombiesBoard[row][col].size();
@@ -122,6 +122,14 @@ public class PVZ{
         }
     }
 
+    private Zombie searchZombie(String zombie, int row){
+        Zombie newZombie = null;
+        switch (zombie) {
+            case "zombie":
+                newZombie = new BasicZombie(row);
+        }
+        return newZombie;
+    }
     /**
      * Add a plant to the board at a specified position.
      *
@@ -130,7 +138,7 @@ public class PVZ{
      * @param plant The type of plant to be added.
      * @throws PVZException if planting is not allowed or the cell is not empty.
      */
-    public void addPlant(int row, int col, String plant)  throws PVZException{
+    public  void addPlant(int row, int col, String plant)  throws PVZException{
         valideCanPlant(row,col);
         valideEmptyCell(row,col);
         Plant newPlant = searchPlant(plant,row,col);
@@ -213,6 +221,7 @@ public class PVZ{
         Coin newCoin = searchCoin(coin,row,col,startRow,startCol);
         valideCoinExist(newCoin);
         coins[row][col].add(newCoin);
+        board[row][col].add(newCoin);
     }
 
     /*
@@ -249,76 +258,38 @@ public class PVZ{
     }
 
     /**
-     * Starts the game by setting up timers for generating zombies and moving them.
+     * Moves coins for the board
+     * If a coin arrive to the column and row where belongs, the coin stop.
+     *
      */
-    public void startingGame(){
-        generateZombiesToTheGame();
-        //Generate zombie each 10 seconds.
-        timerGenerateZombies = new Timer(15000, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                generateZombies();
-            }
-        });
-        timerGenerateZombies.start();
-
-        //Move the zombies
-        Timer timerMove = new Timer(100, new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-
-                moveZombies();
-            }
-        });
-        timerMove.start();
-
-        //Generate a zombie horde each minute.
-        timerZombieHorde = new Timer(80000, new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                generateZombiesHorde();
-            }
-        });
-        timerZombieHorde.start();
-
-    }
-
-    /*
-     * Randomly generates a zombie in a random row.
-     */
-    private void generateZombies() {
-        if (countZombiesInHorde >= 9) {
-            timerGenerateZombiesInHorde.stop();
-            countZombiesInHorde = 0;
-        }
-        Random random = new Random();
-        int randomNum = random.nextInt(5) ;
-        addZombie(randomNum, "zombie");
-    }
-
-    /*
-     * Generate a zombie horde.
-     */
-    private void generateZombiesHorde(){
-        timerGenerateZombiesInHorde = new Timer(1000, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                generateZombies();
-                countZombiesInHorde++;
-            }
-        });
-        timerGenerateZombiesInHorde.start();
-    }
-
-    /*
-     * Generate the list of the zombies that will play.
-     */
-    private void generateZombiesToTheGame(){
-        zombiesToGenerate = new String[40];
-        Integer[] numOfZombies = new Integer[5];
-        for(String z: zombiesInGame){
-            switch(z){
-                case "BasicZombie":
-                    numOfZombies[0] = 38;
+    public void moveCoins() {
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
+                int len = coins[row][col].size();
+                for (int i = 0; i < len; i++) {
+                    if(i < coins[row][col].size()) {
+                        Coin coin = coins[row][col].get(i);
+                        int startX = coin.getXPosition();
+                        coin.move(row,col);
+                        int x = coin.getXPosition();
+                        int y = coin.getYPosition();
+                        if (((y - 55)%75) == 0){
+                            coins[row][col].remove(coin);
+                            coins[row + 1][col].add(coin);
+                            board[row][col].remove(coin);
+                            board[row + 1][col].add(coin);
+                        }
+                        if (((x - 150) % 70) == 0) {
+                            int move =(startX < x)? 1:-1;
+                            coins[row][col].remove(coin);
+                            coins[row][col - move].add(coin);
+                            board[row][col].remove(coin);
+                            board[row][col - move].add(coin);
+                        }
+                    }
+                }
             }
         }
-
     }
 
 }

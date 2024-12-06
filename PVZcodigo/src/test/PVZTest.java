@@ -18,7 +18,7 @@ public class PVZTest {
         pvz = new PVZ(this.plantasDeJuego,this.zombiesDeJuego, true);
     }
     @Test
-    public void shouldCreatePVZToPvsM() {
+    public void shouldCreatePVZ() {
         String[] plantasDeJuegoTest = {"peashooter,sunflower"};
         String[] zombiesDeJuegoTest = {"zombieCono,zombie"};
         assertArrayEquals(plantasDeJuegoTest,pvz.getPlantsInGame());
@@ -27,7 +27,13 @@ public class PVZTest {
 
     @Test
     public void shouldMoveZombies() {
-
+        pvz.addZombie(3, "zombie");
+        Zombie zombie = pvz.getZombiesBoard()[3][9].getFirst();
+        for (int i = 0; i < 80; i++) {
+            pvz.moveZombies();
+        }
+        assertNotNull(pvz.getZombiesBoard()[3][8].getFirst());
+        assertEquals(zombie,pvz.getZombiesBoard()[3][8].getFirst());
     }
 
     @Test
