@@ -26,17 +26,25 @@ public class PVZInGame extends JFrame implements GeneralInterface {
     private JButton[] zombiesButtons;
     private JButton[][] cells = new JButton[5][11];
     private PVZ pvz;
-    private int sunCount = 0;
+    private int sunCount,brainCount,gameTime,hordesTime,hordesNumber;
 
 
     /**
-     * Constructor for PVZInGame.
+     * Constructor for PVZInGame PvsM.
      *
      * @param gameMode       The game mode ("PvsP", "PvsM", or "MvsM").
      * @param plantasToPlay  The set of plants available to play.
      * @param zombiesToPlay  The set of zombies available to play.
+     * @param plantPlayer    The plant player name.
+     * @param zombieType     The zombie type.
+     * @param startingBrains The start number of brains.
+     * @param startingSuns   The start number of suns.
+     * @param gameTime       The time in game.
+     * @param hordesTime     The hordes duration time.
+     * @param hordesNumber   The number of hordes for game.
+     *
      */
-    public PVZInGame(String gameMode, HashSet<String> plantasToPlay,HashSet<String> zombiesToPlay,String plantPlayer,String zombieType) {
+    public PVZInGame(String gameMode, HashSet<String> plantasToPlay,HashSet<String> zombiesToPlay,String plantPlayer,String zombieType, int startingBrains, int startingSuns, int gameTime, int hordesTime,int hordesNumber) {
         this.gameMode = gameMode;
         this.plantsToPlay = plantasToPlay.toArray(new String[0]);
         plantsButtons = new JButton[this.plantsToPlay.length];
@@ -44,11 +52,75 @@ public class PVZInGame extends JFrame implements GeneralInterface {
         pvz = new PVZ(this.plantsToPlay,this.zombiesToPlay, true);
         this.plantPlayer = plantPlayer;
         this.zombieType = zombieType;
+        this.sunCount = startingSuns;
+        this.brainCount = startingBrains;
+        this.gameTime = gameTime;
+        this.hordesTime = hordesTime;
+        this.hordesNumber = hordesNumber;
         prepareElements();
         prepareActions();
         refresh();
 
     }
+
+    /**
+     * Constructor for PVZInGame PvsP.
+     * @param plantasToPlay  The set of plants available to play.
+     * @param zombiesToPlay  The set of zombies available to play.
+     * @param plantPlayer    The plant player name.
+     * @param zombiePlayer   The zombie player name.
+     * @param gameMode       The game mode ("PvsP", "PvsM", or "MvsM").
+     * @param startingBrains The start number of brains.
+     * @param startingSuns   The start number of suns.
+     */
+    public PVZInGame( HashSet<String> plantasToPlay,HashSet<String> zombiesToPlay,String plantPlayer,String zombiePlayer,String gameMode,int startingBrains, int startingSuns, int gameTime) {
+        this.gameMode = gameMode;
+        this.plantsToPlay = plantasToPlay.toArray(new String[0]);
+        plantsButtons = new JButton[this.plantsToPlay.length];
+        this.zombiesToPlay = zombiesToPlay.toArray(new String[0]);
+        pvz = new PVZ(this.plantsToPlay,this.zombiesToPlay, true);
+        this.plantPlayer = plantPlayer;
+        this.zombiePlayer = zombiePlayer;
+        this.sunCount = startingSuns;
+        this.brainCount = startingBrains;
+        this.gameTime = gameTime;
+        prepareElements();
+        prepareActions();
+        refresh();
+        System.out.println(sunCount);
+
+    }
+
+    /**
+     * Constructor for PVZInGame MvsM.
+     * @param gameMode       The game mode ("PvsP", "PvsM", or "MvsM").
+     * @param zombieType     The zombie type.
+     * @param plantType      The plant type.
+     * @param plantasToPlay  The set of plants available to play.
+     * @param zombiesToPlay  The set of zombies available to play.
+     * @param gameTime       The time in game.
+     * @param hordesTime     The hordes duration time.
+     * @param hordesNumber   The number of hordes for game.
+     */
+    public PVZInGame(String plantType,String zombieType,String gameMode,HashSet<String> plantasToPlay,HashSet<String> zombiesToPlay, int startingBrains, int startingSuns, int gameTime, int hordesTime,int hordesNumber) {
+        this.gameMode = gameMode;
+        this.plantsToPlay = plantasToPlay.toArray(new String[0]);
+        plantsButtons = new JButton[this.plantsToPlay.length];
+        this.zombiesToPlay = zombiesToPlay.toArray(new String[0]);
+        pvz = new PVZ(this.plantsToPlay,this.zombiesToPlay, true);
+        this.plantsType = plantType;
+        this.zombieType = zombieType;
+        this.sunCount = startingSuns;
+        this.brainCount = startingBrains;
+        this.gameTime = gameTime;
+        this.hordesTime = hordesTime;
+        this.hordesNumber = hordesNumber;
+        prepareElements();
+        prepareActions();
+        refresh();
+
+    }
+
     /*
      * Prepares all the graphical and logical components of the game.
      */
@@ -132,25 +204,30 @@ public class PVZInGame extends JFrame implements GeneralInterface {
                     }
                 }
                 //name or type zone
-                int zombieLength;
-                int plantLength;
-                if(zombieType == null) zombieLength = (zombiePlayer.length()+ 1)*20;
-                else zombieLength = (zombieType.length() + 1) * 20;
-                if(plantsType == null) plantLength = (plantPlayer.length()+ 1)*20;
-                else plantLength = (plantsType.length() + 1) * 20;
                 g.setColor(new Color(101, 67, 33));
-                g.fillRect(10, 5,plantLength, 40);
-                g.setColor(new Color(150, 150, 150));
-                g.fillRect(910, 5, zombieLength, 40);
+                g.fillRect(10, 5,250, 40);
+                g.setColor(new Color(100, 100, 100));
+                g.fillRect(910, 5, 250, 40);
                 //sun counter
                 g.setColor(new Color(139, 69, 19));
-                g.fillRect(30+plantLength, 5, 120, 40);
-                ImageIcon iconZombie = getImageIcon( "sun.png");
-                Image originalImageZombie = iconZombie.getImage();
-                g.drawImage(originalImageZombie, 35+plantLength, 10, 30, 30, null);
+                g.fillRect(280, 5, 120, 40);
+                ImageIcon iconSun = getImageIcon( "sun.png");
+                Image originalImageSun = iconSun.getImage();
+                g.drawImage(originalImageSun, 285, 10, 30, 30, null);
                 JLabel sunLabel = new JLabel("<html><span style='font-size:20px; letter-spacing:5px;'>"+sunCount+"</span></html>");
-                sunLabel.setBounds(70 + plantLength,5,50,40);
+                sunLabel.setBounds(320,5,80,40);
                 gamePanel.add(sunLabel);
+                //brain counter
+                g.setColor(new Color(150, 150, 150));
+                g.fillRect(760, 5, 120, 40);
+                ImageIcon iconBrain = getImageIcon( "brain.png");
+                Image originalImageBrain = iconBrain.getImage();
+                g.drawImage(originalImageBrain, 765, 10, 30, 30, null);
+                JLabel brainLabel = new JLabel("<html><span style='font-size:20px; letter-spacing:5px;'>"+brainCount+"</span></html>");
+                brainLabel.setBounds(800 ,5,80,40);
+                gamePanel.add(brainLabel);
+
+
 
 
             }
@@ -260,10 +337,8 @@ public class PVZInGame extends JFrame implements GeneralInterface {
                 closeWindowAction();
             }
         });
-        open.addActionListener(e -> closeWindowAction());
+        exit.addActionListener(e -> closeWindowAction());
         newItem.addActionListener(e -> openPrincipalWindow());
-
-
         int plantsLen = plantsButtons.length;
         for(int i = 0; i < plantsLen; i++) {
             String plant = plantsToPlay[i];

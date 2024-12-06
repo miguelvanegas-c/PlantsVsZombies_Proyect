@@ -14,8 +14,11 @@ public class PVZException extends Exception {
     public static final String ERROR_COIN_NULL = "You don´t selected a coin";
     public static final String ERROR_COIN_NOT_EXIST = "The coin that do you wanna add doesn't exist";
     public static final String NOT_NUMBER = "The value isn't a number";
-    public static final String ERROR_NOT_STARTING_SUNS = "The suns is less than or equal to the number of suns";
-    public static final String ERROR_NOT_STARTING_BRAINS = "The suns is less than or equal to the number of brains";
+    public static final String ERROR_NOT_STARTING_SUNS = "The suns is less or equal that 0";
+    public static final String ERROR_NOT_STARTING_BRAINS = "The brains is less or equal that 0";
+    public static final String ERROR_LOW_GAME_TIME = "The game time is less than 40 that is the minimum game time";
+    public static final String ERROR_INCORRECT_HORDES_NUMBER = "The hordes number is less or equal than 0 or is bigger than 10";
+    public static final String ERROR_LOW_HORDES_TIME = "The Hordes time is moer than 10 that is the maximum hordes time";
 
     public PVZException(String message) {super(message);}
 

@@ -81,7 +81,7 @@ public class PVZ{
      * Moves zombies across the board. Zombies advance one cell to the left if possible.
      * If a zombie reaches the leftmost column, it is removed from the board.
      */
-    private void moveZombies() {
+    public void moveZombies() {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
                 int len = zombiesBoard[row][col].size();
@@ -122,6 +122,14 @@ public class PVZ{
         }
     }
 
+    private Zombie searchZombie(String zombie, int row){
+        Zombie newZombie = null;
+        switch (zombie) {
+            case "zombie":
+                newZombie = new BasicZombie(row);
+        }
+        return newZombie;
+    }
     /**
      * Add a plant to the board at a specified position.
      *
@@ -130,7 +138,7 @@ public class PVZ{
      * @param plant The type of plant to be added.
      * @throws PVZException if planting is not allowed or the cell is not empty.
      */
-    public <P extends Plant> void addPlant(int row, int col, String plant)  throws PVZException{
+    public  void addPlant(int row, int col, String plant)  throws PVZException{
         valideCanPlant(row,col);
         valideEmptyCell(row,col);
         Plant newPlant = searchPlant(plant,row,col);
@@ -148,7 +156,6 @@ public class PVZ{
      * @throws PVZException if the plant is null.
      */
     private Plant searchPlant(String plant,int row,int col) throws PVZException{
-        String paquete = "domain";
         validePlantNotNull(plant);
         switch  (plant){
             case "peashooter":
@@ -250,7 +257,40 @@ public class PVZ{
         }
     }
 
-
+    /**
+     * Moves coins for the board
+     * If a coin arrive to the column and row where belongs, the coin stop.
+     *
+     */
+    public void moveCoins() {
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
+                int len = coins[row][col].size();
+                for (int i = 0; i < len; i++) {
+                    if(i < coins[row][col].size()) {
+                        Coin coin = coins[row][col].get(i);
+                        int startX = coin.getXPosition();
+                        coin.move(row,col);
+                        int x = coin.getXPosition();
+                        int y = coin.getYPosition();
+                        if (((y - 55)%75) == 0){
+                            coins[row][col].remove(coin);
+                            coins[row + 1][col].add(coin);
+                            board[row][col].remove(coin);
+                            board[row + 1][col].add(coin);
+                        }
+                        if (((x - 150) % 70) == 0) {
+                            int move =(startX < x)? 1:-1;
+                            coins[row][col].remove(coin);
+                            coins[row][col - move].add(coin);
+                            board[row][col].remove(coin);
+                            board[row][col - move].add(coin);
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 }
 

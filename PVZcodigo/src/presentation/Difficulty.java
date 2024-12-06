@@ -446,22 +446,24 @@ public class Difficulty extends JFrame implements GeneralInterface {
         gameTimeField.setBounds(1200, 10, 60, 30);
 
         //Hordes time duration
-        JLabel labelHordesTime =new JLabel("Hordes duration time in seconds:");
-        labelHordesTime.setBounds(1005,50,190,30);
-        hordesNumberField = new JTextField();
-        hordesNumberField.setBounds(1200, 50, 60, 30);
+        if(!gameMode.equals("PvsP")) {
+            JLabel labelHordesTime = new JLabel("Hordes duration time in seconds:");
+            labelHordesTime.setBounds(1005, 50, 190, 30);
+            hordesNumberField = new JTextField();
+            hordesNumberField.setBounds(1200, 50, 60, 30);
+            //Hordes number for game
+            JLabel labelHordesNumber = new JLabel("Hordes number for game:");
+            labelHordesNumber.setBounds(1050, 90, 150, 30);
+            hordesTimeField = new JTextField();
+            hordesTimeField.setBounds(1200, 90, 60, 30);
 
-        //Hordes number for game
-        JLabel labelHordesNumber = new JLabel("Hordes number for game:");
-        labelHordesNumber.setBounds(1050, 90, 150, 30);
-        hordesTimeField = new JTextField();
-        hordesTimeField.setBounds(1200, 90, 60, 30);
+            mainPanel.add(hordesTimeField);
+            mainPanel.add(labelHordesNumber);
+            mainPanel.add(labelHordesTime);
+            mainPanel.add(hordesNumberField);
+        }
 
         mainPanel.add(gameTimeField);
-        mainPanel.add(hordesNumberField);
-        mainPanel.add(hordesTimeField);
-        mainPanel.add(labelHordesTime);
-        mainPanel.add(labelHordesNumber);
         mainPanel.add(labelGameTime);
     }
 
@@ -507,6 +509,35 @@ public class Difficulty extends JFrame implements GeneralInterface {
                 }
             }
         });
+        gameTimeField.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    selectGameTime();
+                } catch (PVZException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        if(!gameMode.equals("PvsP")) {
+            hordesTimeField.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        selectHordesTime();
+                    } catch (PVZException ex) {
+                        JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            });
+            hordesNumberField.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        selectHordesNumber();
+                    } catch (PVZException ex) {
+                        JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            });
+        }
     }
 
     /*
@@ -539,7 +570,15 @@ public class Difficulty extends JFrame implements GeneralInterface {
             else valideZombiesType();
             valideZombiesToPlay();
             valideStartingBrains();
-            PVZInGame pvzInGameWindow = new PVZInGame(gameMode, plantsToPlay, zombiesToPlay, plantPlayerName, zombieType);
+            valideGameTime();
+            if(!gameMode.equals("PvsP")) {
+                valideHordesTime();
+                valideHordesNumber();
+            }
+            PVZInGame pvzInGameWindow = null;
+            if(gameMode.equals("PvsM")) pvzInGameWindow = new PVZInGame(gameMode, plantsToPlay, zombiesToPlay, plantPlayerName, zombieType,startingBrains,startingSuns,gameTime, hordesTime,hordesNumber);
+            else if (gameMode.equals("PvsP")) pvzInGameWindow = new PVZInGame(plantsToPlay, zombiesToPlay, plantPlayerName, zombiePlayerName, gameMode,startingBrains,startingSuns,gameTime);
+            else pvzInGameWindow = new PVZInGame( plantType, zombieType, gameMode, plantsToPlay, zombiesToPlay,startingBrains,startingSuns,gameTime, hordesTime,hordesNumber);
             pvzInGameWindow.setVisible(true);
             dispose();
         } catch (Exception e) {
@@ -569,7 +608,7 @@ public class Difficulty extends JFrame implements GeneralInterface {
      */
 
     private void prepareTypeElectionToZombies() {
-        String[] opcionesZombies = {"ZombiesIntelligent", "ZombiesStrategic"};
+        String[] opcionesZombies = {"ZombiesOriginal", "ZombiesStrategic"};
         selectZombie = new JComboBox<>(opcionesZombies);
         selectZombie.setBounds(100, 50, 200, 40);
         if (gameMode.equals("MvsM") || gameMode.equals("PvsM")) {
@@ -582,7 +621,7 @@ public class Difficulty extends JFrame implements GeneralInterface {
      */
 
     private void prepareNameElectionToZombies() {
-        JLabel nombre = new JLabel("Nombre del jugador:");
+        JLabel nombre = new JLabel("Zombie Player:");
         nombre.setBounds(70, 50, 150, 30);
 
         zombiePlayerNameField = new JTextField();
@@ -621,6 +660,42 @@ public class Difficulty extends JFrame implements GeneralInterface {
         }
     }
 
+    /*
+     * Select the game time.
+     * @throws PVZException if there isn't a number
+     */
+    private void selectGameTime() throws PVZException {
+        try{
+            gameTime = Integer.parseInt(gameTimeField.getText());
+        }catch (NumberFormatException e){
+            throw new PVZException(PVZException.NOT_NUMBER);
+        }
+    }
+
+    /*
+     * Select the hordes duration time.
+     * @throws PVZException if there isn't a number
+     */
+    private void selectHordesTime() throws PVZException {
+        try{
+            hordesTime = Integer.parseInt(hordesTimeField.getText());
+        }catch (NumberFormatException e){
+            throw new PVZException(PVZException.NOT_NUMBER);
+        }
+    }
+
+    /*
+     * Select the hordes number for game.
+     * @throws PVZException if there isn't a number
+     */
+    private void selectHordesNumber() throws PVZException {
+        try{
+            hordesNumber = Integer.parseInt(hordesNumberField.getText());
+        }catch (NumberFormatException e){
+            throw new PVZException(PVZException.NOT_NUMBER);
+        }
+    }
+
     private void valideStartingBrains() throws PVZException {
         if(startingBrains <= 0) throw new PVZException(PVZException.ERROR_NOT_STARTING_BRAINS);
     }
@@ -639,7 +714,7 @@ public class Difficulty extends JFrame implements GeneralInterface {
      */
 
     private void valideZombiesName() throws PVZException{
-        if (zombieType == null) throw new PVZException(PVZException.ERROR_NOT_ZOMBIE_NAME);
+        if (zombiePlayerName == null) throw new PVZException(PVZException.ERROR_NOT_ZOMBIE_NAME);
     }
 
     /*
@@ -658,6 +733,30 @@ public class Difficulty extends JFrame implements GeneralInterface {
 
     private void valideZombiesToPlay() throws PVZException {
         if(zombiesToPlay.isEmpty()) {throw new PVZException(PVZException.NOT_ZOMBIES_CHOOSED_TO_PLAY);}
+    }
+
+    /*
+     * Validate the game time is correct.
+     * @throws PVZException, if game time is lower than 40 seconds.
+     */
+    private void valideGameTime() throws PVZException {
+        if(gameTime<40)throw new PVZException(PVZException.ERROR_LOW_GAME_TIME);
+    }
+
+    /*
+     * Validate the hordes number is correct.
+     * @throws PVZException, if the hordes number <= 0.
+     */
+    private void valideHordesNumber() throws PVZException {
+        if(hordesNumber <= 0 || hordesNumber>10)throw new PVZException(PVZException.ERROR_INCORRECT_HORDES_NUMBER);
+    }
+
+    /*
+     * Validate the hordes time is correct.
+     * @throws PVZException, if the hordes time < 10.
+     */
+    private void valideHordesTime() throws PVZException {
+        if(hordesNumber > 10)throw new PVZException(PVZException.ERROR_LOW_HORDES_TIME);
     }
 
     /*
