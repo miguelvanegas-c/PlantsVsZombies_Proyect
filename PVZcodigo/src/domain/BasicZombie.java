@@ -17,12 +17,5 @@ public class BasicZombie extends Zombie{
         name = "zombie";
     }
 
-    /**
-     * move the zombie.
-     */
-    @Override
-    public void move() {
-        xPosition -= 1;
-    }
 
 }

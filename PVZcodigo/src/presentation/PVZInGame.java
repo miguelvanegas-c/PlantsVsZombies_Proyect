@@ -1,5 +1,6 @@
 
 
+import java.io.File;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Random;
 
 
 /**
@@ -16,7 +18,7 @@ import java.awt.event.WindowEvent;
  * @author Miguel Angel Vanegas y Julian Castiblanco.
  * @version 1.0
  */
-public class PVZInGame extends JFrame implements GeneralInterface {
+public class PVZInGame extends JFrame implements GeneralInterface,Runnable {
     private JPanel gamePanel;
     private JMenuItem open, save, newItem, exit;
     private String gameMode, selectedPlant, plantPlayer,zombiePlayer,plantsType,zombieType;
@@ -26,7 +28,10 @@ public class PVZInGame extends JFrame implements GeneralInterface {
     private JButton[] zombiesButtons;
     private JButton[][] cells = new JButton[5][11];
     private PVZ pvz;
-    private int sunCount,brainCount,gameTime,hordesTime,hordesNumber;
+    private boolean running = true;
+    private Thread gameThread;
+
+
 
 
     /**
@@ -49,17 +54,12 @@ public class PVZInGame extends JFrame implements GeneralInterface {
         this.plantsToPlay = plantasToPlay.toArray(new String[0]);
         plantsButtons = new JButton[this.plantsToPlay.length];
         this.zombiesToPlay = zombiesToPlay.toArray(new String[0]);
-        pvz = new PVZ(this.plantsToPlay,this.zombiesToPlay, true);
+        boolean booleanZombieType = (zombieType.equals("ZombiesOriginal"));
+        pvz = new PVZ(this.plantsToPlay,this.zombiesToPlay, booleanZombieType,startingSuns,startingBrains,gameTime,hordesNumber,hordesTime);
         this.plantPlayer = plantPlayer;
         this.zombieType = zombieType;
-        this.sunCount = startingSuns;
-        this.brainCount = startingBrains;
-        this.gameTime = gameTime;
-        this.hordesTime = hordesTime;
-        this.hordesNumber = hordesNumber;
         prepareElements();
         prepareActions();
-        refresh();
 
     }
 
@@ -78,16 +78,15 @@ public class PVZInGame extends JFrame implements GeneralInterface {
         this.plantsToPlay = plantasToPlay.toArray(new String[0]);
         plantsButtons = new JButton[this.plantsToPlay.length];
         this.zombiesToPlay = zombiesToPlay.toArray(new String[0]);
-        pvz = new PVZ(this.plantsToPlay,this.zombiesToPlay, true);
+        pvz = new PVZ(this.plantsToPlay,this.zombiesToPlay,startingSuns,startingBrains,gameTime);
         this.plantPlayer = plantPlayer;
         this.zombiePlayer = zombiePlayer;
-        this.sunCount = startingSuns;
-        this.brainCount = startingBrains;
-        this.gameTime = gameTime;
         prepareElements();
         prepareActions();
         refresh();
-        System.out.println(sunCount);
+        startingGame();
+        gameThread = new Thread(this);
+        gameThread.start();
 
     }
 
@@ -107,14 +106,11 @@ public class PVZInGame extends JFrame implements GeneralInterface {
         this.plantsToPlay = plantasToPlay.toArray(new String[0]);
         plantsButtons = new JButton[this.plantsToPlay.length];
         this.zombiesToPlay = zombiesToPlay.toArray(new String[0]);
-        pvz = new PVZ(this.plantsToPlay,this.zombiesToPlay, true);
+        boolean booleanZombieType = (zombieType.equals("ZombiesOriginal"));
+        boolean booleanPlantType = (plantType.equals("PlantOriginal"));
+        pvz = new PVZ(this.plantsToPlay,this.zombiesToPlay, booleanZombieType,booleanPlantType,startingSuns,startingBrains,gameTime,hordesNumber,hordesTime);
         this.plantsType = plantType;
         this.zombieType = zombieType;
-        this.sunCount = startingSuns;
-        this.brainCount = startingBrains;
-        this.gameTime = gameTime;
-        this.hordesTime = hordesTime;
-        this.hordesNumber = hordesNumber;
         prepareElements();
         prepareActions();
         refresh();
@@ -196,7 +192,6 @@ public class PVZInGame extends JFrame implements GeneralInterface {
                                 Image originalImageZombie = iconZombie.getImage();
                                 int width =(element instanceof Plant || element instanceof Coin)? 50:70;
                                 int height = (element instanceof Plant || element instanceof Coin)? 50:70;;
-
                                 g.drawImage(originalImageZombie, element.getXPosition(), element.getYPosition(),width , height, null);
 
                             }
@@ -214,7 +209,7 @@ public class PVZInGame extends JFrame implements GeneralInterface {
                 ImageIcon iconSun = getImageIcon( "sun.png");
                 Image originalImageSun = iconSun.getImage();
                 g.drawImage(originalImageSun, 285, 10, 30, 30, null);
-                JLabel sunLabel = new JLabel("<html><span style='font-size:20px; letter-spacing:5px;'>"+sunCount+"</span></html>");
+                JLabel sunLabel = new JLabel("<html><span style='font-size:20px; letter-spacing:5px;'>"+pvz.getSuns()+"</span></html>");
                 sunLabel.setBounds(320,5,80,40);
                 gamePanel.add(sunLabel);
                 //brain counter
@@ -223,12 +218,9 @@ public class PVZInGame extends JFrame implements GeneralInterface {
                 ImageIcon iconBrain = getImageIcon( "brain.png");
                 Image originalImageBrain = iconBrain.getImage();
                 g.drawImage(originalImageBrain, 765, 10, 30, 30, null);
-                JLabel brainLabel = new JLabel("<html><span style='font-size:20px; letter-spacing:5px;'>"+brainCount+"</span></html>");
+                JLabel brainLabel = new JLabel("<html><span style='font-size:20px; letter-spacing:5px;'>"+pvz.getBrains()+"</span></html>");
                 brainLabel.setBounds(800 ,5,80,40);
                 gamePanel.add(brainLabel);
-
-
-
 
             }
         };
@@ -352,13 +344,6 @@ public class PVZInGame extends JFrame implements GeneralInterface {
             }
         }
 
-        Timer repaintTimer = new Timer(50, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                refresh();
-            }
-        });
-        repaintTimer.start();
 
     }
     /*
@@ -369,9 +354,10 @@ public class PVZInGame extends JFrame implements GeneralInterface {
      */
     private void addPlant(int row, int col) {
         try {
-            pvz.addPlant(row, col, selectedPlant);
-            gamePanel.repaint();
-            selectedPlant = null;
+            //if(pvz.getCoins()[row][col].isEmpty()) {
+                pvz.addPlant(row, col, selectedPlant);
+                selectedPlant = null;
+            //}
         } catch (PVZException e) {
             JDialog dialog = new JDialog();
             JLabel label = new JLabel(e.getMessage());
@@ -419,11 +405,38 @@ public class PVZInGame extends JFrame implements GeneralInterface {
         }
     }
 
+
     /*
      * Refreshes the game panel by repainting it.
      */
-    private void refresh(){
-        gamePanel.repaint();
+    private void refresh() {
+        System.out.println(1);
+        repaint();
     }
+
+    public void startingGame(){
+        try {
+            Thread.sleep(1000);
+            pvz.addCoin(0,4,2,"sun");
+        }catch (InterruptedException|PVZException e) {
+           e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void run() {
+        while(running){
+            refresh();
+            try {
+                Thread.sleep(500);
+            }catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            pvz.moveBoard();
+
+        }
+    }
+
 
 }

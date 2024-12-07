@@ -1,11 +1,7 @@
 
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * This is the principal class of the application, it will have the behaviors and functionalities of the whole game.
@@ -18,38 +14,115 @@ public class PVZ{
     public static final int rows = 5;
     public static final int columns = 10;
     private List<Element>[][] board = new ArrayList[rows][columns];
-    private boolean zombieType, plantType;
-    private String[] zombiesInGame, plantsInGame, zombiesToGenerate;
-    private List<Zombie>[][] zombiesBoard = new ArrayList[rows][columns];
+    private String[] zombiesInGame, plantsInGame;
     private Plant[][] plantsBoard = new Plant[rows][columns];
-    private List<Coin>[][] coins = new ArrayList[rows][columns];
-    private Timer timerGenerateZombies, timerZombieHorde,timerGenerateZombiesInHorde;
-    private int countZombiesInHorde;
+    private int suns,brains;
+    private List<Move> moves = new ArrayList();
+
 
 
     /**
-     * Constructor for the PVZ class.
+     * Constructor for the PVZ class MVSM game mode.
      *
      * @param plantsInGame  Array of plants available in the game.
      * @param zombiesInGame Array of zombies available in the game.
      * @param zombieType    Boolean indicating whether zombie actions are active.
+     * @param plantType     Boolean indicating whether plant actions are active.
+     * @param startingSuns  starting suns to the game.
+     * @param startingBrains starting brains to the game.
+     * @param gameTime      game time to the game.
+     * @param hordesNumber  number of hordes to the game
+     * @param hordesTime    hordes duration time.
      */
-    public PVZ(String[] plantsInGame, String[] zombiesInGame, boolean zombieType) {
+    public PVZ(String[] plantsInGame, String[] zombiesInGame, boolean zombieType,boolean plantType,int startingSuns, int startingBrains , int gameTime , int hordesNumber, int hordesTime) {
         this.plantsInGame = plantsInGame;
         this.zombiesInGame = zombiesInGame;
-        this.zombieType = zombieType;
-        startingZombiesBoardAndBoard();
+        this.suns = startingSuns;
+        this.brains = startingBrains;
+        startingBoards();
+        startingGame(this,zombieType,plantType,gameTime,hordesNumber,hordesTime);
+    }
+
+    /**
+     * Constructor for the PVZ class PVSM game mode.
+     *
+     * @param plantsInGame  Array of plants available in the game.
+     * @param zombiesInGame Array of zombies available in the game.
+     * @param zombieType    Boolean indicating whether zombie actions are active.
+     * @param startingSuns  starting suns to the game.
+     * @param startingBrains starting brains to the game.
+     * @param gameTime      game time to the game.
+     * @param hordesNumber  number of hordes to the game
+     * @param hordesTime    hordes duration time.
+     */
+
+    public PVZ(String[] plantsInGame, String[] zombiesInGame, boolean zombieType,int startingSuns, int startingBrains , int gameTime , int hordesNumber, int hordesTime) {
+        this.plantsInGame = plantsInGame;
+        this.zombiesInGame = zombiesInGame;
+        this.suns = startingSuns;
+        this.brains = startingBrains;
+        startingBoards();
+        startingGame(this,zombieType,gameTime,hordesNumber,hordesTime);
+    }
+
+    /**
+     * Constructor for the PVZ class PVSP game mode.
+     *
+     * @param plantsInGame  Array of plants available in the game.
+     * @param zombiesInGame Array of zombies available in the game.
+     * @param startingSuns  starting suns to the game.
+     * @param startingBrains starting brains to the game.
+     * @param gameTime      game time to the game.
+     */
+
+    public PVZ(String[] plantsInGame, String[] zombiesInGame,int startingSuns, int startingBrains , int gameTime) {
+        this.plantsInGame = plantsInGame;
+        this.zombiesInGame = zombiesInGame;
+        this.suns = startingSuns;
+        this.brains = startingBrains;
+        startingBoards();
+        startingGame(this,gameTime);
+    }
+
+    /*
+     * start game to the PvsM gameMode.
+     * @param pvz, the game.
+     * @param zombieType, the zombie machine to the game.
+     * @param gameTime, the gameTime of the game
+     * @param hordesNumber, number of hordes.
+     * @param hordesTime, hordes duration time.
+     */
+    private void startingGame(PVZ pvz, boolean zombieType, int gameTime, int hordesNumber, int hordesTime) {
 
     }
+
+    /*
+     * start game to the MvsM gameMode.
+     * @param pvz, the game.
+     * @param zombieType, the zombie machine to the game.
+     * @param plantType, the plant machine to the game.
+     * @param gameTime, the gameTime of the game.
+     * @param hordesNumber, number of hordes.
+     * @param hordesTime, hordes duration time.
+     */
+    private void startingGame(PVZ pvz, boolean zombieType, boolean plantType, int gameTime, int hordesNumber, int hordesTime) {
+
+    }
+
+    /*
+     * start game to the PvsP gameMode.
+     * @param pvz, the game.
+     * @param gameTime, the gameTime of the game
+     * @param hordesNumber, number of hordes.
+     * @param hordesTime, hordes duration time.
+     */
+    private void startingGame(PVZ pvz, int gameTime) {
+
+    }
+
     //Getters
     public List<Element>[][] getBoard(){
         return board;
-    }
-    public boolean getZombieType(){
-        return zombieType;
-    }
-    public boolean getPlantType(){
-        return plantType;
     }
     public String[] getZombiesInGame(){
         return zombiesInGame;
@@ -57,54 +130,27 @@ public class PVZ{
     public String[] getPlantsInGame(){
         return plantsInGame;
     }
-    public List<Zombie>[][] getZombiesBoard(){
-        return zombiesBoard;
-    }
     public Plant[][] getPlantsBoard(){
         return plantsBoard;
     }
+    public List<Move> getMoves(){
+        return moves;
+    }
+    public int getSuns(){return suns;}
+    public int getBrains(){return brains;}
 
     /*
      * Initializes the zombie board, setting up empty lists for each cell.
      */
-    private void startingZombiesBoardAndBoard(){
+    private void startingBoards(){
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                zombiesBoard[i][j] = new ArrayList<>();
                 board[i][j] = new ArrayList<>();
-                coins[i][j] = new ArrayList<>();
             }
         }
     }
 
-    /*
-     * Moves zombies across the board. Zombies advance one cell to the left if possible.
-     * If a zombie reaches the leftmost column, it is removed from the board.
-     */
-    public void moveZombies() {
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < columns; col++) {
-                int len = zombiesBoard[row][col].size();
-                for (int i = 0; i < len; i++) {
-                    if(i < zombiesBoard[row][col].size()) {
-                        Zombie zombie = zombiesBoard[row][col].get(i);
-                        zombie.move();
-                        int x = zombie.getXPosition();
-                        if (((x - 140) % 70) == 0) {
-                            zombiesBoard[row][col].remove(zombie);
-                            zombiesBoard[row][col - 1].add(zombie);
-                            board[row][col].remove(zombie);
-                            board[row][col - 1].add(zombie);
-                            if (col - 1 == 0){
-                                zombiesBoard[row][col - 1].remove(zombie);
-                                board[row][col - 1].remove(zombie);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+
 
     /**
      * Add a zombie to the board at a specified row and the last column.
@@ -116,9 +162,8 @@ public class PVZ{
         Zombie newZombie = null;
         if(zombie.equals("zombie")){
             newZombie = new BasicZombie(row);
-            zombiesBoard[row][9].add(newZombie);
             board[row][9].add(newZombie);
-
+            moves.add(newZombie);
         }
     }
 
@@ -216,12 +261,12 @@ public class PVZ{
      * Add a coin to the board in a specific
      *
      */
-    public void addCoin(int row, int col, int startRow, int startCol, String coin) throws PVZException{
+    public void addCoin(int row, int col,int finishRow, String coin) throws PVZException{
         valideCoinNotNull(coin);
-        Coin newCoin = searchCoin(coin,row,col,startRow,startCol);
+        Coin newCoin = searchCoin(coin,row,col,finishRow);
         valideCoinExist(newCoin);
-        coins[row][col].add(newCoin);
         board[row][col].add(newCoin);
+        moves.add(newCoin);
     }
 
     /*
@@ -247,50 +292,26 @@ public class PVZ{
      * @param String, string of the coin.
      * @return Coin, the coin of the string.
      */
-    private Coin searchCoin(String coin, int row, int col, int startRow, int startCol) throws PVZException{
+    private Coin searchCoin(String coin, int row, int col,int finishRow) throws PVZException{
 
         switch(coin){
             case "sun":
-               return  new Sun(row,col,startRow,startCol);
+               return  new Sun(row,col,finishRow);
             default:
                 return null;
         }
     }
 
-    /**
-     * Moves coins for the board
-     * If a coin arrive to the column and row where belongs, the coin stop.
-     *
-     */
-    public void moveCoins() {
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < columns; col++) {
-                int len = coins[row][col].size();
-                for (int i = 0; i < len; i++) {
-                    if(i < coins[row][col].size()) {
-                        Coin coin = coins[row][col].get(i);
-                        int startX = coin.getXPosition();
-                        coin.move(row,col);
-                        int x = coin.getXPosition();
-                        int y = coin.getYPosition();
-                        if (((y - 55)%75) == 0){
-                            coins[row][col].remove(coin);
-                            coins[row + 1][col].add(coin);
-                            board[row][col].remove(coin);
-                            board[row + 1][col].add(coin);
-                        }
-                        if (((x - 150) % 70) == 0) {
-                            int move =(startX < x)? 1:-1;
-                            coins[row][col].remove(coin);
-                            coins[row][col - move].add(coin);
-                            board[row][col].remove(coin);
-                            board[row][col - move].add(coin);
-                        }
-                    }
-                }
-            }
+    public void moveBoard(){
+        for(Move move : moves){
+            Element moveElement = (Element) move;
+            board[move.getRow()][move.getCol()].remove(moveElement);
+            move.move();
+            board[move.getRow()][move.getCol()].add(moveElement);
         }
     }
+
+
 
 }
 

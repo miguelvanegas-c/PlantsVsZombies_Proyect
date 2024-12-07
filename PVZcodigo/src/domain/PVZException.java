@@ -19,6 +19,7 @@ public class PVZException extends Exception {
     public static final String ERROR_LOW_GAME_TIME = "The game time is less than 40 that is the minimum game time";
     public static final String ERROR_INCORRECT_HORDES_NUMBER = "The hordes number is less or equal than 0 or is bigger than 10";
     public static final String ERROR_LOW_HORDES_TIME = "The Hordes time is moer than 10 that is the maximum hordes time";
+    public static final String ERROR_COIN_NOT_EXIST_IN_BOARD = "In this position there isn't a coin";
 
     public PVZException(String message) {super(message);}
 

@@ -19,5 +19,4 @@ public class Peashooter extends Plant {
         name = "peashooter";
     }
 
-
 }

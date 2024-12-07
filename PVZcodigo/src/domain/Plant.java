@@ -9,6 +9,9 @@ public abstract class Plant implements Element {
     protected String name;
     protected int xPosition = 140;
     protected int yPosition = 55;
+    protected int value;
+    protected int row;
+    protected int col;
 
     /**
      * Create a plant in the row and col that are given.
@@ -18,6 +21,8 @@ public abstract class Plant implements Element {
     public Plant(int row, int col) {
         this.xPosition += (col*70);
         this.yPosition += (row*75);
+        this.row = row;
+        this.col = col;
     }
     public String getName(){return this.name;}
     public int getXPosition() {
@@ -26,6 +31,9 @@ public abstract class Plant implements Element {
     public int getYPosition() {
         return yPosition;
     }
+    public int getRow() {return row;}
+    public int getCol() {return col;}
+    public int getValue() {return value;}
 
 
 }

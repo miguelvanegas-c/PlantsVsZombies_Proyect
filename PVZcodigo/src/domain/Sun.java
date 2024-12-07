@@ -6,8 +6,8 @@ public class Sun extends Coin{
      * @param col, col where the sun is going to finish.
      * @param startCol, col where the sun is going to start.
      */
-    public Sun(int row,int col, int startRow,int startCol){
-        super(row, col, startRow,startCol);
+    public Sun(int row,int col,int finishRow){
+        super(row, col,finishRow);
         name = "sun";
         value = 25;
     }

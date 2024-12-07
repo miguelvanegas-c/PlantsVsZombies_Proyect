@@ -10,5 +10,7 @@ public interface Element {
     String getName();
     int getXPosition();
     int getYPosition();
-
+    int getValue();
+    int getRow();
+    int getCol();
 }

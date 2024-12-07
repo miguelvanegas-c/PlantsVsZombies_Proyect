@@ -15,7 +15,7 @@ public class PVZTest {
         String[] zombiesDeJuego = {"zombieCono,zombie"};
         this.plantasDeJuego = plantasDeJuego;
         this.zombiesDeJuego = zombiesDeJuego;
-        pvz = new PVZ(this.plantasDeJuego,this.zombiesDeJuego, true);
+        pvz = new PVZ(this.plantasDeJuego,this.zombiesDeJuego);
     }
     @Test
     public void shouldCreatePVZ() {
@@ -37,7 +37,7 @@ public class PVZTest {
     }
 
     @Test
-    public void shoulldAddPlant(){
+    public void shouldAddPlant(){
         try {
             pvz.addPlant(1, 1, "peashooter");
         }catch (PVZException e){
