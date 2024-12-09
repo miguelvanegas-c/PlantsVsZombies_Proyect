@@ -8,11 +8,15 @@
 public abstract class Zombie implements Element,Move {
 
     protected String name;
+    protected int life;
     protected int xPosition = 140;
-    protected int yPosition = 55;
+    protected int yPosition = 40;
     protected int value;
     protected int row;
     protected int col;
+    protected int width;
+    protected int height;
+    protected String extension ="G.gif";
 
     /**
      * Constructor to zombies.
@@ -24,6 +28,9 @@ public abstract class Zombie implements Element,Move {
         this.yPosition += (row*75);
         this.row = row;
         this.col = col;
+        name = "zombie";
+        life = 100;
+        value = 100;
     }
     public String getName(){return this.name;}
 
@@ -36,10 +43,15 @@ public abstract class Zombie implements Element,Move {
     public int getValue(){return value;}
     public int getRow() {return row;}
     public int getCol() {return col;}
-    @Override
+    public int getLife() {return life;}
     public void move(){
+        xPosition -= 5;
+        if(((xPosition - 140)%70)==0)col-=1;
 
     }
+    public int getWidth() {return width;}
+    public int getHeight() {return height;}
+    public String getExtension() {return extension;}
 
 
 }

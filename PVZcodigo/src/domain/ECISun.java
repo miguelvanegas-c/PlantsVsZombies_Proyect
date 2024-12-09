@@ -1,4 +1,4 @@
-public class Sun extends Coin{
+public class ECISun extends Coin{
 
     /**
      * Creator to sun
@@ -6,9 +6,9 @@ public class Sun extends Coin{
      * @param col, col where the sun is going to finish.
      * @param finishRow, row where the sun is going to finish.
      */
-    public Sun(int row,int col,int finishRow) throws PVZException{
+    public ECISun(int row,int col,int finishRow) throws PVZException{
         super(row, col,finishRow);
-        name = "sun";
-        value = 25;
+        name = "ecisun";
+        value = 50;
     }
 }

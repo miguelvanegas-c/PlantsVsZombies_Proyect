@@ -40,7 +40,7 @@ public class PVZ{
         this.suns = startingSuns;
         this.brains = startingBrains;
         startingBoards();
-        startingGame(this,zombieType,plantType,gameTime,hordesNumber,hordesTime);
+        startingGame(zombieType,plantType,gameTime,hordesNumber,hordesTime);
     }
 
     /**
@@ -62,7 +62,7 @@ public class PVZ{
         this.suns = startingSuns;
         this.brains = startingBrains;
         startingBoards();
-        startingGame(this,zombieType,gameTime,hordesNumber,hordesTime);
+        startingGame(zombieType,gameTime,hordesNumber,hordesTime);
     }
 
     /**
@@ -81,7 +81,7 @@ public class PVZ{
         this.suns = startingSuns;
         this.brains = startingBrains;
         startingBoards();
-        startingGame(this,gameTime);
+        startingGame(gameTime);
     }
 
     /*
@@ -92,7 +92,7 @@ public class PVZ{
      * @param hordesNumber, number of hordes.
      * @param hordesTime, hordes duration time.
      */
-    private void startingGame(PVZ pvz, boolean zombieType, int gameTime, int hordesNumber, int hordesTime) {
+    private void startingGame( boolean zombieType, int gameTime, int hordesNumber, int hordesTime) {
 
     }
 
@@ -105,7 +105,7 @@ public class PVZ{
      * @param hordesNumber, number of hordes.
      * @param hordesTime, hordes duration time.
      */
-    private void startingGame(PVZ pvz, boolean zombieType, boolean plantType, int gameTime, int hordesNumber, int hordesTime) {
+    private void startingGame( boolean zombieType, boolean plantType, int gameTime, int hordesNumber, int hordesTime) {
 
     }
 
@@ -116,7 +116,7 @@ public class PVZ{
      * @param hordesNumber, number of hordes.
      * @param hordesTime, hordes duration time.
      */
-    private void startingGame(PVZ pvz, int gameTime) {
+    private void startingGame( int gameTime) {
 
     }
 
@@ -157,23 +157,54 @@ public class PVZ{
      *
      * @param row    The row index where the zombie will be added.
      * @param zombie The type of zombie to be added.
+     * @throws PVZException if the zombie is null or doesn't exist.
      */
-    public void addZombie(int row, String zombie){
-        Zombie newZombie = null;
-        if(zombie.equals("zombie")){
-            newZombie = new BasicZombie(row);
-            board[row][9].add(newZombie);
-            moves.add(newZombie);
-        }
+    public void addZombie(int row, String zombie) throws PVZException {
+        Zombie newZombie = searchZombie(zombie,row);
+        valideZombieExist(newZombie);
+        board[row][9].add(newZombie);
+        moves.add(newZombie);
     }
 
-    private Zombie searchZombie(String zombie, int row){
-        Zombie newZombie = null;
+    /*
+     * Search zombie that want to add.
+     * @param zombie, the string of the zombie.
+     * @return Zombie, the Zombie.
+     * @throws PVZException if the string is null;
+     */
+    private Zombie searchZombie(String zombie, int row) throws PVZException {
+        valideZombieNotNull(zombie);
         switch (zombie) {
             case "zombie":
-                newZombie = new BasicZombie(row);
+                return new BasicZombie(row);
+            case "zombieCono":
+                Shield cone = new Cone();
+                return new ZombieWithShield(row,cone);
+            case "zombieBalde":
+                Shield bucket = new Bucket();
+                return new ZombieWithShield(row,bucket);
+            default:
+                return null;
         }
-        return newZombie;
+
+    }
+
+    /*
+     * Validate that the string of the zombie isn't null.
+     * @param zombie, string to validate.
+     * @throws PVZException if the string is null.
+     */
+    private void valideZombieNotNull(String zombie) throws PVZException {
+        if (zombie == null) throw new PVZException(PVZException.ERROR_ZOMBIE_NOT_SELECTED);
+    }
+
+    /*
+     * Validate that the Zombie exist.
+     * @param zombie, the zombie to validate.
+     * @throws PVZException if the Zombie is null.
+     */
+    private void valideZombieExist(Zombie zombie) throws PVZException {
+        if (zombie == null) throw new PVZException(PVZException.ERROR_ZOMBIE_NOT_EXIST);
     }
     /**
      * Add a plant to the board at a specified position.
@@ -202,16 +233,12 @@ public class PVZ{
      */
     private Plant searchPlant(String plant,int row,int col) throws PVZException{
         validePlantNotNull(plant);
-        switch  (plant){
-            case "peashooter":
-                return new Peashooter(row,col);
-            case "sunflower":
-                return new Sunflower(row,col);
-            case "wallnut":
-                return new Wallnut(row,col);
-            default:
-                return null;
-        }
+        return switch (plant) {
+            case "peashooter" -> new Peashooter(row, col);
+            case "sunflower" -> new Sunflower(row, col);
+            case "wallnut" -> new Wallnut(row, col);
+            default -> null;
+        };
     }
 
 
@@ -253,9 +280,7 @@ public class PVZ{
      * @throws PVZException if the string is null.
      */
     private void validePlantNotNull(String plant) throws PVZException{
-        if (plant == null) {
-            throw new PVZException(PVZException.ERROR_PLANT_NOT_SELECTED);
-        }
+        if (plant == null) throw new PVZException(PVZException.ERROR_PLANT_NOT_SELECTED);
     }
     /**
      * Add a coin to the board in a specific
@@ -267,6 +292,21 @@ public class PVZ{
         valideCoinExist(newCoin);
         board[row][col].add(newCoin);
         moves.add(newCoin);
+    }
+
+    /*
+     * Search a coin with the String.
+     * @param String, string of the coin.
+     * @return Coin, the coin of the string.
+     */
+    private Coin searchCoin(String coin, int row, int col,int finishRow) throws PVZException{
+
+        return switch (coin) {
+            case "sun" -> new Sun(row, col, finishRow);
+            case "brain" -> new Brain(row, col, finishRow);
+            default -> null;
+        };
+
     }
 
     /*
@@ -285,23 +325,12 @@ public class PVZ{
      * @throws PVZException if Coin doesn't exist.
      */
     private void valideCoinExist(Coin coin) throws PVZException{
-        if (coin == null) throw new PVZException(PVZException.ERROR_COIN_NOT_EXIST);
+        if (coin == null) throw new PVZException(PVZException.ERROR_COIN_EXIST);
     }
-    /*
-     * Search a coin with the String.
-     * @param String, string of the coin.
-     * @return Coin, the coin of the string.
+
+    /**
+     * move the elements that can be moved in the board.
      */
-    private Coin searchCoin(String coin, int row, int col,int finishRow) throws PVZException{
-
-        switch(coin){
-            case "sun":
-               return  new Sun(row,col,finishRow);
-            default:
-                return null;
-        }
-    }
-
     public void moveBoard(){
         for(Move move : moves){
             Element moveElement = (Element) move;
@@ -309,6 +338,21 @@ public class PVZ{
             move.move();
             board[move.getRow()][move.getCol()].add(moveElement);
         }
+    }
+
+
+    public void takeCoin(int row, int col,Coin coin) throws PVZException{
+        if(coin instanceof Brain){
+            brains += coin.getValue();
+        }else{
+            suns += coin.getValue();
+        }
+        board[row][col].remove(coin);
+    }
+
+    public boolean isEmptyOfCoins(int row, int col){
+        for(Element element : board[row][col]) if (element instanceof Coin ) return false;
+        return true;
     }
 
 

@@ -1,16 +1,11 @@
 
-
-import java.io.File;
-import java.util.List;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.HashSet;
+import java.util.*;
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Random;
-
+import java.util.List;
 
 /**
  * This is the window of the gameBoard.
@@ -18,7 +13,7 @@ import java.util.Random;
  * @author Miguel Angel Vanegas y Julian Castiblanco.
  * @version 1.0
  */
-public class PVZInGame extends JFrame implements GeneralInterface,Runnable {
+public class PVZInGame extends JFrame implements GeneralInterface{
     private JPanel gamePanel;
     private JMenuItem open, save, newItem, exit;
     private String gameMode, selectedPlant, plantPlayer,zombiePlayer,plantsType,zombieType;
@@ -26,10 +21,10 @@ public class PVZInGame extends JFrame implements GeneralInterface,Runnable {
     private String[] zombiesToPlay;
     private JButton[] plantsButtons;
     private JButton[] zombiesButtons;
-    private JButton[][] cells = new JButton[5][11];
+    private JButton[][] cells = new JButton[5][10];
     private PVZ pvz;
-    private boolean running = true;
-    private Thread gameThread;
+    private Timer timer;
+    private Map<JButton,Coin> coinsInBoard = new HashMap<>();
 
 
 
@@ -83,11 +78,8 @@ public class PVZInGame extends JFrame implements GeneralInterface,Runnable {
         this.zombiePlayer = zombiePlayer;
         prepareElements();
         prepareActions();
-        refresh();
-        startingGame();
-        gameThread = new Thread(this);
-        gameThread.start();
 
+        test();
     }
 
     /**
@@ -113,9 +105,10 @@ public class PVZInGame extends JFrame implements GeneralInterface,Runnable {
         this.zombieType = zombieType;
         prepareElements();
         prepareActions();
-        refresh();
 
     }
+
+
 
     /*
      * Prepares all the graphical and logical components of the game.
@@ -152,9 +145,11 @@ public class PVZInGame extends JFrame implements GeneralInterface,Runnable {
         }
         changeSizeToImage("fondoTablero.png");
         if(!gameMode.equals("MvsM"))prepareButtonsTablero();
-
+        timer = new Timer(1000, e -> refresh());
+        timer.start();
 
     }
+
     /*
      * Creates and configures the game panel where the game board and elements are drawn.
      */
@@ -188,12 +183,16 @@ public class PVZInGame extends JFrame implements GeneralInterface,Runnable {
                     for (List<Element> elementList : matrizElements) {
                         for (Element element : elementList) {
                             if (element != null) {
-                                ImageIcon iconZombie = getImageIcon(element.getName()+"G.png");
-                                Image originalImageZombie = iconZombie.getImage();
-                                int width =(element instanceof Plant || element instanceof Coin)? 50:70;
-                                int height = (element instanceof Plant || element instanceof Coin)? 50:70;;
-                                g.drawImage(originalImageZombie, element.getXPosition(), element.getYPosition(),width , height, null);
-
+                                if(element instanceof ZombieWithShield){
+                                    Shield shield = ((ZombieWithShield) element).getShield();
+                                    ImageIcon iconZombie = getImageIcon(element.getName()+shield.getName()+element.getExtension());
+                                    Image originalImageZombie = iconZombie.getImage();
+                                    g.drawImage(originalImageZombie, element.getXPosition(), element.getYPosition(),element.getWidth() , element.getHeight(), null);
+                                }else{
+                                    ImageIcon iconZombie = getImageIcon(element.getName()+element.getExtension());
+                                    Image originalImageZombie = iconZombie.getImage();
+                                    g.drawImage(originalImageZombie, element.getXPosition(), element.getYPosition(),element.getWidth() , element.getHeight(), null);
+                                }
                             }
                         }
                     }
@@ -228,6 +227,7 @@ public class PVZInGame extends JFrame implements GeneralInterface,Runnable {
         gamePanel.setLayout(null); // Usar layout absoluto para colocar botones
         setContentPane(gamePanel);
     }
+
     /*
      * Adjusts the JFrame size to match the dimensions of an image.
      *
@@ -346,6 +346,7 @@ public class PVZInGame extends JFrame implements GeneralInterface,Runnable {
 
 
     }
+
     /*
      * Adds a plant to the game board at the specified row and column.
      *
@@ -354,22 +355,12 @@ public class PVZInGame extends JFrame implements GeneralInterface,Runnable {
      */
     private void addPlant(int row, int col) {
         try {
-            //if(pvz.getCoins()[row][col].isEmpty()) {
+            if(pvz.isEmptyOfCoins(row,col)) {
                 pvz.addPlant(row, col, selectedPlant);
                 selectedPlant = null;
-            //}
+            }
         } catch (PVZException e) {
-            JDialog dialog = new JDialog();
-            JLabel label = new JLabel(e.getMessage());
-            label.setBounds(20, 20, 70, 70);
-            label.setFont(new Font("DialogInput", Font.BOLD, 10));
-            dialog.setTitle("ERROR");
-            dialog.add(label);
-            dialog.setSize(300, 150);
-            dialog.setLocationRelativeTo(null); // Centrar en la pantalla
-            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            dialog.setVisible(true);
-            new Timer(1000, s -> dialog.dispose()).start();
+            timerMessage(e.getMessage());
         }
     }
 
@@ -406,37 +397,85 @@ public class PVZInGame extends JFrame implements GeneralInterface,Runnable {
     }
 
 
+
+    /*
+     * add Coin and create Button.
+     */
+    private void addCoin(int row, int col, int finishRow, String coin) {
+        try{
+            pvz.addCoin(row,col,finishRow,coin);
+            Move move = pvz.getMoves().getLast();
+            Coin newCoin =(Coin) move;
+            JButton coinButton = new BorderButton("");
+            coinButton.setBounds(newCoin.getXPosition(),newCoin.getYPosition(), newCoin.getWidth(), newCoin.getHeight());
+            coinsInBoard.put(coinButton, newCoin);
+            gamePanel.add(coinButton);
+            coinButton.addActionListener(e -> takeCoin(row,col,newCoin,coinButton));
+        }catch(PVZException e) {
+            timerMessage(e.getMessage());
+        }
+    }
+    /*
+     * Update coins Button.
+     */
+    private void updateCoinsButtons(){
+        for(JButton b: coinsInBoard.keySet()){
+            Coin coin  = coinsInBoard.get(b);
+            b.setBounds(coin.getXPosition(),coin.getYPosition(), coin.getWidth(), coin.getHeight());
+            b.addActionListener(e -> takeCoin(coin.getRow(),coin.getCol(),coin,b));
+        }
+
+    }
+
+    /*
+     * Take a coin of the board.
+     */
+    private void takeCoin(int row, int col, Coin coin,JButton coinButton){
+        try{
+            pvz.takeCoin(row,col,coin);
+            gamePanel.remove(coinButton);
+            coinsInBoard.remove(coinButton);
+        } catch (PVZException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /*
      * Refreshes the game panel by repainting it.
      */
-    private void refresh() {
-        System.out.println(1);
+    public void refresh() {
+        pvz.moveBoard();
+        updateCoinsButtons();
         repaint();
     }
 
-    public void startingGame(){
-        try {
-            Thread.sleep(1000);
-            pvz.addCoin(0,4,2,"sun");
-        }catch (InterruptedException|PVZException e) {
-           e.printStackTrace();
-        }
 
+
+    /*
+     * Show a temporal message in the screen.
+     */
+    private void timerMessage(String message) {
+        JDialog dialog = new JDialog();
+        JLabel label = new JLabel(message);
+        label.setBounds(20, 20, 70, 70);
+        label.setFont(new Font("DialogInput", Font.BOLD, 10));
+        dialog.setTitle("ERROR");
+        dialog.add(label);
+        dialog.setSize(300, 150);
+        dialog.setLocationRelativeTo(null); // Centrar en la pantalla
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialog.setVisible(true);
+        new Timer(2000, s -> dialog.dispose()).start();
     }
 
-    @Override
-    public void run() {
-        while(running){
-            refresh();
-            try {
-                Thread.sleep(500);
-            }catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            pvz.moveBoard();
-
+    private void test(){
+        try{
+            pvz.addZombie(3,"zombie");
+            addCoin(0,4,3,"sun");
+            addCoin(0,2,3,"brain");
+        } catch (PVZException e) {
+            throw new RuntimeException(e);
         }
     }
-
 
 }

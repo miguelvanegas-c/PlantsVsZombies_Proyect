@@ -13,8 +13,10 @@ public class BasicZombie extends Zombie{
      * @param row where the zombie is going to appear.
      */
     public BasicZombie(int row) {
-        super(row,10);
-        name = "zombie";
+        super(row,9);
+        value = 100;
+        width = 130;
+        height = 100;
     }
 
 
