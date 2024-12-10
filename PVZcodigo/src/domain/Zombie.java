@@ -5,6 +5,7 @@
  * @author Miguel Angel Vanegas y Julian Castiblanco.
  * @version 1.0
  */
+<<<<<<< HEAD
 public abstract class Zombie implements Element, Mover, Attacker {
 
     protected String state;
@@ -19,6 +20,13 @@ public abstract class Zombie implements Element, Mover, Attacker {
     protected int height;
     protected String extension ="G.png";
     protected int damage = 100;
+=======
+public abstract class Zombie implements Element {
+
+    protected String name;
+    protected int xPosition = 140;
+    protected int yPosition = 55;
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
 
     /**
      * Constructor to zombies.
@@ -28,6 +36,7 @@ public abstract class Zombie implements Element, Mover, Attacker {
     public Zombie(int row, int col) {
         this.xPosition += (col*70);
         this.yPosition += (row*75);
+<<<<<<< HEAD
         this.row = row;
         this.col = col;
         name = "zombie";
@@ -40,12 +49,18 @@ public abstract class Zombie implements Element, Mover, Attacker {
     public String getName(){return this.name;}
     public String getState(){return this.state;}
 
+=======
+    }
+    public String getName(){return this.name;}
+    public abstract void move();
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
     public int getXPosition() {
         return xPosition;
     }
     public int getYPosition() {
         return yPosition;
     }
+<<<<<<< HEAD
     public int getValue(){return value;}
     public int getRow() {return row;}
     public int getCol() {return col;}
@@ -60,4 +75,8 @@ public abstract class Zombie implements Element, Mover, Attacker {
     public void takeDamage(int damage){
         life -= damage;
     }
+=======
+
+
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
 }

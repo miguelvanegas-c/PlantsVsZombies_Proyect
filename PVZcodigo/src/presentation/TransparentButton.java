@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,7 +18,10 @@ public class TransparentButton extends JButton {
         setFont(new Font("Serif", Font.BOLD, 20));
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
     @Override
     protected void paintComponent(Graphics g) {
 

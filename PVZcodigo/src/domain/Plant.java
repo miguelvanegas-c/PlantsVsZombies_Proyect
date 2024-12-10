@@ -9,6 +9,7 @@ public abstract class Plant implements Element {
     protected String name;
     protected int xPosition = 140;
     protected int yPosition = 55;
+<<<<<<< HEAD
     protected int value;
     protected int row;
     protected int col;
@@ -16,6 +17,8 @@ public abstract class Plant implements Element {
     protected int width = 50;
     protected int height = 50;
     protected String extension = "G.png";
+=======
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
 
     /**
      * Create a plant in the row and col that are given.
@@ -25,8 +28,11 @@ public abstract class Plant implements Element {
     public Plant(int row, int col) {
         this.xPosition += (col*70);
         this.yPosition += (row*75);
+<<<<<<< HEAD
         this.row = row;
         this.col = col;
+=======
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
     }
     public String getName(){return this.name;}
     public int getXPosition() {
@@ -35,6 +41,7 @@ public abstract class Plant implements Element {
     public int getYPosition() {
         return yPosition;
     }
+<<<<<<< HEAD
     public int getRow() {return row;}
     public int getCol() {return col;}
     public int getValue() {return value;}
@@ -42,6 +49,8 @@ public abstract class Plant implements Element {
     public int getHeight() {return height;}
     public String getExtension() {return extension;}
     public int getLife() {return life;}
+=======
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
 
 
 }

@@ -26,7 +26,13 @@ public interface GeneralInterface {
      * @return returns the ImageIcon of the file.
      */
     default ImageIcon getImageIcon(String fileName) {
+<<<<<<< HEAD
         String imagePath = "images/" + fileName;
+=======
+        String baseDir = System.getProperty("user.dir");
+        baseDir = baseDir.replace("/", "\\");
+        String imagePath = baseDir + "\\images" + "\\" + fileName;
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
 
         return new ImageIcon(imagePath);
     }

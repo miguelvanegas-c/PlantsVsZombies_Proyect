@@ -8,6 +8,7 @@
 public interface Element {
 
     String getName();
+<<<<<<< HEAD
     String getState();
     int getXPosition();
     int getYPosition();
@@ -16,4 +17,9 @@ public interface Element {
     int getWidth();
     int getHeight();
     String getExtension();
+=======
+    int getXPosition();
+    int getYPosition();
+
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
 }

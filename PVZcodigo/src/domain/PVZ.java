@@ -1,6 +1,16 @@
 
+<<<<<<< HEAD
 import java.util.List;
 import java.util.ArrayList;
+=======
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
 
 /**
  * This is the principal class of the application, it will have the behaviors and functionalities of the whole game.
@@ -12,6 +22,7 @@ import java.util.ArrayList;
 public class PVZ{
     public static final int rows = 5;
     public static final int columns = 10;
+<<<<<<< HEAD
     private final List<Element>[][] board = new ArrayList[rows][columns];
     private String[] zombiesInGame, plantsInGame;
     private Plant[][] plantsBoard = new Plant[rows][columns];
@@ -24,10 +35,25 @@ public class PVZ{
 
     /**
      * Constructor for the PVZ class MVSM game mode.
+=======
+    private List<Element>[][] board = new ArrayList[rows][columns];
+    private boolean zombieType, plantType;
+    private String[] zombiesInGame, plantsInGame, zombiesToGenerate;
+    private List<Zombie>[][] zombiesBoard = new ArrayList[rows][columns];
+    private Plant[][] plantsBoard = new Plant[rows][columns];
+    private List<Coin>[][] coins = new ArrayList[rows][columns];
+    private Timer timerGenerateZombies, timerZombieHorde,timerGenerateZombiesInHorde;
+    private int countZombiesInHorde;
+
+
+    /**
+     * Constructor for the PVZ class.
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
      *
      * @param plantsInGame  Array of plants available in the game.
      * @param zombiesInGame Array of zombies available in the game.
      * @param zombieType    Boolean indicating whether zombie actions are active.
+<<<<<<< HEAD
      * @param plantType     Boolean indicating whether plant actions are active.
      * @param startingSuns  starting suns to the game.
      * @param startingBrains starting brains to the game.
@@ -121,16 +147,36 @@ public class PVZ{
 
     }
 
+=======
+     */
+    public PVZ(String[] plantsInGame, String[] zombiesInGame, boolean zombieType) {
+        this.plantsInGame = plantsInGame;
+        this.zombiesInGame = zombiesInGame;
+        this.zombieType = zombieType;
+        startingZombiesBoardAndBoard();
+
+    }
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
     //Getters
     public List<Element>[][] getBoard(){
         return board;
     }
+<<<<<<< HEAD
+=======
+    public boolean getZombieType(){
+        return zombieType;
+    }
+    public boolean getPlantType(){
+        return plantType;
+    }
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
     public String[] getZombiesInGame(){
         return zombiesInGame;
     }
     public String[] getPlantsInGame(){
         return plantsInGame;
     }
+<<<<<<< HEAD
     public Plant[][] getPlantsBoard(){
         return plantsBoard;
     }
@@ -139,18 +185,36 @@ public class PVZ{
     }
     public int getSuns(){return suns;}
     public int getBrains(){return brains;}
+=======
+    public List<Zombie>[][] getZombiesBoard(){
+        return zombiesBoard;
+    }
+    public Plant[][] getPlantsBoard(){
+        return plantsBoard;
+    }
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
 
     /*
      * Initializes the zombie board, setting up empty lists for each cell.
      */
+<<<<<<< HEAD
     private void startingBoards(){
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 board[i][j] = new ArrayList<>();
+=======
+    private void startingZombiesBoardAndBoard(){
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                zombiesBoard[i][j] = new ArrayList<>();
+                board[i][j] = new ArrayList<>();
+                coins[i][j] = new ArrayList<>();
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
             }
         }
     }
 
+<<<<<<< HEAD
     /**
      * Delete zombie of the board.
      * @param row, row of the zombie.
@@ -164,6 +228,33 @@ public class PVZ{
                     board[row][col].remove(zombie);
                 }
                 break;
+=======
+    /*
+     * Moves zombies across the board. Zombies advance one cell to the left if possible.
+     * If a zombie reaches the leftmost column, it is removed from the board.
+     */
+    public void moveZombies() {
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
+                int len = zombiesBoard[row][col].size();
+                for (int i = 0; i < len; i++) {
+                    if(i < zombiesBoard[row][col].size()) {
+                        Zombie zombie = zombiesBoard[row][col].get(i);
+                        zombie.move();
+                        int x = zombie.getXPosition();
+                        if (((x - 140) % 70) == 0) {
+                            zombiesBoard[row][col].remove(zombie);
+                            zombiesBoard[row][col - 1].add(zombie);
+                            board[row][col].remove(zombie);
+                            board[row][col - 1].add(zombie);
+                            if (col - 1 == 0){
+                                zombiesBoard[row][col - 1].remove(zombie);
+                                board[row][col - 1].remove(zombie);
+                            }
+                        }
+                    }
+                }
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
             }
         }
     }
@@ -173,6 +264,7 @@ public class PVZ{
      *
      * @param row    The row index where the zombie will be added.
      * @param zombie The type of zombie to be added.
+<<<<<<< HEAD
      * @throws PVZException if the zombie is null or doesn't exist.
      */
     public void addZombie(int row, String zombie) throws PVZException {
@@ -265,6 +357,27 @@ public class PVZ{
     }
 
 
+=======
+     */
+    public void addZombie(int row, String zombie){
+        Zombie newZombie = null;
+        if(zombie.equals("zombie")){
+            newZombie = new BasicZombie(row);
+            zombiesBoard[row][9].add(newZombie);
+            board[row][9].add(newZombie);
+
+        }
+    }
+
+    private Zombie searchZombie(String zombie, int row){
+        Zombie newZombie = null;
+        switch (zombie) {
+            case "zombie":
+                newZombie = new BasicZombie(row);
+        }
+        return newZombie;
+    }
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
     /**
      * Add a plant to the board at a specified position.
      *
@@ -278,6 +391,7 @@ public class PVZ{
         valideEmptyCell(row,col);
         Plant newPlant = searchPlant(plant,row,col);
         validePlantExist(newPlant);
+<<<<<<< HEAD
         if(newPlant.getValue()<= suns) {
             plantsBoard[row][col] = newPlant;
             board[row][col].add(newPlant);
@@ -289,6 +403,12 @@ public class PVZ{
 
 
 
+=======
+        plantsBoard[row][col] = newPlant;
+        board[row][col].add(newPlant);
+    }
+
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
     /*
      * Search the Plant that is shown with the string.
      * @param plant, the string of the plant.
@@ -299,12 +419,25 @@ public class PVZ{
      */
     private Plant searchPlant(String plant,int row,int col) throws PVZException{
         validePlantNotNull(plant);
+<<<<<<< HEAD
         return switch (plant) {
             case "peashooter" -> new Peashooter(row, col);
             case "sunflower" -> new Sunflower(row, col);
             case "wallnut" -> new Wallnut(row, col);
             default -> null;
         };
+=======
+        switch  (plant){
+            case "peashooter":
+                return new Peashooter(row,col);
+            case "sunflower":
+                return new Sunflower(row,col);
+            case "wallnut":
+                return new Wallnut(row,col);
+            default:
+                return null;
+        }
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
     }
 
 
@@ -346,12 +479,19 @@ public class PVZ{
      * @throws PVZException if the string is null.
      */
     private void validePlantNotNull(String plant) throws PVZException{
+<<<<<<< HEAD
         if (plant == null) throw new PVZException(PVZException.ERROR_PLANT_NOT_SELECTED);
+=======
+        if (plant == null) {
+            throw new PVZException(PVZException.ERROR_PLANT_NOT_SELECTED);
+        }
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
     }
     /**
      * Add a coin to the board in a specific
      *
      */
+<<<<<<< HEAD
     public void addCoin(int row, int col,int finishRow, String coin) throws PVZException{
         valideCoinNotNull(coin);
         Coin newCoin = searchCoin(coin,row,col,finishRow);
@@ -373,6 +513,14 @@ public class PVZ{
             default -> null;
         };
 
+=======
+    public void addCoin(int row, int col, int startRow, int startCol, String coin) throws PVZException{
+        valideCoinNotNull(coin);
+        Coin newCoin = searchCoin(coin,row,col,startRow,startCol);
+        valideCoinExist(newCoin);
+        coins[row][col].add(newCoin);
+        board[row][col].add(newCoin);
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
     }
 
     /*
@@ -391,6 +539,7 @@ public class PVZ{
      * @throws PVZException if Coin doesn't exist.
      */
     private void valideCoinExist(Coin coin) throws PVZException{
+<<<<<<< HEAD
         if (coin == null) throw new PVZException(PVZException.ERROR_COIN_EXIST);
     }
 
@@ -451,5 +600,59 @@ public class PVZ{
 
 
 
+=======
+        if (coin == null) throw new PVZException(PVZException.ERROR_COIN_NOT_EXIST);
+    }
+    /*
+     * Search a coin with the String.
+     * @param String, string of the coin.
+     * @return Coin, the coin of the string.
+     */
+    private Coin searchCoin(String coin, int row, int col, int startRow, int startCol) throws PVZException{
+
+        switch(coin){
+            case "sun":
+               return  new Sun(row,col,startRow,startCol);
+            default:
+                return null;
+        }
+    }
+
+    /**
+     * Moves coins for the board
+     * If a coin arrive to the column and row where belongs, the coin stop.
+     *
+     */
+    public void moveCoins() {
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
+                int len = coins[row][col].size();
+                for (int i = 0; i < len; i++) {
+                    if(i < coins[row][col].size()) {
+                        Coin coin = coins[row][col].get(i);
+                        int startX = coin.getXPosition();
+                        coin.move(row,col);
+                        int x = coin.getXPosition();
+                        int y = coin.getYPosition();
+                        if (((y - 55)%75) == 0){
+                            coins[row][col].remove(coin);
+                            coins[row + 1][col].add(coin);
+                            board[row][col].remove(coin);
+                            board[row + 1][col].add(coin);
+                        }
+                        if (((x - 150) % 70) == 0) {
+                            int move =(startX < x)? 1:-1;
+                            coins[row][col].remove(coin);
+                            coins[row][col - move].add(coin);
+                            board[row][col].remove(coin);
+                            board[row][col - move].add(coin);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
 }
 

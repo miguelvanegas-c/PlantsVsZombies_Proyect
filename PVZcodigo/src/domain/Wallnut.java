@@ -9,8 +9,11 @@ public class Wallnut extends Plant{
     public Wallnut(int row, int col){
         super(row, col);
         name = "wallnut";
+<<<<<<< HEAD
         value = 50;
         life = 4000;
+=======
+>>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
     }
 
 
