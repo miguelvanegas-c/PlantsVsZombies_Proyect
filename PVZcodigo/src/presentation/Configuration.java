@@ -13,7 +13,7 @@ import java.util.HashSet;
  * @author Miguel Angel Vanegas and Julian Castiblanco.
  * @version 1.0
  */
-public class Difficulty extends JFrame implements GeneralInterface {
+public class Configuration extends JFrame implements GeneralInterface {
     private JMenuItem open, save, newItem, exit;
     private JPanel mainPanel;
     private JButton back, sunflower, peashooter, wallnut, play, select, next, zombie, coneZombie, bucketZombie;
@@ -29,7 +29,7 @@ public class Difficulty extends JFrame implements GeneralInterface {
      *
      * @param gameMode, the chosen game mode.
      */
-    public Difficulty(String gameMode) {
+    public Configuration(String gameMode) {
         super("Game Configuration");
         this.gameMode = gameMode;
         prepareElements();
@@ -80,6 +80,10 @@ public class Difficulty extends JFrame implements GeneralInterface {
         Image sunflowerImage = icon.getImage();
         icon = getImageIcon("wallnut1.png");
         Image wallnutImage = icon.getImage();
+        icon = getImageIcon("potatoMine1.png");
+        Image potatoMineImage = icon.getImage();
+        icon = getImageIcon("eciPlant1.png");
+        Image eciPlantImage = icon.getImage();
         icon = getImageIcon("sun.png");
         Image sunImage = icon.getImage();
         mainPanel = new JPanel() {
@@ -92,6 +96,8 @@ public class Difficulty extends JFrame implements GeneralInterface {
                 g.drawImage(peashooterImage, 150, 155, 100, 100, null);
                 g.drawImage(sunflowerImage, 250, 155, 100, 100, null);
                 g.drawImage(wallnutImage, 350, 155, 100, 100, null);
+                g.drawImage(potatoMineImage, 150, 255, 100, 100, null);
+                g.drawImage(eciPlantImage, 250, 255, 100, 100, null);
                 g.drawImage(sunImage, 800, 50, 30, 30, null);
 
                 //Informacion de la planta seleccionada.

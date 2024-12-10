@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,6 +13,7 @@ public class TransparentButton extends JButton {
         setForeground(Color.WHITE);
         setFont(new Font("Serif", Font.BOLD, 20));
     }
+
 
     @Override
     protected void paintComponent(Graphics g) {

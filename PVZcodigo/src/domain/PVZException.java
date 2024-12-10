@@ -22,6 +22,9 @@ public class PVZException extends Exception {
     public static final String COIN_BAD_POSITION = "In this position can't cerate a coin";
     public static final String ERROR_ZOMBIE_NOT_SELECTED = "You don't select a zombie to add";
     public static final String ERROR_ZOMBIE_NOT_EXIST = "The zombie that do you wanna add doesn't exist";
+    public static final String ERROR_NOT_ENOUGH_SUNS ="The suns aren't enough";
+    public static final String ERROR_NOT_ENOUGH_BRAINS ="The brains aren't enough";
+    public static final String NOT_PLANT_TO_DELETE = "There isn´t a plant in this position";
 
     public PVZException(String message) {super(message);}
 

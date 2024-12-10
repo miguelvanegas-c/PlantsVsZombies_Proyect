@@ -13,5 +13,6 @@ public class Cone extends Shield{
         super();
         name = "Cone";
         life = 280;
+        value = 50;
     }
 }

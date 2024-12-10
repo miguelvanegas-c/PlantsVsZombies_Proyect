@@ -14,6 +14,8 @@ public class ZombieWithShield extends Zombie{
     public ZombieWithShield(int row,Shield shield) {
         super(row,9);
         this.shield = shield;
+        life += shield.getLife();
+        value += shield.getValue();
     }
     public Shield getShield() {return shield;}
 }

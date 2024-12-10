@@ -17,7 +17,9 @@ public class PVZ{
     private String[] zombiesInGame, plantsInGame;
     private Plant[][] plantsBoard = new Plant[rows][columns];
     private int suns,brains;
-    private List<Move> moves = new ArrayList();
+    private List<Mover> moves = new ArrayList();
+    private List<Attacker> attackers = new ArrayList();
+    private List<Shooter> shooters = new ArrayList();
 
 
 
@@ -133,7 +135,7 @@ public class PVZ{
     public Plant[][] getPlantsBoard(){
         return plantsBoard;
     }
-    public List<Move> getMoves(){
+    public List<Mover> getMoves(){
         return moves;
     }
     public int getSuns(){return suns;}
@@ -150,7 +152,22 @@ public class PVZ{
         }
     }
 
-
+    /**
+     * Delete zombie of the board.
+     * @param row, row of the zombie.
+     * @param col, column of the zombie.
+     */
+    public void deleteZombie(int row, int col) {
+        for(Element element : board[row][col]){
+            if(element instanceof Zombie zombie){
+                if(zombie.getLife() <= 0) {
+                    moves.remove(element);
+                    board[row][col].remove(zombie);
+                }
+                break;
+            }
+        }
+    }
 
     /**
      * Add a zombie to the board at a specified row and the last column.
@@ -164,6 +181,24 @@ public class PVZ{
         valideZombieExist(newZombie);
         board[row][9].add(newZombie);
         moves.add(newZombie);
+    }
+
+
+    /**
+     * Add a zombie to the board at a specified row and the last column, with value.
+     * @param zombie The type of zombie to be added.
+     * @param row    The row index where the zombie will be added.
+     * @throws PVZException if the zombie is null or doesn't exist.
+     */
+    public void addZombie(String zombie, int row) throws PVZException {
+        Zombie newZombie = searchZombie(zombie,row);
+        valideZombieExist(newZombie);
+        if(newZombie.getValue() <= brains) {
+            board[row][9].add(newZombie);
+            moves.add(newZombie);
+        }else{
+            throw new PVZException(PVZException.ERROR_NOT_ENOUGH_BRAINS);
+        }
     }
 
     /*
@@ -206,6 +241,31 @@ public class PVZ{
     private void valideZombieExist(Zombie zombie) throws PVZException {
         if (zombie == null) throw new PVZException(PVZException.ERROR_ZOMBIE_NOT_EXIST);
     }
+
+    /**
+     * Delete plant of the board.
+     * @param row, row of the plant.
+     * @param col, col of the board.
+     * @throws PVZException, if there isn´t a plant to delete.
+     */
+    public void deletePlant(int row, int col) throws PVZException {
+        validePlantExistToDelete(row,col);
+        Plant plant = plantsBoard[row][col];
+        board[row][col].remove(plant);
+        plantsBoard[row][col] = null;
+    }
+
+    /*
+     * Validate if exist plant to delete.
+     * @param row of the plant to delete.
+     * @param col of the plant to delete
+     * @throws PVZException if there isn´t a plant in this position;
+     */
+    private void validePlantExistToDelete(int row, int col) throws PVZException {
+        if(plantsBoard[row][col] == null) throw new PVZException(PVZException.NOT_PLANT_TO_DELETE);
+    }
+
+
     /**
      * Add a plant to the board at a specified position.
      *
@@ -219,9 +279,16 @@ public class PVZ{
         valideEmptyCell(row,col);
         Plant newPlant = searchPlant(plant,row,col);
         validePlantExist(newPlant);
-        plantsBoard[row][col] = newPlant;
-        board[row][col].add(newPlant);
+        if(newPlant.getValue()<= suns) {
+            plantsBoard[row][col] = newPlant;
+            board[row][col].add(newPlant);
+            suns -= newPlant.getValue();
+        }else{
+            throw new PVZException(PVZException.ERROR_NOT_ENOUGH_SUNS);
+        }
     }
+
+
 
     /*
      * Search the Plant that is shown with the string.
@@ -332,7 +399,7 @@ public class PVZ{
      * move the elements that can be moved in the board.
      */
     public void moveBoard(){
-        for(Move move : moves){
+        for(Mover move : moves){
             Element moveElement = (Element) move;
             board[move.getRow()][move.getCol()].remove(moveElement);
             move.move();
@@ -340,19 +407,47 @@ public class PVZ{
         }
     }
 
-
-    public void takeCoin(int row, int col,Coin coin) throws PVZException{
+    /**
+     * Take a coin of the board.
+     * @param row, row of the coin.
+     * @param col, col of the row.
+     * @throws PVZException if not exist a coin in this cell.
+     */
+    public void takeCoin(int row, int col) throws PVZException{
+        Coin coin = coinInCell(row,col);
+        valideCoinExist(coin);
         if(coin instanceof Brain){
             brains += coin.getValue();
         }else{
             suns += coin.getValue();
         }
         board[row][col].remove(coin);
+        moves.remove(coin);
     }
 
+    /**
+     * Look if a position don't have a coin.
+     * @param row of the coin.
+     * @param col of the coin.
+     * @return if exist a coin false, if not true.
+     */
     public boolean isEmptyOfCoins(int row, int col){
         for(Element element : board[row][col]) if (element instanceof Coin ) return false;
         return true;
+    }
+
+    /*
+     * Take the coin of the cell.
+     * @param row, row of the coin.
+     * @param col, col of the coin.
+     */
+    private Coin coinInCell(int row, int col){
+        for(Element element : board[row][col]){
+            if (element instanceof Coin coin){
+                return coin;
+            }
+        }
+        return null;
     }
 
 

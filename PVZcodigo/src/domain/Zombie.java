@@ -5,7 +5,7 @@
  * @author Miguel Angel Vanegas y Julian Castiblanco.
  * @version 1.0
  */
-public abstract class Zombie implements Element,Move {
+public abstract class Zombie implements Element, Mover, Attacker {
 
     protected String name;
     protected int life;
@@ -16,7 +16,8 @@ public abstract class Zombie implements Element,Move {
     protected int col;
     protected int width;
     protected int height;
-    protected String extension ="G.gif";
+    protected String extension ="G.png";
+    protected int damage = 100;
 
     /**
      * Constructor to zombies.
@@ -31,6 +32,8 @@ public abstract class Zombie implements Element,Move {
         name = "zombie";
         life = 100;
         value = 100;
+        width = 80;
+        height = 70;
     }
     public String getName(){return this.name;}
 

@@ -12,6 +12,7 @@ public abstract class Plant implements Element {
     protected int value;
     protected int row;
     protected int col;
+    protected int life;
     protected int width = 50;
     protected int height = 50;
     protected String extension = "G.png";
@@ -40,6 +41,7 @@ public abstract class Plant implements Element {
     public int getWidth() {return width;}
     public int getHeight() {return height;}
     public String getExtension() {return extension;}
+    public int getLife() {return life;}
 
 
 }

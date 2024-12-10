@@ -13,5 +13,6 @@ public class Bucket extends Shield{
         super();
         name = "bucket";
         life = 700;
+        value = 100;
     }
 }

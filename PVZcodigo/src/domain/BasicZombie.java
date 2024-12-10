@@ -15,8 +15,7 @@ public class BasicZombie extends Zombie{
     public BasicZombie(int row) {
         super(row,9);
         value = 100;
-        width = 130;
-        height = 100;
+
     }
 
 

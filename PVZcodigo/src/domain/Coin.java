@@ -5,11 +5,11 @@
  * @author Miguel Angel Vanegas y Julian Castiblanco.
  * @version 1.0
  */
-public abstract class Coin implements Element,Move {
+public abstract class Coin implements Element, Mover {
     protected String name;
     protected int value;
     protected int xPosition = 140;
-    protected int yPosition = 65;
+    protected int yPosition = 70;
     protected int row;
     protected int col;
     protected int finishRow;
@@ -45,8 +45,8 @@ public abstract class Coin implements Element,Move {
 
     public void move(){
         if (row < finishRow) {
-            yPosition += 37;
-            if (((yPosition - 65) % 74) == 0) row += 1;
+            yPosition += 75;
+            if (((yPosition - 70) % 75) == 0) row += 1;
         }
     }
 

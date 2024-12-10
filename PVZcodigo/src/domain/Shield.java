@@ -8,6 +8,7 @@
 public class Shield {
     protected String name;
     protected int life;
+    protected int value;
 
     /**
      * Constructor for the class shield.
@@ -16,6 +17,7 @@ public class Shield {
     public Shield() {
 
     }
+    public int getValue() {return value;}
     public String getName() {return name;}
     public int getLife() {return life;}
 }

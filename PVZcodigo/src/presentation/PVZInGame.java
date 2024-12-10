@@ -24,7 +24,11 @@ public class PVZInGame extends JFrame implements GeneralInterface{
     private JButton[][] cells = new JButton[5][10];
     private PVZ pvz;
     private Timer timer;
-    private Map<JButton,Coin> coinsInBoard = new HashMap<>();
+    private JLabel sunsLabel,brainsLabel;
+    private boolean shovelBoolean = false;
+    private JButton shovelButton;
+
+
 
 
 
@@ -79,7 +83,6 @@ public class PVZInGame extends JFrame implements GeneralInterface{
         prepareElements();
         prepareActions();
 
-        test();
     }
 
     /**
@@ -114,6 +117,7 @@ public class PVZInGame extends JFrame implements GeneralInterface{
      * Prepares all the graphical and logical components of the game.
      */
     private void prepareElements() {
+
         prepareElementsMenu();
         createPanel();
         if(gameMode.equals("PvsP")) {
@@ -147,6 +151,14 @@ public class PVZInGame extends JFrame implements GeneralInterface{
         if(!gameMode.equals("MvsM"))prepareButtonsTablero();
         timer = new Timer(1000, e -> refresh());
         timer.start();
+        shovelButton = new BorderButton(" ");
+        shovelButton.setBounds(410, 5, 40, 40);
+        sunsLabel = new JLabel();
+        brainsLabel = new JLabel();
+        gamePanel.add(shovelButton);
+        gamePanel.add(sunsLabel);
+        gamePanel.add(sunsLabel);
+
 
     }
 
@@ -165,6 +177,9 @@ public class PVZInGame extends JFrame implements GeneralInterface{
                 super.paintComponent(g);
                 //zone of plants anzombies select.
                 g.drawImage(originalImage, 0, 0, getWidth(), getHeight(), null);
+                ImageIcon icon = getImageIcon("pala.png");
+                Image originalImage = icon.getImage();
+                g.drawImage(originalImage, 410, 5, 40, 40, null);
                 int count = 50;
                 for (String planta : plantsToPlay) {
                     ImageIcon iconPlant = getImageIcon(planta+".png");
@@ -208,18 +223,17 @@ public class PVZInGame extends JFrame implements GeneralInterface{
                 ImageIcon iconSun = getImageIcon( "sun.png");
                 Image originalImageSun = iconSun.getImage();
                 g.drawImage(originalImageSun, 285, 10, 30, 30, null);
-                JLabel sunLabel = new JLabel("<html><span style='font-size:20px; letter-spacing:5px;'>"+pvz.getSuns()+"</span></html>");
-                sunLabel.setBounds(320,5,80,40);
-                gamePanel.add(sunLabel);
+                sunsLabel.setText("<html><span style='font-size:20px; letter-spacing:5px;'>"+pvz.getSuns()+"</span></html>");
+                sunsLabel.setBounds(320,5,80,40);
                 //brain counter
                 g.setColor(new Color(150, 150, 150));
                 g.fillRect(760, 5, 120, 40);
                 ImageIcon iconBrain = getImageIcon( "brain.png");
                 Image originalImageBrain = iconBrain.getImage();
                 g.drawImage(originalImageBrain, 765, 10, 30, 30, null);
-                JLabel brainLabel = new JLabel("<html><span style='font-size:20px; letter-spacing:5px;'>"+pvz.getBrains()+"</span></html>");
-                brainLabel.setBounds(800 ,5,80,40);
-                gamePanel.add(brainLabel);
+                brainsLabel.setText("<html><span style='font-size:20px; letter-spacing:5px;'>"+pvz.getBrains()+"</span></html>");
+                brainsLabel.setBounds(800 ,5,80,40);
+
 
             }
         };
@@ -340,9 +354,10 @@ public class PVZInGame extends JFrame implements GeneralInterface{
             for(int col = 0; col < 10; col++) {
                 int i = row;
                 int j = col;
-                if (cells[i][j] != null) cells[row][col].addActionListener(e -> addPlant(i,j));
+                if (cells[i][j] != null) cells[row][col].addActionListener(e -> cellAction(i,j));
             }
         }
+        shovelButton.addActionListener(e -> canDelete());
 
 
     }
@@ -353,13 +368,20 @@ public class PVZInGame extends JFrame implements GeneralInterface{
      * @param row The row index where the plant will be added.
      * @param col The column index where the plant will be added.
      */
-    private void addPlant(int row, int col) {
+    private void cellAction(int row, int col) {
         try {
-            if(pvz.isEmptyOfCoins(row,col)) {
+            if(pvz.isEmptyOfCoins(row,col) && !shovelBoolean) {
                 pvz.addPlant(row, col, selectedPlant);
                 selectedPlant = null;
+            } else if (shovelBoolean) {
+                pvz.deletePlant(row,col);
+                shovelBoolean = false;
+            } else {
+
+                takeCoin(row,col);
             }
         } catch (PVZException e) {
+            shovelBoolean = false;
             timerMessage(e.getMessage());
         }
     }
@@ -397,47 +419,34 @@ public class PVZInGame extends JFrame implements GeneralInterface{
     }
 
 
-
     /*
      * add Coin and create Button.
      */
     private void addCoin(int row, int col, int finishRow, String coin) {
-        try{
-            pvz.addCoin(row,col,finishRow,coin);
-            Move move = pvz.getMoves().getLast();
-            Coin newCoin =(Coin) move;
-            JButton coinButton = new BorderButton("");
-            coinButton.setBounds(newCoin.getXPosition(),newCoin.getYPosition(), newCoin.getWidth(), newCoin.getHeight());
-            coinsInBoard.put(coinButton, newCoin);
-            gamePanel.add(coinButton);
-            coinButton.addActionListener(e -> takeCoin(row,col,newCoin,coinButton));
-        }catch(PVZException e) {
+        try {
+            pvz.addCoin(row, col, finishRow, coin);
+        } catch (PVZException e) {
             timerMessage(e.getMessage());
         }
     }
-    /*
-     * Update coins Button.
-     */
-    private void updateCoinsButtons(){
-        for(JButton b: coinsInBoard.keySet()){
-            Coin coin  = coinsInBoard.get(b);
-            b.setBounds(coin.getXPosition(),coin.getYPosition(), coin.getWidth(), coin.getHeight());
-            b.addActionListener(e -> takeCoin(coin.getRow(),coin.getCol(),coin,b));
-        }
 
-    }
 
     /*
      * Take a coin of the board.
      */
-    private void takeCoin(int row, int col, Coin coin,JButton coinButton){
-        try{
-            pvz.takeCoin(row,col,coin);
-            gamePanel.remove(coinButton);
-            coinsInBoard.remove(coinButton);
+    private void takeCoin(int row, int col) {
+        try {
+            pvz.takeCoin(row, col);
         } catch (PVZException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /*
+     * Make the shovel can delete.
+     */
+    private void canDelete() {
+        shovelBoolean = true;
     }
 
     /*
@@ -445,7 +454,6 @@ public class PVZInGame extends JFrame implements GeneralInterface{
      */
     public void refresh() {
         pvz.moveBoard();
-        updateCoinsButtons();
         repaint();
     }
 
@@ -465,17 +473,11 @@ public class PVZInGame extends JFrame implements GeneralInterface{
         dialog.setLocationRelativeTo(null); // Centrar en la pantalla
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.setVisible(true);
-        new Timer(2000, s -> dialog.dispose()).start();
+        new Timer(1500, s -> dialog.dispose()).start();
     }
 
-    private void test(){
-        try{
-            pvz.addZombie(3,"zombie");
-            addCoin(0,4,3,"sun");
-            addCoin(0,2,3,"brain");
-        } catch (PVZException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
+
+
 
 }
