@@ -153,10 +153,14 @@ public class PVZGUI extends JFrame implements GeneralInterface {
      */
     private void openDifficultyWindow(String gameMode) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         Configuration difficultyWindow = new Configuration(gameMode);
 =======
         Difficulty difficultyWindow = new Difficulty(gameMode);
 >>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
+=======
+        Configuration difficultyWindow = new Configuration(gameMode);
+>>>>>>> b49ed8088702da98f5dfe19437f9c75858913b6b
         difficultyWindow.setVisible(true);
 
         dispose();

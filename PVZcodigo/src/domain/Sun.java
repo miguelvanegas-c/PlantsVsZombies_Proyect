@@ -5,6 +5,7 @@ public class Sun extends Coin{
      * @param row, row where the sun is going to finish.
      * @param col, col where the sun is going to finish.
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param finishRow, row where the sun is going to finish.
      */
     public Sun(int row,int col,int finishRow) throws PVZException{
@@ -19,9 +20,12 @@ public class Sun extends Coin{
     }
 =======
      * @param startCol, col where the sun is going to start.
+=======
+     * @param finishRow, row where the sun is going to finish.
+>>>>>>> b49ed8088702da98f5dfe19437f9c75858913b6b
      */
-    public Sun(int row,int col, int startRow,int startCol){
-        super(row, col, startRow,startCol);
+    public Sun(int row,int col,int finishRow) throws PVZException{
+        super(row, col,finishRow);
         name = "sun";
         value = 25;
     }

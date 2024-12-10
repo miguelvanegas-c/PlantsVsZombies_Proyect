@@ -11,14 +11,19 @@ public class PVZTest {
 
     @Before
 <<<<<<< HEAD
+<<<<<<< HEAD
     public void setUp() {
 =======
     public void setUp() throws Exception {
 >>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
+=======
+    public void setUp() {
+>>>>>>> b49ed8088702da98f5dfe19437f9c75858913b6b
         String[] plantasDeJuego = {"peashooter,sunflower"};
         String[] zombiesDeJuego = {"zombieCono,zombie"};
         this.plantasDeJuego = plantasDeJuego;
         this.zombiesDeJuego = zombiesDeJuego;
+<<<<<<< HEAD
 <<<<<<< HEAD
         pvz = new PVZ(this.plantasDeJuego,this.zombiesDeJuego,10,10,200);
     }
@@ -210,42 +215,198 @@ public class PVZTest {
 
 =======
         pvz = new PVZ(this.plantasDeJuego,this.zombiesDeJuego, true);
+=======
+        pvz = new PVZ(this.plantasDeJuego,this.zombiesDeJuego,10,10,200);
+>>>>>>> b49ed8088702da98f5dfe19437f9c75858913b6b
     }
     @Test
-    public void shouldCreatePVZ() {
+    public void shouldCreatePVZToPvsP() {
         String[] plantasDeJuegoTest = {"peashooter,sunflower"};
         String[] zombiesDeJuegoTest = {"zombieCono,zombie"};
+        int expectedSuns = pvz.getSuns();
+        int expectedBrains = pvz.getBrains();
         assertArrayEquals(plantasDeJuegoTest,pvz.getPlantsInGame());
         assertArrayEquals(zombiesDeJuegoTest,pvz.getZombiesInGame());
+        assertNotEquals(0, expectedSuns);
+        assertNotEquals(0, expectedBrains);
     }
 
     @Test
-    public void shouldMoveZombies() {
-        pvz.addZombie(3, "zombie");
-        Zombie zombie = pvz.getZombiesBoard()[3][9].getFirst();
-        for (int i = 0; i < 80; i++) {
-            pvz.moveZombies();
+    public void shouldCreatePVZToPvsM() {
+        PVZ pvzTest = new PVZ(plantasDeJuego,this.zombiesDeJuego,true,10,10,200,2,2);
+        String[] plantasDeJuegoTest = {"peashooter,sunflower"};
+        String[] zombiesDeJuegoTest = {"zombieCono,zombie"};
+        int expectedSuns = pvzTest.getSuns();
+        int expectedBrains = pvzTest.getBrains();
+        assertArrayEquals(plantasDeJuegoTest,pvzTest.getPlantsInGame());
+        assertArrayEquals(zombiesDeJuegoTest,pvzTest.getZombiesInGame());
+        assertNotEquals(0, expectedSuns);
+        assertNotEquals(0, expectedBrains);
+    }
+
+    @Test
+    public void shouldCreatePVZToMvsM() {
+        PVZ pvzTest = new PVZ(plantasDeJuego,this.zombiesDeJuego,true,true,10,10,200,2,2);
+        String[] plantasDeJuegoTest = {"peashooter,sunflower"};
+        String[] zombiesDeJuegoTest = {"zombieCono,zombie"};
+        int expectedSuns = pvzTest.getSuns();
+        int expectedBrains = pvzTest.getBrains();
+        assertArrayEquals(plantasDeJuegoTest,pvzTest.getPlantsInGame());
+        assertArrayEquals(zombiesDeJuegoTest,pvzTest.getZombiesInGame());
+        assertNotEquals(0, expectedSuns);
+        assertNotEquals(0, expectedBrains);
+    }
+
+    @Test
+    public void shouldAddZombie(){
+        try {
+            pvz.addZombie(3, "zombie");
+            pvz.addZombie(3, "zombieCono");
+            pvz.addZombie(3,"zombieBalde");
+        } catch (PVZException e) {
+            fail();
         }
-        assertNotNull(pvz.getZombiesBoard()[3][8].getFirst());
-        assertEquals(zombie,pvz.getZombiesBoard()[3][8].getFirst());
+        assertEquals(3, pvz.getBoard()[3][9].size());
+        assertTrue(pvz.getBoard()[3][9].get(2) instanceof ZombieWithShield);
+        assertTrue(pvz.getBoard()[3][9].get(1) instanceof ZombieWithShield);
+        assertTrue(pvz.getBoard()[3][9].get(0) instanceof Zombie);
     }
 
     @Test
-    public void shoulldAddPlant(){
+    public void shouldThrowPVZExceptionStringZombieIsNull(){
+        try {
+            pvz.addZombie(3, null);
+        } catch (PVZException e) {
+            assertEquals("You don't select a zombie to add", e.getMessage());
+        }
+        assertEquals(0,pvz.getBoard()[3][9].size());
+    }
+
+    @Test
+    public void shouldThrowPVZExceptionZombieNotExist(){
+        try {
+            pvz.addZombie(3, "x");
+        } catch (PVZException e) {
+            assertEquals("The zombie that do you wanna add doesn't exist", e.getMessage());
+        }
+        assertEquals(0,pvz.getBoard()[3][9].size());
+    }
+
+    @Test
+    public void shouldAddPlant(){
         try {
             pvz.addPlant(1, 1, "peashooter");
+            pvz.addPlant(2, 1, "sunflower");
+            pvz.addPlant(3, 1, "wallnut");
         }catch (PVZException e){
             fail();
         }
-        String testPlanta = null;
-        String testTwoPlanta = null;
-        if(pvz.getPlantsBoard()[1][1] instanceof Peashooter)testPlanta = "peashooter";
-        if(pvz.getBoard()[1][1].getFirst() instanceof Peashooter)testTwoPlanta = "peashooter";
-        assertEquals(testPlanta,"peashooter");
-        assertEquals(testTwoPlanta,"peashooter");
+        assertTrue(pvz.getBoard()[1][1].getFirst() instanceof Peashooter);
+        assertTrue(pvz.getBoard()[2][1].getFirst() instanceof Sunflower);
+        assertTrue(pvz.getBoard()[3][1].getFirst() instanceof Wallnut);
+        assertTrue(pvz.getPlantsBoard()[1][1] instanceof Peashooter);
+        assertTrue(pvz.getPlantsBoard()[2][1] instanceof Sunflower);
+        assertTrue(pvz.getPlantsBoard()[3][1] instanceof Wallnut);
+    }
 
+    @Test
+    public void shouldThrowPVZExceptionCantPlant(){
+        try {
+            pvz.addPlant(3, 0,"peashooter");
+        } catch (PVZException e) {
+            assertEquals("Can't plant on this cell", e.getMessage());
+        }
+        assertEquals(0,pvz.getBoard()[3][0].size());
+        assertNull(pvz.getPlantsBoard()[3][0]);
+    }
+
+    @Test
+    public void shouldThrowPVZExceptionStringPlantIsNull(){
+        try {
+            pvz.addPlant(3, 1,null);
+        } catch (PVZException e) {
+            assertEquals("You don't select a plant to add", e.getMessage());
+        }
+        assertEquals(0,pvz.getBoard()[3][1].size());
+        assertNull(pvz.getPlantsBoard()[3][1]);
+    }
+
+    @Test
+    public void shouldThrowPVZExceptionStringPlantExist(){
+        try {
+            pvz.addPlant(3, 1,"x");
+        } catch (PVZException e) {
+            assertEquals("The plant that do you wanna add doesn't exist", e.getMessage());
+        }
+        assertEquals(0,pvz.getBoard()[3][1].size());
+        assertNull(pvz.getPlantsBoard()[3][1]);
+    }
+
+    @Test
+    public void shouldAddCoin(){
+        try {
+            pvz.addCoin(0,3,2 ,"sun");
+            pvz.addCoin(0,3,3 ,"brain");
+        } catch (PVZException e) {
+            fail();
+        }
+        assertEquals(2, pvz.getBoard()[0][3].size());
+        assertTrue(pvz.getBoard()[0][3].get(0) instanceof Sun);
+        assertTrue(pvz.getBoard()[0][3].get(1) instanceof Brain);
+    }
+
+    @Test
+    public void shouldThrowPVZExceptionStringCoinIsNull(){
+        try {
+            pvz.addCoin(3,3,3, null);
+        } catch (PVZException e) {
+            assertEquals("You don´t select a coin", e.getMessage());
+        }
+        assertEquals(0,pvz.getBoard()[3][3].size());
+    }
+
+    @Test
+    public void shouldThrowPVZExceptionCoinNotExist(){
+        try {
+            pvz.addCoin(3,2,2, "x");
+        } catch (PVZException e) {
+            assertEquals("The coin that do you wanna add doesn't exist", e.getMessage());
+        }
+        assertEquals(0,pvz.getBoard()[3][2].size());
+    }
+
+    @Test
+    public void shouldThrowPVZExceptionCoinInBadPosition(){
+        try {
+            pvz.addCoin(0,0,2, "sun");
+        } catch (PVZException e) {
+            assertEquals("In this position can't cerate a coin", e.getMessage());
+        }
+        assertEquals(0,pvz.getBoard()[0][0].size());
     }
 
 
+<<<<<<< HEAD
 >>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
+=======
+    @Test
+    public void shouldMoveZombies() {
+        try {
+            pvz.addZombie(3, "zombie");
+        } catch (PVZException e) {
+            fail();
+        }
+        Element zombie = pvz.getBoard()[3][9].getFirst();
+        assertTrue(zombie instanceof Zombie);
+        for (int i = 0; i < 20; i++) {
+            pvz.moveBoard();
+        }
+        assertNotNull(pvz.getBoard()[3][8].getFirst());
+        assertEquals(zombie,pvz.getBoard()[3][8].getFirst());
+    }
+
+
+
+
+>>>>>>> b49ed8088702da98f5dfe19437f9c75858913b6b
 }

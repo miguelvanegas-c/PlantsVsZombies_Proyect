@@ -27,12 +27,16 @@ public interface GeneralInterface {
      */
     default ImageIcon getImageIcon(String fileName) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         String imagePath = "images/" + fileName;
 =======
         String baseDir = System.getProperty("user.dir");
         baseDir = baseDir.replace("/", "\\");
         String imagePath = baseDir + "\\images" + "\\" + fileName;
 >>>>>>> 34e246993894e450ab7a9306bb9ab88f5a4cf910
+=======
+        String imagePath = "images/" + fileName;
+>>>>>>> b49ed8088702da98f5dfe19437f9c75858913b6b
 
         return new ImageIcon(imagePath);
     }

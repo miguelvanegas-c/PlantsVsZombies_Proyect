@@ -18,9 +18,12 @@ public class ZombieWithShield extends Zombie{
         value += shield.getValue();
     }
     public Shield getShield() {return shield;}
+<<<<<<< HEAD
 
     @Override
     public int attack() {
         return 0;
     }
+=======
+>>>>>>> b49ed8088702da98f5dfe19437f9c75858913b6b
 }
