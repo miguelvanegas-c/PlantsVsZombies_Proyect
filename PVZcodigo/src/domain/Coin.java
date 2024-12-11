@@ -12,6 +12,7 @@ public abstract class Coin implements Element, Mover {
     protected int yPosition = 70;
     protected int row;
     protected int col;
+    protected int life;
     protected int finishRow;
     protected int width = 50;
     protected int height = 50;
@@ -25,7 +26,7 @@ public abstract class Coin implements Element, Mover {
     public Coin(int row,int col,int finishRow) throws PVZException{
         if(col == 0) throw new PVZException(PVZException.COIN_BAD_POSITION);
         xPosition += (col * 70);
-        yPosition += (row * 74);
+        yPosition += (row * 75);
         this.finishRow = finishRow;
         this.row = row;
         this.col = col;
@@ -55,6 +56,7 @@ public abstract class Coin implements Element, Mover {
     public int getWidth(){return width;}
     public int getHeight(){return height;}
     public String getExtension(){return extension;}
+    public int getLife(){return life;}
 
 
 

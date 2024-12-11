@@ -15,4 +15,5 @@ public interface Element {
     int getWidth();
     int getHeight();
     String getExtension();
+    int getLife();
 }

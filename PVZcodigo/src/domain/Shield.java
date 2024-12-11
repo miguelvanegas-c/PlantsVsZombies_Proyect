@@ -20,4 +20,12 @@ public class Shield {
     public int getValue() {return value;}
     public String getName() {return name;}
     public int getLife() {return life;}
+    public int takeDamage(int damage) {
+        life -= damage;
+        if (life <= 0) {
+            name = "";
+            return life;
+        }
+        return 0;
+    }
 }

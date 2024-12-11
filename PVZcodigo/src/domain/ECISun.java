@@ -8,7 +8,7 @@ public class ECISun extends Coin{
      */
     public ECISun(int row,int col,int finishRow) throws PVZException{
         super(row, col,finishRow);
-        name = "ecisun";
+        name = "eciSun";
         value = 50;
     }
 }

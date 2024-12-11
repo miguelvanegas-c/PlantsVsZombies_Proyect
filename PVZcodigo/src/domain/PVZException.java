@@ -16,9 +16,9 @@ public class PVZException extends Exception {
     public static final String NOT_NUMBER = "The value isn't a number";
     public static final String ERROR_NOT_STARTING_SUNS = "The suns is less or equal that 0";
     public static final String ERROR_NOT_STARTING_BRAINS = "The brains is less or equal that 0";
-    public static final String ERROR_LOW_GAME_TIME = "The game time is less than 40 that is the minimum game time";
+    public static final String ERROR_LOW_GAME_TIME = "The game time is less than 40 that is the minimum game time, or more than 360 that is the maximum game time";
     public static final String ERROR_INCORRECT_HORDES_NUMBER = "The hordes number is less or equal than 0 or is bigger than 10";
-    public static final String ERROR_LOW_HORDES_TIME = "The Hordes time is moer than 10 that is the maximum hordes time";
+    public static final String ERROR_LOW_HORDES_TIME = "The Hordes time is more than 10 that is the maximum hordes time, or less than 0";
     public static final String COIN_BAD_POSITION = "In this position can't cerate a coin";
     public static final String ERROR_ZOMBIE_NOT_SELECTED = "You don't select a zombie to add";
     public static final String ERROR_ZOMBIE_NOT_EXIST = "The zombie that do you wanna add doesn't exist";

@@ -16,7 +16,7 @@ import java.util.HashSet;
 public class Configuration extends JFrame implements GeneralInterface {
     private JMenuItem open, save, newItem, exit;
     private JPanel mainPanel;
-    private JButton back, sunflower, peashooter, wallnut, play, select, next, zombie, coneZombie, bucketZombie;
+    private JButton back, sunflower, peashooter, wallnut,potatomine,eciplant, play, select, next, zombie, coneZombie, bucketZombie,eciZombie;
     private HashSet<String> plantsToPlay = new HashSet<>();
     private HashSet<String> zombiesToPlay = new HashSet<>();
     private String gameMode, possiblePlantToPlay, plantPlayerName, zombiePlayerName, zombieType, plantType, possibleZombieToPlay;
@@ -209,15 +209,21 @@ public class Configuration extends JFrame implements GeneralInterface {
         peashooter = new BorderButton("     ");
         wallnut = new BorderButton("      ");
         sunflower = new BorderButton("       ");
+        potatomine = new BorderButton("       ");
+        eciplant = new BorderButton("       ");
         select = new EspecialButton("Select");
         peashooter.setBounds(150, 155, 100, 100);
         sunflower.setBounds(250, 155, 100, 100);
         wallnut.setBounds(350, 155, 100, 100);
+        potatomine.setBounds(150,255,100,100);
+        eciplant.setBounds(250,255,100,100);
         select.setBounds(845, 460, 140, 30);
 
         mainPanel.add(peashooter);
         mainPanel.add(sunflower);
         mainPanel.add(wallnut);
+        mainPanel.add(potatomine);
+        mainPanel.add(eciplant);
         mainPanel.add(back);
         mainPanel.add(next);
 
@@ -241,6 +247,9 @@ public class Configuration extends JFrame implements GeneralInterface {
         peashooter.addActionListener(e -> choosePlant("peashooter"));
         sunflower.addActionListener(e -> choosePlant("sunflower"));
         wallnut.addActionListener(e -> choosePlant("wallnut"));
+        potatomine.addActionListener(e -> choosePlant("potatoMine"));
+        eciplant.addActionListener(e -> choosePlant("eciPlant"));
+
         next.addActionListener(e -> nextPanel());
         select.addActionListener(e -> selectPlant());
         selectPlant.addActionListener(e -> selectPlantType());
@@ -383,6 +392,8 @@ public class Configuration extends JFrame implements GeneralInterface {
         Image zombieBaldeImage = icon.getImage();
         icon = getImageIcon("caraCono.gif");
         Image zombieConoImage = icon.getImage();
+        icon = getImageIcon("eciZombie1.png");
+        Image eciZombieImage = icon.getImage();
         icon = getImageIcon("brain.png");
         Image brainImage = icon.getImage();
         mainPanel = new JPanel() {
@@ -395,6 +406,7 @@ public class Configuration extends JFrame implements GeneralInterface {
                 g.drawImage(zombieImage, 150, 155, 100, 100, null);
                 g.drawImage(zombieConoImage, 250, 155, 100, 100, null);
                 g.drawImage(zombieBaldeImage, 350, 155, 100, 100, null);
+                g.drawImage(eciZombieImage, 150, 255, 100, 100, null);
                 g.drawImage(brainImage, 800, 50, 30, 30, null);
 
                 //Informacion de la planta seleccionada.
@@ -481,6 +493,8 @@ public class Configuration extends JFrame implements GeneralInterface {
         zombie = createGifButton("zombie.gif", 150, 155, 100, 100);
         coneZombie = createGifButton("caraCono.gif", 250, 155, 100, 100);
         bucketZombie = createGifButton("caraCubeta.gif", 350, 155, 100, 100);
+        eciZombie = new BorderButton(" ");
+        eciZombie.setBounds(150,255,100,100);
         select = new EspecialButton("Select");
         select.setBounds(860, 460, 140, 30);
 
@@ -490,6 +504,7 @@ public class Configuration extends JFrame implements GeneralInterface {
         mainPanel.add(zombie);
         mainPanel.add(coneZombie);
         mainPanel.add(bucketZombie);
+        mainPanel.add(eciZombie);
         mainPanel.add(play);
         mainPanel.add(back);
     }
@@ -502,6 +517,7 @@ public class Configuration extends JFrame implements GeneralInterface {
         zombie.addActionListener(e -> chooseZombie("zombie"));
         coneZombie.addActionListener(e -> chooseZombie("zombieCono"));
         bucketZombie.addActionListener(e -> chooseZombie("zombieBalde"));
+        eciZombie.addActionListener(e -> chooseZombie("eciZombie"));
         select.addActionListener(e -> selectZombie());
         play.addActionListener(e -> openPVZInGameWindow());
         selectZombie.addActionListener(e -> selectZombieType());
@@ -746,7 +762,7 @@ public class Configuration extends JFrame implements GeneralInterface {
      * @throws PVZException, if game time is lower than 40 seconds.
      */
     private void valideGameTime() throws PVZException {
-        if(gameTime<40)throw new PVZException(PVZException.ERROR_LOW_GAME_TIME);
+        if(gameTime<40 || gameTime >= 360)throw new PVZException(PVZException.ERROR_LOW_GAME_TIME);
     }
 
     /*
@@ -754,7 +770,7 @@ public class Configuration extends JFrame implements GeneralInterface {
      * @throws PVZException, if the hordes number <= 0.
      */
     private void valideHordesNumber() throws PVZException {
-        if(hordesNumber <= 0 || hordesNumber>10)throw new PVZException(PVZException.ERROR_INCORRECT_HORDES_NUMBER);
+        if(hordesNumber <= 0 || hordesNumber>4)throw new PVZException(PVZException.ERROR_INCORRECT_HORDES_NUMBER);
     }
 
     /*
@@ -762,7 +778,7 @@ public class Configuration extends JFrame implements GeneralInterface {
      * @throws PVZException, if the hordes time < 10.
      */
     private void valideHordesTime() throws PVZException {
-        if(hordesNumber > 10)throw new PVZException(PVZException.ERROR_LOW_HORDES_TIME);
+        if(hordesTime > 10 || hordesTime <= 0)throw new PVZException(PVZException.ERROR_LOW_HORDES_TIME);
     }
 
     /*

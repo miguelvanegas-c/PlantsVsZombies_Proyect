@@ -42,6 +42,8 @@ public abstract class Plant implements Element {
     public int getHeight() {return height;}
     public String getExtension() {return extension;}
     public int getLife() {return life;}
-
+    public void takeDamage(int damage) {
+        life -= damage;
+    }
 
 }

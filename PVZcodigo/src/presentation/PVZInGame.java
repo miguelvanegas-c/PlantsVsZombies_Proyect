@@ -82,6 +82,7 @@ public class PVZInGame extends JFrame implements GeneralInterface{
         this.zombiePlayer = zombiePlayer;
         prepareElements();
         prepareActions();
+        test();
 
     }
 
@@ -453,8 +454,15 @@ public class PVZInGame extends JFrame implements GeneralInterface{
      * Refreshes the game panel by repainting it.
      */
     public void refresh() {
-        pvz.moveBoard();
-        repaint();
+        try {
+            pvz.moveBoard();
+            pvz.makePotatoAttack();
+            pvz.garbageColector();
+            repaint();
+        } catch (PVZException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 
@@ -476,7 +484,14 @@ public class PVZInGame extends JFrame implements GeneralInterface{
         new Timer(1500, s -> dialog.dispose()).start();
     }
 
-
+    private void test(){
+        addCoin(1,3,4,"eciSun");
+        try {
+            pvz.addZombie(0, "zombie");
+        } catch (PVZException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 

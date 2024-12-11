@@ -18,4 +18,13 @@ public class ZombieWithShield extends Zombie{
         value += shield.getValue();
     }
     public Shield getShield() {return shield;}
+
+    @Override
+    public void takeDamage(int damage) {
+        if(shield.getLife() > 0) {
+            life += shield.takeDamage(damage);
+        }else{
+            super.takeDamage(damage);
+        }
+    }
 }

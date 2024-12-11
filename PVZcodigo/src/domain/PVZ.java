@@ -18,7 +18,6 @@ public class PVZ{
     private Plant[][] plantsBoard = new Plant[rows][columns];
     private int suns,brains;
     private List<Mover> moves = new ArrayList();
-    private List<Attacker> attackers = new ArrayList();
     private List<Shooter> shooters = new ArrayList();
 
 
@@ -209,18 +208,20 @@ public class PVZ{
      */
     private Zombie searchZombie(String zombie, int row) throws PVZException {
         valideZombieNotNull(zombie);
-        switch (zombie) {
-            case "zombie":
-                return new BasicZombie(row);
-            case "zombieCono":
+        return switch (zombie) {
+            case "zombie" -> new BasicZombie(row);
+            case "zombieCono" -> {
                 Shield cone = new Cone();
-                return new ZombieWithShield(row,cone);
-            case "zombieBalde":
+                yield new ZombieWithShield(row, cone);
+            }
+            case "zombieBalde" -> {
                 Shield bucket = new Bucket();
-                return new ZombieWithShield(row,bucket);
-            default:
-                return null;
-        }
+                yield new ZombieWithShield(row, bucket);
+            }
+            case "brainstein" -> new Brainstein(row);
+            case "eciZombie" -> new ECIZombie(row);
+            default -> null;
+        };
 
     }
 
@@ -304,6 +305,8 @@ public class PVZ{
             case "peashooter" -> new Peashooter(row, col);
             case "sunflower" -> new Sunflower(row, col);
             case "wallnut" -> new Wallnut(row, col);
+            case "potatoMine" -> new PotatoMine(row, col);
+            case "eciPlant" -> new ECIPlant(row, col);
             default -> null;
         };
     }
@@ -371,6 +374,7 @@ public class PVZ{
         return switch (coin) {
             case "sun" -> new Sun(row, col, finishRow);
             case "brain" -> new Brain(row, col, finishRow);
+            case "eciSun" -> new ECISun(row, col, finishRow);
             default -> null;
         };
 
@@ -401,6 +405,7 @@ public class PVZ{
     public void moveBoard(){
         for(Mover move : moves){
             Element moveElement = (Element) move;
+            makeDamage(moveElement,move.getRow(),move.getCol());
             board[move.getRow()][move.getCol()].remove(moveElement);
             move.move();
             board[move.getRow()][move.getCol()].add(moveElement);
@@ -449,6 +454,88 @@ public class PVZ{
         }
         return null;
     }
+
+    public void addMissile(int row, int col,Missile missile) throws PVZException{
+
+    }
+
+    private void makeDamage(Element move, int row, int col){
+
+        Zombie zombie = zombieInCell(row,col);
+        Plant plant = plantInCell(row,col);
+
+        switch(move){
+            case Pea p -> {
+                if (zombie != null) {
+                    p.makeDamage(zombie);
+                }
+            }
+            case Zombie z -> {
+                if(plant != null){
+                    z.makeDamage(plant);
+                    z.makeAttack();
+                }
+            }
+            default -> {}
+       }
+
+    }
+
+    private Plant plantInCell(int row, int col){
+        if (plantsBoard[row][col] != null){
+            return plantsBoard[row][col];
+        }
+        return null;
+    }
+
+    private Zombie zombieInCell(int row, int col){
+        for (Element element : board[row][col]){
+            if (element instanceof Zombie zombie){
+                return zombie;
+            }
+        }
+        return null;
+    }
+
+    public void makePotatoAttack() throws PVZException{
+        for(int i = 0; i < rows ; i++){
+            for(int j = 0 ; j < columns ; j++){
+                if ( plantsBoard[i][j] instanceof PotatoMine potato){
+                    Zombie zombie = zombieInCell(i, j);
+                    if(zombie != null){
+                        potato.makeDamage(zombie);
+                        deletePlant(i,j);
+                    }
+                }
+            }
+        }
+    }
+
+    public void garbageColector(){
+        for(int i = 0; i < rows ; i++){
+            for(int j = 0 ; j < columns ; j++){
+                for(Element element : board[i][j]){
+                    if(element.getLife() <= 0){
+                        deleteElement(element,i,j);
+                    }
+                }
+            }
+        }
+    }
+
+    private void deleteElement(Element element,int row, int col){
+        try {
+            switch (element) {
+                case Plant p -> deletePlant(row, col);
+                case Zombie z -> deleteZombie(row, col);
+                default -> {}
+            }
+        }catch (PVZException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 
 
 
