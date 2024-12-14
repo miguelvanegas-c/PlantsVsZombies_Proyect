@@ -13,16 +13,10 @@ public class BasicZombie extends Zombie{
      * @param row where the zombie is going to appear.
      */
     public BasicZombie(int row) {
-        super(row,10);
-        name = "zombie";
+        super(row,9);
+        value = 100;
+
     }
 
-    /**
-     * move the zombie.
-     */
-    @Override
-    public void move() {
-        xPosition -= 1;
-    }
 
 }
