@@ -1,4 +1,4 @@
-public abstract class Missile implements Element,Mover{
+public abstract class Missile implements Element,Mover,Attacker{
     protected String name;
     protected int xPosition ;
     protected int yPosition ;
@@ -7,28 +7,32 @@ public abstract class Missile implements Element,Mover{
     protected int damage;
     protected int width;
     protected int height;
-    protected int life;
+    protected int life = 1;
     protected String extension;
 
     public Missile(int xInitial,int yInitial,int row, int col){
-        this.xPosition = xInitial + 70;
+        this.xPosition = xInitial + 30;
         this.yPosition = yInitial;
         this.row = row;
         this.col = col;
-        this.width =20;
-        this.height =20;
+        this.width = 30;
+        this.height = 30;
         this.extension ="G.png";
-        life = 1;
+
     }
-    public int attack(){return damage;}
-    public int getRow(){return xPosition;}
-    public int getCol(){return yPosition;}
-    public void move(){}
+    public int getRow(){return row;}
+    public int getCol(){return col;}
+    public abstract void move();
     public int getXPosition() {return xPosition;}
     public int getYPosition() {return yPosition;}
     public String getName() {return name;}
     public int getWidth() {return width;}
     public int getHeight() {return height;}
     public int getLife() {return life;}
+    public void makeDamage(Element element){
+        element.takeDamage(damage);
+        life = -1;
+    }
+    public void takeDamage(int damage){}
     public String getExtension() {return extension;}
 }

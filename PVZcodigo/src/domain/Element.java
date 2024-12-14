@@ -16,4 +16,5 @@ public interface Element {
     int getHeight();
     String getExtension();
     int getLife();
+    void takeDamage(int damage);
 }

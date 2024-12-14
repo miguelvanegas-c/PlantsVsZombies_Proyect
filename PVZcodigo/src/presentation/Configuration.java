@@ -16,7 +16,7 @@ import java.util.HashSet;
 public class Configuration extends JFrame implements GeneralInterface {
     private JMenuItem open, save, newItem, exit;
     private JPanel mainPanel;
-    private JButton back, sunflower, peashooter, wallnut,potatomine,eciplant, play, select, next, zombie, coneZombie, bucketZombie,eciZombie;
+    private JButton back, sunflower, peashooter, wallnut,potatomine,eciplant, play, select, next, zombie, coneZombie, bucketZombie,eciZombie, brainStein;
     private HashSet<String> plantsToPlay = new HashSet<>();
     private HashSet<String> zombiesToPlay = new HashSet<>();
     private String gameMode, possiblePlantToPlay, plantPlayerName, zombiePlayerName, zombieType, plantType, possibleZombieToPlay;
@@ -98,7 +98,7 @@ public class Configuration extends JFrame implements GeneralInterface {
                 g.drawImage(wallnutImage, 350, 155, 100, 100, null);
                 g.drawImage(potatoMineImage, 150, 255, 100, 100, null);
                 g.drawImage(eciPlantImage, 250, 255, 100, 100, null);
-                g.drawImage(sunImage, 800, 50, 30, 30, null);
+                if (!gameMode.equals("MvsM"))g.drawImage(sunImage, 800, 50, 30, 30, null);
 
                 //Informacion de la planta seleccionada.
                 if (possiblePlantToPlay != null) {
@@ -188,8 +188,10 @@ public class Configuration extends JFrame implements GeneralInterface {
         label.setBounds(670, 50, 150, 30);
         startingSunsField = new JTextField();
         startingSunsField.setBounds(755, 50, 40, 30);
-        mainPanel.add(startingSunsField);
-        mainPanel.add(label);
+        if(!gameMode.equals("MvsM")) {
+            mainPanel.add(startingSunsField);
+            mainPanel.add(label);
+        }
     }
 
     /*
@@ -303,9 +305,11 @@ public class Configuration extends JFrame implements GeneralInterface {
     private void nextPanel() {
         try {
             if (gameMode.equals("MvsM")) validePlantsType();
-            else validePlantsName();
+            else {
+                validePlantsName();
+                valideStartingSuns();
+            }
             validePlantsToPlay();
-            valideStartingSuns();
             createZombiesElectionPanel();
             prepareButtonsToZombiesElection();
             prepareTypeElectionToZombies();
@@ -394,6 +398,8 @@ public class Configuration extends JFrame implements GeneralInterface {
         Image zombieConoImage = icon.getImage();
         icon = getImageIcon("eciZombie1.png");
         Image eciZombieImage = icon.getImage();
+        icon = getImageIcon("brainstein1.png");
+        Image brainStein = icon.getImage();
         icon = getImageIcon("brain.png");
         Image brainImage = icon.getImage();
         mainPanel = new JPanel() {
@@ -407,7 +413,8 @@ public class Configuration extends JFrame implements GeneralInterface {
                 g.drawImage(zombieConoImage, 250, 155, 100, 100, null);
                 g.drawImage(zombieBaldeImage, 350, 155, 100, 100, null);
                 g.drawImage(eciZombieImage, 150, 255, 100, 100, null);
-                g.drawImage(brainImage, 800, 50, 30, 30, null);
+                g.drawImage(brainStein, 250, 255, 100, 100, null);
+                if(gameMode.equals("PvsP")) g.drawImage(brainImage, 800, 50, 30, 30, null);
 
                 //Informacion de la planta seleccionada.
                 if (possibleZombieToPlay != null) {
@@ -448,8 +455,10 @@ public class Configuration extends JFrame implements GeneralInterface {
         label.setBounds(670, 50, 150, 30);
         startingBrainsField = new JTextField();
         startingBrainsField.setBounds(755, 50, 40, 30);
-        mainPanel.add(startingBrainsField);
-        mainPanel.add(label);
+        if(gameMode.equals("PvsP")) {
+            mainPanel.add(startingBrainsField);
+            mainPanel.add(label);
+        }
     }
 
     /*
@@ -466,12 +475,12 @@ public class Configuration extends JFrame implements GeneralInterface {
         //Hordes time duration
         if(!gameMode.equals("PvsP")) {
             JLabel labelHordesTime = new JLabel("Hordes duration time in seconds:");
-            labelHordesTime.setBounds(1005, 50, 190, 30);
+            labelHordesTime.setBounds(1050, 90, 150, 30); //1005, 50, 190, 30
             hordesNumberField = new JTextField();
             hordesNumberField.setBounds(1200, 50, 60, 30);
             //Hordes number for game
             JLabel labelHordesNumber = new JLabel("Hordes number for game:");
-            labelHordesNumber.setBounds(1050, 90, 150, 30);
+            labelHordesNumber.setBounds(1005, 50, 190, 30); //1050, 90, 150, 30
             hordesTimeField = new JTextField();
             hordesTimeField.setBounds(1200, 90, 60, 30);
 
@@ -495,6 +504,8 @@ public class Configuration extends JFrame implements GeneralInterface {
         bucketZombie = createGifButton("caraCubeta.gif", 350, 155, 100, 100);
         eciZombie = new BorderButton(" ");
         eciZombie.setBounds(150,255,100,100);
+        brainStein = new BorderButton(" ");
+        brainStein.setBounds(250, 255,100,100);
         select = new EspecialButton("Select");
         select.setBounds(860, 460, 140, 30);
 
@@ -505,6 +516,7 @@ public class Configuration extends JFrame implements GeneralInterface {
         mainPanel.add(coneZombie);
         mainPanel.add(bucketZombie);
         mainPanel.add(eciZombie);
+        mainPanel.add(brainStein);
         mainPanel.add(play);
         mainPanel.add(back);
     }
@@ -518,6 +530,7 @@ public class Configuration extends JFrame implements GeneralInterface {
         coneZombie.addActionListener(e -> chooseZombie("zombieCono"));
         bucketZombie.addActionListener(e -> chooseZombie("zombieBalde"));
         eciZombie.addActionListener(e -> chooseZombie("eciZombie"));
+        brainStein.addActionListener(e -> chooseZombie("brainstein"));
         select.addActionListener(e -> selectZombie());
         play.addActionListener(e -> openPVZInGameWindow());
         selectZombie.addActionListener(e -> selectZombieType());
@@ -591,14 +604,14 @@ public class Configuration extends JFrame implements GeneralInterface {
             if (gameMode.equals("PvsP")) valideZombiesName();
             else valideZombiesType();
             valideZombiesToPlay();
-            valideStartingBrains();
+            if(gameMode.equals("PvsP")) valideStartingBrains();
             valideGameTime();
             if(!gameMode.equals("PvsP")) {
                 valideHordesTime();
                 valideHordesNumber();
             }
             PVZInGame pvzInGameWindow = null;
-            if(gameMode.equals("PvsM")) pvzInGameWindow = new PVZInGame(gameMode, plantsToPlay, zombiesToPlay, plantPlayerName, zombieType,startingBrains,startingSuns,gameTime, hordesTime,hordesNumber);
+            if(gameMode.equals("PvsM")) pvzInGameWindow = new PVZInGame(gameMode, plantsToPlay, zombiesToPlay, plantPlayerName, zombieType,startingSuns,gameTime, hordesTime,hordesNumber);
             else if (gameMode.equals("PvsP")) pvzInGameWindow = new PVZInGame(plantsToPlay, zombiesToPlay, plantPlayerName, zombiePlayerName, gameMode,startingBrains,startingSuns,gameTime);
             else pvzInGameWindow = new PVZInGame( plantType, zombieType, gameMode, plantsToPlay, zombiesToPlay,startingBrains,startingSuns,gameTime, hordesTime,hordesNumber);
             pvzInGameWindow.setVisible(true);
@@ -762,7 +775,7 @@ public class Configuration extends JFrame implements GeneralInterface {
      * @throws PVZException, if game time is lower than 40 seconds.
      */
     private void valideGameTime() throws PVZException {
-        if(gameTime<40 || gameTime >= 360)throw new PVZException(PVZException.ERROR_LOW_GAME_TIME);
+        if(gameTime<180 || gameTime >= 360)throw new PVZException(PVZException.ERROR_LOW_GAME_TIME);
     }
 
     /*
@@ -770,6 +783,7 @@ public class Configuration extends JFrame implements GeneralInterface {
      * @throws PVZException, if the hordes number <= 0.
      */
     private void valideHordesNumber() throws PVZException {
+        System.out.println(hordesNumber);
         if(hordesNumber <= 0 || hordesNumber>4)throw new PVZException(PVZException.ERROR_INCORRECT_HORDES_NUMBER);
     }
 

@@ -5,7 +5,7 @@
  * @author Miguel Angel Vanegas y Julian Castiblanco.
  * @version 1.0
  */
-public abstract class Zombie implements Element, Mover {
+public abstract class Zombie implements Element, Mover,Attacker {
 
     protected String name;
     protected int life;
@@ -19,6 +19,7 @@ public abstract class Zombie implements Element, Mover {
     protected String extension ="G.png";
     protected int damage = 100;
     protected boolean inAttack = false;
+
 
     /**
      * Constructor to zombies.
@@ -50,8 +51,9 @@ public abstract class Zombie implements Element, Mover {
     public int getLife() {return life;}
     public void move(){
         if(!inAttack) {
-            xPosition -= 5;
+            xPosition -= 2;
             if (((xPosition - 140) % 70) == 0) col -= 1;
+            name = "zombie";
         }
         inAttack = false;
 
@@ -59,15 +61,21 @@ public abstract class Zombie implements Element, Mover {
     public int getWidth() {return width;}
     public int getHeight() {return height;}
     public String getExtension() {return extension;}
-    public int attack() {return damage;}
     public void takeDamage(int damage){
         life -= damage;
     }
-    public void makeDamage(Plant plant){
-            plant.takeDamage(damage);
+    public void makeDamage(Element element){
+        if (element instanceof PotatoMine p){
+            if(p.getFlag()){
+                life = - 10;
+            }
+        }
+        element.takeDamage(damage);
     }
     public void makeAttack(){
         inAttack = true;
+        name = "zombieComiendo";
+
     }
 
 

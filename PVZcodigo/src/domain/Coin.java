@@ -46,7 +46,7 @@ public abstract class Coin implements Element, Mover {
 
     public void move(){
         if (row < finishRow) {
-            yPosition += 75;
+            yPosition += 15;
             if (((yPosition - 70) % 75) == 0) row += 1;
         }
     }
@@ -57,6 +57,7 @@ public abstract class Coin implements Element, Mover {
     public int getHeight(){return height;}
     public String getExtension(){return extension;}
     public int getLife(){return life;}
+    public void takeDamage(int damage){}
 
 
 

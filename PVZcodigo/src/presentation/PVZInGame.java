@@ -28,11 +28,6 @@ public class PVZInGame extends JFrame implements GeneralInterface{
     private boolean shovelBoolean = false;
     private JButton shovelButton;
 
-
-
-
-
-
     /**
      * Constructor for PVZInGame PvsM.
      *
@@ -41,20 +36,19 @@ public class PVZInGame extends JFrame implements GeneralInterface{
      * @param zombiesToPlay  The set of zombies available to play.
      * @param plantPlayer    The plant player name.
      * @param zombieType     The zombie type.
-     * @param startingBrains The start number of brains.
      * @param startingSuns   The start number of suns.
      * @param gameTime       The time in game.
      * @param hordesTime     The hordes duration time.
      * @param hordesNumber   The number of hordes for game.
      *
      */
-    public PVZInGame(String gameMode, HashSet<String> plantasToPlay,HashSet<String> zombiesToPlay,String plantPlayer,String zombieType, int startingBrains, int startingSuns, int gameTime, int hordesTime,int hordesNumber) {
+    public PVZInGame(String gameMode, HashSet<String> plantasToPlay,HashSet<String> zombiesToPlay,String plantPlayer,String zombieType, int startingSuns, int gameTime, int hordesTime,int hordesNumber) {
         this.gameMode = gameMode;
         this.plantsToPlay = plantasToPlay.toArray(new String[0]);
         plantsButtons = new JButton[this.plantsToPlay.length];
         this.zombiesToPlay = zombiesToPlay.toArray(new String[0]);
         boolean booleanZombieType = (zombieType.equals("ZombiesOriginal"));
-        pvz = new PVZ(this.plantsToPlay,this.zombiesToPlay, booleanZombieType,startingSuns,startingBrains,gameTime,hordesNumber,hordesTime);
+        pvz = new PVZ(this.plantsToPlay,this.zombiesToPlay, booleanZombieType,startingSuns,gameTime,hordesNumber,hordesTime);
         this.plantPlayer = plantPlayer;
         this.zombieType = zombieType;
         prepareElements();
@@ -150,7 +144,7 @@ public class PVZInGame extends JFrame implements GeneralInterface{
         }
         changeSizeToImage("fondoTablero.png");
         if(!gameMode.equals("MvsM"))prepareButtonsTablero();
-        timer = new Timer(1000, e -> refresh());
+        timer = new Timer(200, e -> refresh());
         timer.start();
         shovelButton = new BorderButton(" ");
         shovelButton.setBounds(410, 5, 40, 40);
@@ -195,22 +189,16 @@ public class PVZInGame extends JFrame implements GeneralInterface{
                     g.drawImage(originalImageZombie, 930, count, 60, 60, null);
                     count += 70;
                 }
-                for(List<Element>[] matrizElements: pvz.getBoard()) {
-                    for (List<Element> elementList : matrizElements) {
-                        for (Element element : elementList) {
-                            if (element != null) {
-                                if(element instanceof ZombieWithShield){
-                                    Shield shield = ((ZombieWithShield) element).getShield();
-                                    ImageIcon iconZombie = getImageIcon(element.getName()+shield.getName()+element.getExtension());
-                                    Image originalImageZombie = iconZombie.getImage();
-                                    g.drawImage(originalImageZombie, element.getXPosition(), element.getYPosition(),element.getWidth() , element.getHeight(), null);
-                                }else{
-                                    ImageIcon iconZombie = getImageIcon(element.getName()+element.getExtension());
-                                    Image originalImageZombie = iconZombie.getImage();
-                                    g.drawImage(originalImageZombie, element.getXPosition(), element.getYPosition(),element.getWidth() , element.getHeight(), null);
-                                }
-                            }
-                        }
+                for(Element element: pvz.getElements()) {
+                    if (element instanceof ZombieWithShield) {
+                        Shield shield = ((ZombieWithShield) element).getShield();
+                        ImageIcon iconZombie = getImageIcon(element.getName() + shield.getName() + element.getExtension());
+                        Image originalImageZombie = iconZombie.getImage();
+                        g.drawImage(originalImageZombie, element.getXPosition(), element.getYPosition(), element.getWidth(), element.getHeight(), null);
+                    } else {
+                        ImageIcon iconZombie = getImageIcon(element.getName() + element.getExtension());
+                        Image originalImageZombie = iconZombie.getImage();
+                        g.drawImage(originalImageZombie, element.getXPosition(), element.getYPosition(), element.getWidth(), element.getHeight(), null);
                     }
                 }
                 //name or type zone
@@ -402,6 +390,8 @@ public class PVZInGame extends JFrame implements GeneralInterface{
     private void openPrincipalWindow() {
         int opcion = JOptionPane.showConfirmDialog(this, "Do you want to come to the start screen?", "Confirm back", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (opcion == JOptionPane.YES_OPTION) {
+            pvz = null;
+            timer.stop();
             PVZGUI pvzguiwindow = new PVZGUI();
             pvzguiwindow.setVisible(true);
 
@@ -455,14 +445,15 @@ public class PVZInGame extends JFrame implements GeneralInterface{
      */
     public void refresh() {
         try {
+            pvz.generateSun();
+            pvz.makeShoot();
+            pvz.makeDamage();
             pvz.moveBoard();
-            pvz.makePotatoAttack();
             pvz.garbageColector();
             repaint();
         } catch (PVZException e) {
-            throw new RuntimeException(e);
+            timerMessage(e.getMessage());
         }
-
     }
 
 
@@ -488,6 +479,7 @@ public class PVZInGame extends JFrame implements GeneralInterface{
         addCoin(1,3,4,"eciSun");
         try {
             pvz.addZombie(0, "zombie");
+
         } catch (PVZException e) {
             throw new RuntimeException(e);
         }
