@@ -2,6 +2,7 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * Es un botono especial con una configuracion visual diferente para la interfaz PVZGUI.
@@ -10,7 +11,7 @@ import java.awt.*;
  * @version 1.0
  */
 
-public class EspecialButton extends JButton {
+public class EspecialButton extends JButton implements Serializable {
     /**
      * Constructor de la clase EspecialButton.
      * @param text, texto del boton.

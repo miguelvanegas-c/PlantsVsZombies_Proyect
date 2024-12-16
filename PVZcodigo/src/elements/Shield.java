@@ -1,3 +1,4 @@
+import java.io.Serializable;
 
 /**
  * The Shield is a shield that some zombies can have.
@@ -5,7 +6,7 @@
  * @author Miguel Angel Vanegas y Julian Castiblanco.
  * @version 1.0
  */
-public class Shield {
+public class Shield implements Serializable {
     protected String name;
     protected int life;
     protected int value;

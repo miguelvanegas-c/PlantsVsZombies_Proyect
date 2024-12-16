@@ -3,9 +3,10 @@
  * Manages a game between plants and zombies, controlling the hordes, game time, and map events.
  */
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.Random;
 
-public class PvsM extends GameMode {
+public class PvsM extends GameMode implements Serializable {
     private Timer mapSuns;
 
     /**
@@ -30,6 +31,7 @@ public class PvsM extends GameMode {
         mapSuns.stop();
         timePerHordes.stop();
         if(hordeDuration.isRunning()) hordeDuration.stop();
+        if (timePerHordes.isRunning()) timePerHordes.stop();
         pvz = null;
     }
 

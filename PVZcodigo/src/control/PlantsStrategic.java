@@ -1,4 +1,6 @@
-public class PlantsStrategic extends PlantIntelligent{
+import java.io.Serializable;
+
+public class PlantsStrategic extends PlantIntelligent implements Serializable {
 
     public PlantsStrategic(PVZ pvz) {
         super(pvz);
@@ -15,9 +17,9 @@ public class PlantsStrategic extends PlantIntelligent{
                     mapPlants.put(wallnutIndex + 1,"wallnut");
                     mapPlants.put(wallnutIndex + 2,"potatoMine");
 
-                }else {
-                    pvz.addPlant(actualRow, actualCol, mapPlants.get(actualCol));
+
                 }
+                pvz.addPlant(actualRow, actualCol, mapPlants.get(actualCol));
                 setActualColAndRow();
             }
 

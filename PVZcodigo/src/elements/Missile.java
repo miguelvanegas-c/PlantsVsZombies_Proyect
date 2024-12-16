@@ -1,4 +1,6 @@
-public abstract class Missile implements Element,Mover,Attacker{
+import java.io.Serializable;
+
+public abstract class Missile implements Element,Mover,Attacker, Serializable {
     protected String name;
     protected int xPosition ;
     protected int yPosition ;

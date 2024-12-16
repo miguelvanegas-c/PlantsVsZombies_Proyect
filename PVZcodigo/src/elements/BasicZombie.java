@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 /**
  * The basicZombies is a zombie that have a basic life and just walks to the plants and eat them.
  *
@@ -5,7 +7,7 @@
  * @version 1.0
  */
 
-public class BasicZombie extends Zombie{
+public class BasicZombie extends Zombie implements Serializable {
 
 
     /**

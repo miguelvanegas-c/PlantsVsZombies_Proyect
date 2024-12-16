@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class Brainstein extends Zombie implements GenerateCoins {
+public class Brainstein extends Zombie implements GenerateCoins, Serializable {
 
     private int index;
     /**

@@ -1,4 +1,6 @@
-public class ECISun extends Coin{
+import java.io.Serializable;
+
+public class ECISun extends Coin implements Serializable {
 
     /**
      * Creator to sun

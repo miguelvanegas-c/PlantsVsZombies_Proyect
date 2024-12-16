@@ -1,4 +1,6 @@
-public class PotatoMine extends Plant implements Attacker {
+import java.io.Serializable;
+
+public class PotatoMine extends Plant implements Attacker, Serializable {
     private int index = 0;
 
     public PotatoMine(int row, int col) {

@@ -1,4 +1,6 @@
-public class Sun extends Coin{
+import java.io.Serializable;
+
+public class Sun extends Coin implements Serializable {
 
     /**
      * Creator to sun

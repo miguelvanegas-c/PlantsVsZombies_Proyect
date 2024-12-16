@@ -1,6 +1,7 @@
 import javax.swing.*;
+import java.io.Serializable;
 
-public class MvsM extends GameMode{
+public class MvsM extends GameMode implements Serializable {
 
     private Timer suns;
 

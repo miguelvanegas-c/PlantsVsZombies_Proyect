@@ -1,4 +1,6 @@
-public class ECIPlant extends Sunflower{
+import java.io.Serializable;
+
+public class ECIPlant extends Sunflower implements Serializable {
 
     public ECIPlant(int row, int col) {
         super(row, col);

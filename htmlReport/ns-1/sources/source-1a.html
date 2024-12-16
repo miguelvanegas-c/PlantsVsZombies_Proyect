@@ -1,0 +1,154 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Plant</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: Plant (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Plant</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (6/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    71,4%
+  </span>
+  <span class="absValue">
+    (15/21)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;import java.io.Serializable;
+&nbsp;
+&nbsp;/**
+&nbsp; * This is an interfaces to all the plants.
+&nbsp; *
+&nbsp; * @author Miguel Angel Vanegas y Julian Castiblanco.
+&nbsp; * @version 1.0
+&nbsp; */
+&nbsp;public abstract class Plant implements Element, Serializable {
+&nbsp;    protected String name;
+<b class="fc">&nbsp;    protected int xPosition = 140;</b>
+<b class="fc">&nbsp;    protected int yPosition = 55;</b>
+&nbsp;    protected int value;
+&nbsp;    protected int row;
+&nbsp;    protected int col;
+&nbsp;    protected int life;
+<b class="fc">&nbsp;    protected int width = 50;</b>
+<b class="fc">&nbsp;    protected int height = 50;</b>
+<b class="fc">&nbsp;    protected String extension = &quot;G.png&quot;;</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Create a plant in the row and col that are given.
+&nbsp;     * @param row, row of the plant.
+&nbsp;     * @param col, col of the plant.
+&nbsp;     */
+<b class="fc">&nbsp;    public Plant(int row, int col) {</b>
+<b class="fc">&nbsp;        this.xPosition += (col*70);</b>
+<b class="fc">&nbsp;        this.yPosition += (row*75);</b>
+<b class="fc">&nbsp;        this.row = row;</b>
+<b class="fc">&nbsp;        this.col = col;</b>
+&nbsp;    }
+<b class="nc">&nbsp;    public String getName(){return this.name;}</b>
+&nbsp;    public int getXPosition() {
+<b class="nc">&nbsp;        return xPosition;</b>
+&nbsp;    }
+&nbsp;    public int getYPosition() {
+<b class="nc">&nbsp;        return yPosition;</b>
+&nbsp;    }
+<b class="fc">&nbsp;    public int getRow() {return row;}</b>
+<b class="fc">&nbsp;    public int getCol() {return col;}</b>
+<b class="fc">&nbsp;    public int getValue() {return value;}</b>
+<b class="nc">&nbsp;    public int getWidth() {return width;}</b>
+<b class="nc">&nbsp;    public int getHeight() {return height;}</b>
+<b class="nc">&nbsp;    public String getExtension() {return extension;}</b>
+<b class="fc">&nbsp;    public int getLife() {return life;}</b>
+&nbsp;    public void takeDamage(int damage) {
+<b class="fc">&nbsp;        life -= damage;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-16 16:10</div>
+</div>
+</body>
+</html>

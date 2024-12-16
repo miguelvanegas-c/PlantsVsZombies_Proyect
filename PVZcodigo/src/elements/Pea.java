@@ -1,4 +1,6 @@
-public class Pea extends Missile{
+import java.io.Serializable;
+
+public class Pea extends Missile implements Serializable {
 
     public Pea(int xInitial,int yInitial,int row, int col){
         super(xInitial,yInitial,row, col);

@@ -1,3 +1,4 @@
+import java.io.Serializable;
 
 /**
  * This is a peashooter, a plant that shot to the zombies on his row.
@@ -7,7 +8,7 @@
  */
 
 
-public class Peashooter extends Plant implements Shooter{
+public class Peashooter extends Plant implements Shooter, Serializable {
     private int index;
 
     /**

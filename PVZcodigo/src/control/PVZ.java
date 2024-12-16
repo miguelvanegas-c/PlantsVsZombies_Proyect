@@ -1,6 +1,7 @@
 
 
 import javax.swing.*;
+import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  * @version 1.0
  */
 
-public class PVZ{
+public class PVZ implements Serializable {
     public static final int rows = 5;
     public static final int columns = 10;
     private List<Element>[][] board = new ArrayList[rows][columns];
@@ -24,7 +25,10 @@ public class PVZ{
     private List<Element> elements = new ArrayList();
     private List<GenerateCoins> generateCoins = new ArrayList();
     private boolean gameFinished = false;
+    private boolean zombieType;
+    private boolean plantType;
     private GameMode gameMode;
+    private String game;
     private Machine zombieMachine;
     private Machine plantMachine;
     private Timer gameTimer;
@@ -49,6 +53,9 @@ public class PVZ{
         this.zombiesInGame = zombiesInGame;
         this.suns = startingSuns;
         this.brains = startingBrains;
+        this.game = "MvsM";
+        this.zombieType = zombieType;
+        this.plantType = plantType;
         startingBoards();
         generateLawnMower();
         startingGame(zombieType,plantType,gameTime,hordesNumber,hordesTime);
@@ -73,6 +80,8 @@ public class PVZ{
         this.zombiesInGame = zombiesInGame;
         this.suns = startingSuns;
         this.brains = startingBrains;
+        this.game = "PvsM";
+        this.zombieType = zombieType;
         startingBoards();
         generateLawnMower();
         startingGame(zombieType,gameTime,hordesNumber,hordesTime);
@@ -95,7 +104,9 @@ public class PVZ{
         this.zombiesInGame = zombiesInGame;
         this.suns = startingSuns;
         this.brains = startingBrains;
+        this.game = "PvsP";
         startingBoards();
+        generateLawnMower();
         startingGame(gameTime);
     }
 
@@ -157,13 +168,13 @@ public class PVZ{
     }
     public int getSuns(){return suns;}
     public int getBrains(){return brains;}
-    public List<Attacker> getAttackers(){return attackers;}
-    public List<Shooter> getShooters(){return shooters;}
     public List<Element> getElements(){return elements;}
     public int getZombiePoints(){return zombiePoints;}
     public int getPlantPoints(){return plantPoints;}
     public void setBrains(int brains){this.brains+= brains;}
     public void setSuns(int suns){this.suns += suns;}
+    public String getGameMode() {return game;}
+
     /*
      * Initializes the zombie board, setting up empty lists for each cell.
      */
@@ -172,6 +183,7 @@ public class PVZ{
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 board[i][j] = new ArrayList<>();
+                plantsBoard[i][j]= null;
             }
         }
     }
@@ -306,7 +318,7 @@ public class PVZ{
         if(plant instanceof Shooter)shooters.remove(plant);
         if(plant instanceof GenerateCoins) generateCoins.remove(plant);
         elements.remove(plant);
-        plantPoints -= plant.getValue();
+        plantPoints -= (plant.getValue()*1.5);
     }
 
     /*
@@ -515,19 +527,25 @@ public class PVZ{
         return null;
     }
 
-    /*
-     *
+    /**
+     * Adds a missile to the specified cell on the board and updates relevant collections.
+     * @param row the row of the cell
+     * @param col the column of the cell
+     * @param missile the missile to be added
      */
-    private void addMissile(int row, int col,Missile missile) {
-        if(missile == null) return;
+    private void addMissile(int row, int col, Missile missile) {
+        if (missile == null) return;
         board[row][col].add(missile);
         moves.add(missile);
         attackers.add(missile);
         elements.add(missile);
     }
 
-    /*
-     *
+    /**
+     * Removes a missile from the specified cell on the board and updates relevant collections.
+     * @param row the row of the cell
+     * @param col the column of the cell
+     * @param missile the missile to be removed
      */
     private void deleteMissile(int row, int col, Missile missile) {
         board[row][col].remove(missile);
@@ -537,12 +555,12 @@ public class PVZ{
     }
 
     /**
-     *
+     * Processes the damage logic for all attackers in the game.
      */
-    public void makeDamage(){
-        for(int i = 0; i < attackers.size(); i++) {
+    public void makeDamage() {
+        for (int i = 0; i < attackers.size(); i++) {
             Attacker attacker = attackers.get(i);
-            if(i < attackers.size()) {
+            if (i < attackers.size()) {
                 Zombie zombie = zombieInCell(attacker.getRow(), attacker.getCol());
                 Plant plant = plantInCell(attacker.getRow(), attacker.getCol());
 
@@ -550,13 +568,13 @@ public class PVZ{
                     case Pea p -> {
                         if (zombie != null) {
                             p.makeDamage(zombie);
-                            deleteMissile(p.getRow() , p.getCol()  , p);
+                            deleteMissile(p.getRow(), p.getCol(), p);
                         }
                     }
                     case POOmBa p -> {
                         if (plant != null) {
                             p.makeDamage(plant);
-                            deleteMissile(p.getRow() , p.getCol()  , p);
+                            deleteMissile(p.getRow(), p.getCol(), p);
                         }
                     }
                     case Zombie z -> {
@@ -567,9 +585,6 @@ public class PVZ{
                     }
                     case PotatoMine potatoMine -> {
                         potatoMine.makeDamage(zombie);
-                        if (potatoMine.getLife() == -173){
-                            addBoom(potatoMine.getRow() , potatoMine.getCol());
-                        }
                     }
                     case LawnMower lawnMower -> {
                         List<Zombie> zombieList = allTheZombieInCell(attacker.getRow(), attacker.getCol());
@@ -577,157 +592,180 @@ public class PVZ{
                             lawnMower.makeDamage(z);
                         }
                     }
-                    default -> {
-                    }
+                    default -> {}
                 }
             }
         }
     }
 
-    /*
-     *
-     * @param row
-     * @param col
-     * @return
+    /**
+     * Retrieves the plant in the specified cell.
+     * @param row the row of the cell
+     * @param col the column of the cell
+     * @return the plant in the cell or null if none exists
      */
-
-    private Plant plantInCell(int row, int col){
-        if (plantsBoard[row][col] != null){
-            return plantsBoard[row][col];
-        }
-        return null;
+    private Plant plantInCell(int row, int col) {
+        return plantsBoard[row][col] != null ? plantsBoard[row][col] : null;
     }
 
-    /*
-     *
-     * @param row
-     * @param col
-     * @return
+    /**
+     * Retrieves the zombie in the specified cell.
+     * @param row the row of the cell
+     * @param col the column of the cell
+     * @return the zombie in the cell or null if none exists
      */
-
-    private Zombie zombieInCell(int row, int col){
-        for (Element element : board[row][col]){
-            if (element instanceof Zombie zombie){
+    private Zombie zombieInCell(int row, int col) {
+        for (Element element : board[row][col]) {
+            if (element instanceof Zombie zombie) {
                 return zombie;
             }
         }
         return null;
     }
 
-    /*
-     *
+    /**
+     * Removes elements with zero or negative life from the game.
      */
-
-    public void garbageColector(){
+    public void garbageColector() {
         int len = elements.size();
-        for(int i = 0; i < len; i++){
-            if (i < elements.size() ) {
+        for (int i = 0; i < len; i++) {
+            if (i < elements.size()) {
                 Element element = elements.get(i);
                 if (element.getLife() <= 0) {
                     deleteElement(element, element.getRow(), element.getCol());
                 }
             }
         }
-
     }
 
-    /*
-     *
-     * @param element
-     * @param row
-     * @param col
+    /**
+     * Deletes an element from the game.
+     * @param element the element to delete
+     * @param row the row of the element
+     * @param col the column of the element
      */
-
-    private void deleteElement(Element element,int row, int col){
+    private void deleteElement(Element element, int row, int col) {
         try {
             switch (element) {
                 case Plant p -> deletePlant(row, col);
                 case Zombie z -> deleteZombie(row, col);
                 case Pea pe -> deleteMissile(row, col, pe);
                 case LawnMower lm -> deleteLawnMower(row, col, lm);
-                case Boom b -> deleteBoom(b);
                 default -> {}
             }
-        }catch (PVZException e){
+        } catch (PVZException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    /*
-     *
-     * @param row
-     * @return
+    /**
+     * Checks if there is a zombie in the specified row.
+     * @param row the row to check
+     * @return true if there is a zombie, false otherwise
      */
-
-    private boolean zombieInRow(int row){
-        for(List<Element> elements : board[row] ){
-            for(Element element : elements){
-                if(element instanceof Zombie zombie){
+    private boolean zombieInRow(int row) {
+        for (List<Element> elements : board[row]) {
+            for (Element element : elements) {
+                if (element instanceof Zombie) {
                     return true;
                 }
             }
         }
         return false;
     }
-    private boolean plantInRow(int row){
-        for(Plant p : plantsBoard[row]){
-            if(p != null){
+
+    /**
+     * Checks if there is a plant in the specified row.
+     * @param row the row to check
+     * @return true if there is a plant, false otherwise
+     */
+    private boolean plantInRow(int row) {
+        for (Plant p : plantsBoard[row]) {
+            if (p != null) {
                 return true;
             }
         }
         return false;
     }
 
-    public void makeShoot(){
-        for(Shooter shooter : shooters){
+    /**
+     * Triggers the shooting logic for all shooters in the game.
+     */
+    public void makeShoot() {
+        for (Shooter shooter : shooters) {
             boolean peashooterShoot = zombieInRow(shooter.getRow());
             boolean eciZombieShoot = plantInRow(shooter.getRow());
             Missile missile;
             if (shooter instanceof Plant) missile = shooter.shoot(peashooterShoot);
             else missile = shooter.shoot(eciZombieShoot);
             addMissile(shooter.getRow(), shooter.getCol(), missile);
-
         }
     }
 
+    /**
+     * Generates coins for all coin generators in the game.
+     * @throws PVZException if an error occurs during coin generation
+     */
     public void generateSun() throws PVZException {
-        for(GenerateCoins generateCoins : generateCoins) {
+        for (GenerateCoins generateCoins : generateCoins) {
             generateCoins.makeCoins(this);
         }
-
     }
 
-    private void addLawnMower(int row){
-        LawnMower lawnMower = new LawnMower(row,0);
+    /**
+     * Adds a lawn mower to the specified row.
+     * @param row the row to add the lawn mower
+     */
+    private void addLawnMower(int row) {
+        LawnMower lawnMower = new LawnMower(row, 0);
         elements.add(lawnMower);
         board[row][0].add(lawnMower);
         attackers.add(lawnMower);
         moves.add(lawnMower);
     }
 
-    private void deleteLawnMower(int row, int col, LawnMower lawnMower){
+    /**
+     * Removes a lawn mower from the specified cell.
+     * @param row the row of the cell
+     * @param col the column of the cell
+     * @param lawnMower the lawn mower to remove
+     */
+    private void deleteLawnMower(int row, int col, LawnMower lawnMower) {
         elements.remove(lawnMower);
         board[row][col].remove(lawnMower);
         attackers.remove(lawnMower);
         moves.remove(lawnMower);
     }
-    private void generateLawnMower()  {
-        for(int row = 0; row < rows; row++){
+
+    /**
+     * Generates lawn mowers for all rows in the game.
+     */
+    private void generateLawnMower() {
+        for (int row = 0; row < rows; row++) {
             addLawnMower(row);
         }
     }
 
-    private List<Zombie> allTheZombieInCell(int row, int col){
+    /**
+     * Retrieves all zombies in the specified cell.
+     * @param row the row of the cell
+     * @param col the column of the cell
+     * @return a list of zombies in the cell
+     */
+    private List<Zombie> allTheZombieInCell(int row, int col) {
         List<Zombie> zombieList = new ArrayList<>();
-        for (Element element : board[row][col]){
-            if (element instanceof Zombie zombie){
+        for (Element element : board[row][col]) {
+            if (element instanceof Zombie zombie) {
                 zombieList.add(zombie);
             }
         }
         return zombieList;
     }
 
-    public void endGame(){
+    /**
+     * Ends the game, stopping timers and updating game states.
+     */
+    public void endGame() {
         gameTimer.stop();
         gameMode.finishGame();
         zombieMachine.finishGame();
@@ -736,43 +774,58 @@ public class PVZ{
         plantPoints += suns;
     }
 
-    public void endGameTwo(){
+    /**
+     * Ends the game with specific logic for a second mode.
+     */
+    public void endGameTwo() {
         plantMachine.finishGame();
         endGame();
     }
+    public void endGameThree() {
+        gameFinished = true;
+    }
 
-    public boolean gameIsFinished(){
+    /**
+     * Checks if the game has finished.
+     * @return true if the game is finished, false otherwise
+     */
+    public boolean gameIsFinished() {
         return gameFinished;
     }
 
-
-    public void zombieInLastCell(){
-        boolean bandera = false;
+    /**
+     * Checks if a zombie has reached the last cell, and updates game state if so.
+     */
+    public void zombieInLastCell() {
+        boolean flag = false;
         for (int row = 0; row < rows; row++) {
             int len = board[row][0].size();
-            for(int j = 0; j < len; j++){
+            for (int j = 0; j < len; j++) {
                 if (j < board[row][0].size()) {
                     Element element = board[row][0].get(j);
-                    if (element instanceof LawnMower lm){
-                        bandera = true;
+                    if (element instanceof LawnMower lm) {
+                        flag = true;
                     }
-                    if(element instanceof Zombie zombie && !bandera){
+                    if (element instanceof Zombie zombie && !flag) {
                         gameFinished = true;
                         zombiePoints = 1000000000;
                         plantPoints = 0;
                     }
                 }
             }
-            bandera = false;
+            flag = false;
         }
     }
 
-    public void addBoom(int row, int col){
-        elements.add(new Boom(row, col));
+    public void resetPvz() {
+        attackers = new ArrayList();
+        shooters = new ArrayList();
+        elements = new ArrayList();
+        generateCoins = new ArrayList();
+        startingBoards();
+        generateLawnMower();
     }
-    public void deleteBoom(Boom boom){
-        elements.remove(boom);
-    }
+
 
 }
 

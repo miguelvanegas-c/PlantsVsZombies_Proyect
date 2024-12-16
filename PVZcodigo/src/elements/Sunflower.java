@@ -1,4 +1,6 @@
-public class Sunflower extends  Plant implements GenerateCoins{
+import java.io.Serializable;
+
+public class Sunflower extends  Plant implements GenerateCoins, Serializable {
     protected int index;
     public Sunflower(int row, int col) {
         super(row,col);

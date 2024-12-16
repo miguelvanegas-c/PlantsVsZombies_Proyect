@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.logging.Logger;
 
-public class PVZException extends Exception {
+public class PVZException extends Exception implements Serializable {
     public static final String NOT_PLANTS_CHOOSED_TO_PLAY ="No plant has been selected, so you cannot start the game."; //Exception push next without select plants.
     public static final String NOT_ZOMBIES_CHOOSED_TO_PLAY ="No zombie has been selected, therefore no zombie can start the game."; //Exception push next without select zombie.
     public static final String ERROR_CANT_PLANT = "Can't plant on this cell";

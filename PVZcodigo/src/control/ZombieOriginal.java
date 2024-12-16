@@ -1,9 +1,10 @@
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class ZombieOriginal implements Machine {
+public class ZombieOriginal implements Machine, Serializable {
     private PVZ pvz;
     private Timer generateZombie;
     private List<String> zombiesCanUse;

@@ -1,10 +1,11 @@
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public abstract class GameMode {
+public abstract class GameMode implements Serializable {
     protected int hordesNumber;
     protected int hordesTime;
     protected int ordesIndex = 0;

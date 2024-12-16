@@ -1,10 +1,11 @@
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PlantIntelligent implements Machine{
+public class PlantIntelligent implements Machine, Serializable {
     protected PVZ pvz;
     protected List<String> plantsCanUse;
     protected Timer generatePlants;

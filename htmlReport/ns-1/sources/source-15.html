@@ -1,0 +1,145 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PVZException</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: PVZException (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PVZException</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;import java.io.Serializable;
+&nbsp;import java.util.logging.Logger;
+&nbsp;
+&nbsp;public class PVZException extends Exception implements Serializable {
+&nbsp;    public static final String NOT_PLANTS_CHOOSED_TO_PLAY =&quot;No plant has been selected, so you cannot start the game.&quot;; //Exception push next without select plants.
+&nbsp;    public static final String NOT_ZOMBIES_CHOOSED_TO_PLAY =&quot;No zombie has been selected, therefore no zombie can start the game.&quot;; //Exception push next without select zombie.
+&nbsp;    public static final String ERROR_CANT_PLANT = &quot;Can&#39;t plant on this cell&quot;;
+&nbsp;    public static final String ERROR_CELDA_NOT_EMPTY = &quot;One plant is already in this cell&quot;;
+&nbsp;    public static final String ERROR_PLANT_NOT_EXIST = &quot;The plant that do you wanna add doesn&#39;t exist&quot;;
+&nbsp;    public static final String ERROR_PLANT_NOT_SELECTED = &quot;You don&#39;t select a plant to add&quot;;
+&nbsp;    public static final String ERROR_NOT_PLANT_NAME = &quot;You don&#39;t choose a name to plant player&quot;;
+&nbsp;    public static final String ERROR_NOT_PLANT_TYPE = &quot;You don&#39;t choose a type to plant player&quot;;
+&nbsp;    public static final String ERROR_NOT_ZOMBIE_NAME = &quot;You don&#39;t choose a name to zombie player&quot;;
+&nbsp;    public static final String ERROR_NOT_ZOMBIE_TYPE = &quot;You don&#39;t choose a type to zombie player&quot;;
+&nbsp;    public static final String ERROR_COIN_NULL = &quot;You don´t select a coin&quot;;
+&nbsp;    public static final String ERROR_COIN_EXIST = &quot;The coin that do you wanna add doesn&#39;t exist&quot;;
+&nbsp;    public static final String NOT_NUMBER = &quot;The value isn&#39;t a number&quot;;
+&nbsp;    public static final String ERROR_NOT_STARTING_SUNS = &quot;The suns is less or equal that 0&quot;;
+&nbsp;    public static final String ERROR_NOT_STARTING_BRAINS = &quot;The brains is less or equal that 0&quot;;
+&nbsp;    public static final String ERROR_LOW_GAME_TIME = &quot;The game time is less than 180 that is the minimum game time, or more than 360 that is the maximum game time&quot;;
+&nbsp;    public static final String ERROR_INCORRECT_HORDES_NUMBER = &quot;The number of zombies in the hordes is less than 0 or more than 10&quot;;
+&nbsp;    public static final String ERROR_LOW_HORDES_TIME = &quot;The Hordes time is more than 10 that is the maximum hordes time, or less than 0&quot;;
+&nbsp;    public static final String COIN_BAD_POSITION = &quot;In this position can&#39;t cerate a coin&quot;;
+&nbsp;    public static final String ERROR_ZOMBIE_NOT_SELECTED = &quot;You don&#39;t select a zombie to add&quot;;
+&nbsp;    public static final String ERROR_ZOMBIE_NOT_EXIST = &quot;The zombie that do you wanna add doesn&#39;t exist&quot;;
+&nbsp;    public static final String ERROR_NOT_ENOUGH_SUNS =&quot;The suns aren&#39;t enough&quot;;
+&nbsp;    public static final String ERROR_NOT_ENOUGH_BRAINS =&quot;The brains aren&#39;t enough&quot;;
+&nbsp;    public static final String NOT_PLANT_TO_DELETE = &quot;There isn´t a plant in this position&quot;;
+&nbsp;
+<b class="fc">&nbsp;    private static final Logger logger = GameLogger.getLogger();</b>
+&nbsp;
+&nbsp;    public PVZException(String message) {
+<b class="fc">&nbsp;        super(message);</b>
+<b class="fc">&nbsp;        logException(message);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void logException(String message){
+<b class="fc">&nbsp;        logger.severe(&quot;PVZException: &quot; + message);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-16 16:10</div>
+</div>
+</body>
+</html>

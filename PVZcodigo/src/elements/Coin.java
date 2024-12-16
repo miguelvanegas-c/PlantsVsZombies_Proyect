@@ -1,3 +1,4 @@
+import java.io.Serializable;
 
 /**
  * This is an interfaces to all the coins.
@@ -5,7 +6,7 @@
  * @author Miguel Angel Vanegas y Julian Castiblanco.
  * @version 1.0
  */
-public abstract class Coin implements Element, Mover {
+public abstract class Coin implements Element, Mover, Serializable {
     protected String name;
     protected int value;
     protected int xPosition = 140;

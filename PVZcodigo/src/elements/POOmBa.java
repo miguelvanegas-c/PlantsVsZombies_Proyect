@@ -1,4 +1,6 @@
-public class POOmBa extends Missile{
+import java.io.Serializable;
+
+public class POOmBa extends Missile implements Serializable {
 
     public POOmBa(int xInitial,int yInitial,int row, int col){
         super(xInitial,yInitial,row, col);

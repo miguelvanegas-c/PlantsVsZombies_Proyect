@@ -1,0 +1,306 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ZombieStrategic</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: ZombieStrategic (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ZombieStrategic</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/62)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/70)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;import javax.swing.*;
+&nbsp;import java.io.Serializable;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.Arrays;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Random;
+&nbsp;
+&nbsp;/**
+&nbsp; * ZombieStrategic class implements the ZombieMachine interface.
+&nbsp; * This class manages the behavior of zombies in a Plants vs. Zombies game,
+&nbsp; * focusing on strategic decisions for generating and deploying zombies.
+&nbsp; */
+&nbsp;public class ZombieStrategic implements Machine, Serializable {
+&nbsp;    private PVZ pvz; // Reference to the game logic and board
+&nbsp;    private Timer generateZombie;
+&nbsp;    private List&lt;String&gt; zombiesCanUse; // List of zombies available in the current game
+<b class="nc">&nbsp;    private List&lt;String&gt; zombieTank = new ArrayList&lt;&gt;(); // List of tank-type zombies</b>
+&nbsp;    private String zombieShooter; // Specific shooter-type zombie
+&nbsp;    private String zombieCoins; // Specific coin-generating zombie
+&nbsp;    private int brains; // Brains resource available for creating zombies
+&nbsp;    /**
+&nbsp;     * Constructor for ZombieStrategic. Initializes zombies based on the game&#39;s context
+&nbsp;     * and starts the zombie generation process.
+&nbsp;     *
+&nbsp;     * @param pvz Reference to the game&#39;s logic and board.
+&nbsp;     */
+<b class="nc">&nbsp;    public ZombieStrategic(PVZ pvz) {</b>
+<b class="nc">&nbsp;        this.pvz = pvz;</b>
+<b class="nc">&nbsp;        zombiesCanUse = Arrays.asList(pvz.getZombiesInGame());</b>
+<b class="nc">&nbsp;        if (zombiesCanUse.contains(&quot;brainstein&quot;)) zombieCoins = &quot;brainstein&quot;;</b>
+<b class="nc">&nbsp;        if (zombiesCanUse.contains(&quot;eciZombie&quot;)) zombieShooter = &quot;eciZombie&quot;;</b>
+<b class="nc">&nbsp;        if (zombiesCanUse.contains(&quot;zombie&quot;)) zombieTank.add(&quot;zombie&quot;);</b>
+<b class="nc">&nbsp;        if (zombiesCanUse.contains(&quot;zombieCono&quot;)) zombieTank.add(&quot;zombieCono&quot;);</b>
+<b class="nc">&nbsp;        if (zombiesCanUse.contains(&quot;zombieBalde&quot;)) zombieTank.add(&quot;zombieBalde&quot;);</b>
+<b class="nc">&nbsp;        brains = pvz.getBrains();</b>
+<b class="nc">&nbsp;        startGame();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Starts the zombie generation timer. Zombies are generated every 10 seconds.
+&nbsp;     */
+&nbsp;    private void startGame() {
+<b class="nc">&nbsp;        generateZombie = new Timer(10000, e -&gt; zombieAction());</b>
+<b class="nc">&nbsp;        generateZombie.start();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Generates a zombie or a group of zombies and places them on the game board.
+&nbsp;     */
+&nbsp;    public void generateZombie() {
+&nbsp;        try {
+<b class="nc">&nbsp;            int targetRow = determineBestRow();</b>
+<b class="nc">&nbsp;            List&lt;String&gt; newZombie = determineZombieType(targetRow);</b>
+&nbsp;
+<b class="nc">&nbsp;            for (String targetZombie : newZombie) {</b>
+<b class="nc">&nbsp;                pvz.addZombie(targetZombie, targetRow);</b>
+<b class="nc">&nbsp;                brains = pvz.getBrains();</b>
+&nbsp;            }
+&nbsp;        } catch (PVZException e) {
+<b class="nc">&nbsp;            JOptionPane.showMessageDialog(null, e.getMessage(), &quot;ERROR&quot;, JOptionPane.ERROR_MESSAGE);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Determines the best row to deploy zombies based on the defenses and shooters in each row.
+&nbsp;     *
+&nbsp;     * @return The row index with the weakest defense.
+&nbsp;     */
+&nbsp;    private int determineBestRow() {
+<b class="nc">&nbsp;        int bestRow = -1;</b>
+<b class="nc">&nbsp;        int minDefenseScore = Integer.MAX_VALUE;</b>
+&nbsp;
+<b class="nc">&nbsp;        for (int row = 0; row &lt; PVZ.rows; row++) {</b>
+<b class="nc">&nbsp;            int defenseScore = calculateDefenseScore(row);</b>
+<b class="nc">&nbsp;            if (defenseScore &lt; minDefenseScore) {</b>
+<b class="nc">&nbsp;                minDefenseScore = defenseScore;</b>
+<b class="nc">&nbsp;                bestRow = row;</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        return bestRow;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Calculates the defense score of a row based on the presence of plants.
+&nbsp;     *
+&nbsp;     * @param row The row index to evaluate.
+&nbsp;     * @return The calculated defense score.
+&nbsp;     */
+&nbsp;    private int calculateDefenseScore(int row) {
+<b class="nc">&nbsp;        int defenseCount = 0;</b>
+&nbsp;
+<b class="nc">&nbsp;        for (int col = 0; col &lt; PVZ.columns; col++) {</b>
+<b class="nc">&nbsp;            Plant plant = pvz.getPlantsBoard()[row][col];</b>
+<b class="nc">&nbsp;            if (plant instanceof Wallnut) {</b>
+<b class="nc">&nbsp;                defenseCount += 3;</b>
+&nbsp;            }
+<b class="nc">&nbsp;            if (plant instanceof Peashooter) {</b>
+<b class="nc">&nbsp;                defenseCount++;</b>
+&nbsp;            }
+<b class="nc">&nbsp;            if ( plant instanceof PotatoMine) {</b>
+<b class="nc">&nbsp;                defenseCount += 2;</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        return defenseCount ;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Determines the type(s) of zombies to generate based on the target row and available resources.
+&nbsp;     *
+&nbsp;     * @param row The row index where zombies will be deployed.
+&nbsp;     * @return A list of zombie types to deploy.
+&nbsp;     */
+&nbsp;    private List&lt;String&gt; determineZombieType(int row) {
+<b class="nc">&nbsp;        List&lt;String&gt; zombies = new ArrayList&lt;&gt;();</b>
+<b class="nc">&nbsp;        Random random = new Random();</b>
+<b class="nc">&nbsp;        int index = random.nextInt(zombieTank.size());</b>
+&nbsp;
+<b class="nc">&nbsp;        if (hasManyShooters(row)) {</b>
+<b class="nc">&nbsp;            if (brains &gt;= 450) {</b>
+<b class="nc">&nbsp;                if (!zombieTank.isEmpty()) zombies.add(zombieTank.get(index));</b>
+<b class="nc">&nbsp;                if (zombieShooter != null) zombies.add(zombieShooter);</b>
+<b class="nc">&nbsp;            } else if (brains &gt;= 250) {</b>
+<b class="nc">&nbsp;                if (!zombieTank.isEmpty()) zombies.add(zombieTank.get(index));</b>
+<b class="nc">&nbsp;                if (zombieCoins != null) zombies.add(zombieCoins);</b>
+&nbsp;            }
+&nbsp;        } else {
+<b class="nc">&nbsp;            if (brains &gt;= 500) {</b>
+<b class="nc">&nbsp;                if (!zombieTank.isEmpty()) zombies.add(zombieTank.get(index));</b>
+<b class="nc">&nbsp;                if (zombieShooter != null) zombies.add(zombieShooter);</b>
+<b class="nc">&nbsp;                if (zombieCoins != null) zombies.add(zombieCoins);</b>
+<b class="nc">&nbsp;            } else if (brains &gt;= 250) {</b>
+<b class="nc">&nbsp;                if (!zombieTank.isEmpty()) zombies.add(zombieTank.get(index));</b>
+<b class="nc">&nbsp;                if (zombieCoins != null) zombies.add(zombieCoins);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        return zombies;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Determines if a row has many attacking plants.
+&nbsp;     *
+&nbsp;     * @param row The row index to evaluate.
+&nbsp;     * @return True if the row has more than 2 attacking plants, otherwise false.
+&nbsp;     */
+&nbsp;    private boolean hasManyShooters(int row) {
+<b class="nc">&nbsp;        int shooterCount = 0;</b>
+&nbsp;
+<b class="nc">&nbsp;        for (int col = 0; col &lt; PVZ.columns; col++) {</b>
+<b class="nc">&nbsp;            Plant plant = pvz.getPlantsBoard()[row][col];</b>
+<b class="nc">&nbsp;            if (plant instanceof Peashooter) {</b>
+<b class="nc">&nbsp;                shooterCount++;</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        return shooterCount &gt; 2;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Executes zombie-related actions, such as adding brains and collecting coins.
+&nbsp;     */
+&nbsp;    private void zombieAction() {
+&nbsp;        try {
+<b class="nc">&nbsp;            brains += 50;</b>
+<b class="nc">&nbsp;            pvz.setBrains(50);</b>
+&nbsp;
+<b class="nc">&nbsp;            for (Mover move:pvz.getMoves()) {</b>
+<b class="nc">&nbsp;                if (move instanceof Brain brain) {</b>
+<b class="nc">&nbsp;                    pvz.takeCoin(brain.getRow(), brain.getCol());</b>
+<b class="nc">&nbsp;                    brains = pvz.getBrains();</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            generateZombie();</b>
+&nbsp;        } catch (PVZException e) {
+&nbsp;            // No se maneja debido a que es una excepcion experada.
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Stops the zombie generation process at the end of the game.
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public void finishGame() {
+<b class="nc">&nbsp;        generateZombie.stop();</b>
+<b class="nc">&nbsp;        pvz = null;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-16 16:10</div>
+</div>
+</body>
+</html>

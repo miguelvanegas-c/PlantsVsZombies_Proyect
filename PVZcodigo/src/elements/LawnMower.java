@@ -1,4 +1,6 @@
-public class LawnMower implements Element,Mover,Attacker{
+import java.io.Serializable;
+
+public class LawnMower implements Element,Mover,Attacker, Serializable {
     protected String name;
     protected int xPosition = 140;
     protected int yPosition = 55;

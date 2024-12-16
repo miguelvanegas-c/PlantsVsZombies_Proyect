@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class ECIZombie extends Zombie implements Mover,Shooter{
+public class ECIZombie extends Zombie implements Mover,Shooter, Serializable{
     private int index;
     public ECIZombie(int row){
         super(row,9);

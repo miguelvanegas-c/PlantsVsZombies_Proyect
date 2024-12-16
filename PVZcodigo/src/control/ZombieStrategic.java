@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.Random;
  * This class manages the behavior of zombies in a Plants vs. Zombies game,
  * focusing on strategic decisions for generating and deploying zombies.
  */
-public class ZombieStrategic implements Machine {
+public class ZombieStrategic implements Machine, Serializable {
     private PVZ pvz; // Reference to the game logic and board
     private Timer generateZombie;
     private List<String> zombiesCanUse; // List of zombies available in the current game
@@ -88,18 +89,21 @@ public class ZombieStrategic implements Machine {
      */
     private int calculateDefenseScore(int row) {
         int defenseCount = 0;
-        int shooterCount = 0;
 
         for (int col = 0; col < PVZ.columns; col++) {
             Plant plant = pvz.getPlantsBoard()[row][col];
             if (plant instanceof Wallnut) {
                 defenseCount += 3;
-            } else if (plant instanceof Peashooter) {
-                shooterCount++;
+            }
+            if (plant instanceof Peashooter) {
+                defenseCount++;
+            }
+            if ( plant instanceof PotatoMine) {
+                defenseCount += 2;
             }
         }
 
-        return defenseCount - shooterCount;
+        return defenseCount ;
     }
 
     /**
@@ -162,11 +166,9 @@ public class ZombieStrategic implements Machine {
             brains += 50;
             pvz.setBrains(50);
 
-            for (Mover move:pvz.getMoves()) {
-                if (move instanceof Brain brain) {
-                    pvz.takeCoin(brain.getRow(), brain.getCol());
-                    brains = pvz.getBrains();
-                }
+            for (int row = 0; row < PVZ.rows; row++) {
+                pvz.takeCoin(row, 9);
+                brains = pvz.getBrains();
             }
 
             generateZombie();

@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 /**
  * The ZombieWithShield is a zombie that have more life than a basic zombie and just walks to the plants and eat them.
  *
@@ -5,7 +7,7 @@
  * @version 1.0
  */
 
-public class ZombieWithShield extends Zombie{
+public class ZombieWithShield extends Zombie implements Serializable {
     private Shield shield;
     /**
      * Constructor of the ZombieWithShield

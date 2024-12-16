@@ -1,7 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
 
-public class TransparentButton extends JButton {
+public class TransparentButton extends JButton  {
 
     // Constructor
     public TransparentButton(String text) {

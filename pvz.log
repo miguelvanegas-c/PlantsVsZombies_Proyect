@@ -786,3 +786,1183 @@ dic 15, 2024 9:33:26 P. M. PVZException logException
 GRAVE: PVZException: The suns aren't enough
 dic 15, 2024 9:33:36 P. M. PVZException logException
 GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:29:16 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:29:26 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:29:36 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:29:46 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:34:18 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:34:28 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:34:38 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:34:48 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:34:58 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:35:08 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:35:18 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:35:28 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:35:38 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:35:48 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:35:58 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:36:08 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:36:18 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:36:28 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:36:38 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:36:48 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:36:58 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:37:08 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:37:18 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:37:28 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:37:38 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:37:48 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:37:58 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:38:08 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 12:57:01 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: Excepción no manejada en el hilo 'AWT-EventQueue-0': null
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.io.FileInputStream.<init>(FileInputStream.java:144)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: PVZInGame.open(PVZInGame.java:565)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: PVZGUI.optionOpen(PVZGUI.java:163)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: PVZGUI.lambda$prepareActions$0(PVZGUI.java:143)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton.doClick(AbstractButton.java:374)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.plaf.basic.BasicMenuItemUI.doClick(BasicMenuItemUI.java:1029)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(BasicMenuItemUI.java:1073)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.processEvent(Component.java:6386)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.processEvent(Container.java:2266)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+dic 16, 2024 1:33:07 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: Excepción no manejada en el hilo 'AWT-EventQueue-0': null
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:221)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:179)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: PVZInGame.save(PVZInGame.java:575)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: PVZInGame.optionSave(PVZInGame.java:373)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: PVZInGame.lambda$prepareActions$4(PVZInGame.java:348)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton.doClick(AbstractButton.java:374)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.plaf.basic.BasicMenuItemUI.doClick(BasicMenuItemUI.java:1029)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(BasicMenuItemUI.java:1073)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.processEvent(Component.java:6386)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.processEvent(Container.java:2266)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+dic 16, 2024 1:34:08 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: Excepción no manejada en el hilo 'AWT-EventQueue-0': Cannot invoke "javax.swing.Timer.isRunning()" because "this.hordeDuration" is null
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: PvsM.finishGame(PvsM.java:33)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: PVZ.endGame(PVZ.java:730)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: PVZInGame.openPrincipalWindow(PVZInGame.java:433)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: PVZInGame.lambda$prepareActions$2(PVZInGame.java:346)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton.doClick(AbstractButton.java:374)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.plaf.basic.BasicMenuItemUI.doClick(BasicMenuItemUI.java:1029)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(BasicMenuItemUI.java:1073)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.processEvent(Component.java:6386)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.processEvent(Container.java:2266)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+dic 16, 2024 1:34:44 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: Excepción no manejada en el hilo 'AWT-EventQueue-0': Cannot invoke "javax.swing.Timer.isRunning()" because "this.hordeDuration" is null
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: PvsM.finishGame(PvsM.java:33)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: PVZ.endGame(PVZ.java:730)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: PVZInGame.openPrincipalWindow(PVZInGame.java:433)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: PVZInGame.lambda$prepareActions$2(PVZInGame.java:346)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton.doClick(AbstractButton.java:374)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.plaf.basic.BasicMenuItemUI.doClick(BasicMenuItemUI.java:1029)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(BasicMenuItemUI.java:1073)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.processEvent(Component.java:6386)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.processEvent(Container.java:2266)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+dic 16, 2024 1:34:48 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: Excepción no manejada en el hilo 'AWT-EventQueue-0': Cannot invoke "PVZInGame.setVisible(boolean)" because "pvzInGameWindow" is null
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: PVZGUI.optionOpen(PVZGUI.java:164)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: PVZGUI.lambda$prepareActions$0(PVZGUI.java:143)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton.doClick(AbstractButton.java:374)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.plaf.basic.BasicMenuItemUI.doClick(BasicMenuItemUI.java:1029)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(BasicMenuItemUI.java:1073)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.processEvent(Component.java:6386)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.processEvent(Container.java:2266)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+dic 16, 2024 1:35:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: Excepción no manejada en el hilo 'AWT-EventQueue-0': Cannot invoke "PVZInGame.setVisible(boolean)" because "pvzInGameWindow" is null
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: PVZGUI.optionOpen(PVZGUI.java:164)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: PVZGUI.lambda$prepareActions$0(PVZGUI.java:143)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton.doClick(AbstractButton.java:374)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.plaf.basic.BasicMenuItemUI.doClick(BasicMenuItemUI.java:1029)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(BasicMenuItemUI.java:1073)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.processEvent(Component.java:6386)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.processEvent(Container.java:2266)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+dic 16, 2024 1:40:06 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: Excepción no manejada en el hilo 'AWT-EventQueue-0': Cannot invoke "PVZInGame.setVisible(boolean)" because "pvzInGameWindow" is null
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: PVZGUI.optionOpen(PVZGUI.java:164)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: PVZGUI.lambda$prepareActions$0(PVZGUI.java:143)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.AbstractButton.doClick(AbstractButton.java:374)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.plaf.basic.BasicMenuItemUI.doClick(BasicMenuItemUI.java:1029)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(BasicMenuItemUI.java:1073)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.processEvent(Component.java:6386)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.processEvent(Container.java:2266)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+dic 16, 2024 1:57:29 P. M. PVZGUI lambda$main$6
+GRAVE: java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+dic 16, 2024 2:01:16 P. M. PVZException logException
+GRAVE: PVZException: You don't choose a name to plant player
+dic 16, 2024 2:38:38 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 2:38:38 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 2:38:38 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 2:38:38 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 2:38:38 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 2:38:38 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 2:38:38 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 2:38:38 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 2:38:39 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 2:39:57 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 2:39:57 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 2:39:57 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 2:39:57 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 2:39:57 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 2:39:57 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 2:39:57 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 2:39:57 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 2:40:14 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 2:40:14 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 2:40:14 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 2:40:14 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 2:40:14 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 2:40:14 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 2:40:14 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 2:40:14 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 2:59:42 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 2:59:42 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 2:59:42 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 2:59:42 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 2:59:42 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 2:59:42 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 2:59:42 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 2:59:42 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 3:08:13 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 3:08:13 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 3:08:13 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 3:08:13 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 3:08:13 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 3:08:13 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 3:08:13 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 3:08:13 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 3:26:59 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 3:29:42 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 3:29:42 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 3:29:42 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 3:29:42 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 3:29:42 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 3:29:42 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 3:29:42 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 3:29:42 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 3:29:42 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 3:36:56 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 3:36:56 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 3:36:56 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 3:36:56 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 3:36:56 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 3:36:56 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 3:36:56 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 3:36:56 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 3:36:56 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 3:39:07 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 3:39:07 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 3:39:07 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 3:39:07 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 3:39:07 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 3:39:07 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 3:39:07 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 3:39:07 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 3:39:07 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 3:43:44 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 3:43:44 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 3:43:44 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 3:43:44 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 3:43:44 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 3:43:44 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 3:43:44 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 3:43:44 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 3:43:44 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 3:51:08 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 3:51:08 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 3:51:08 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 3:51:08 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 3:51:08 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 3:51:08 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 3:51:08 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 3:51:08 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 3:51:08 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 3:51:36 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 3:51:36 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 3:51:36 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 3:51:36 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 3:51:36 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 3:51:36 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 3:51:36 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 3:51:36 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 3:51:36 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 3:51:48 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 3:51:48 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 3:51:48 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 3:51:48 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 3:51:48 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 3:51:48 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 3:51:48 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 3:51:48 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 3:51:48 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 3:57:36 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 3:57:36 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 3:57:36 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 3:57:36 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 3:57:36 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 3:57:37 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 3:57:37 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 3:57:37 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 3:57:37 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 3:58:12 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 3:58:12 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 3:58:12 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 3:58:12 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 3:58:12 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 3:58:12 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 3:58:12 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 3:58:12 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 3:58:12 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 3:58:41 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 3:58:41 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 3:58:41 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 3:58:41 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 3:58:41 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 3:58:41 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 3:58:41 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 3:58:41 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 3:58:41 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 3:58:55 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 3:58:55 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 3:58:55 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 3:58:55 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 3:58:55 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 3:58:55 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 3:58:55 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 3:58:55 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 3:58:55 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 3:59:18 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 3:59:18 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 3:59:18 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 3:59:18 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 3:59:18 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 3:59:18 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 3:59:18 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 3:59:18 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 3:59:18 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 3:59:58 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 3:59:58 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 3:59:58 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 3:59:58 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 3:59:58 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 3:59:58 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 3:59:58 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 3:59:58 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 3:59:58 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 4:00:11 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 4:00:11 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 4:00:11 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 4:00:11 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 4:00:11 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 4:00:11 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 4:00:11 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 4:00:11 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 4:00:11 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 4:02:10 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 4:02:10 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 4:02:10 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 4:02:10 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 4:02:10 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 4:02:10 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 4:02:10 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 4:02:10 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 4:02:10 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 4:06:55 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 4:06:55 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 4:06:55 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 4:06:55 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 4:06:55 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 4:06:55 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 4:06:55 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 4:06:55 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 4:06:55 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 4:08:35 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 4:08:35 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 4:08:35 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 4:08:35 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 4:08:35 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 4:08:35 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 4:08:35 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 4:08:35 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 4:08:35 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 4:12:55 P. M. PVZException logException
+GRAVE: PVZException: The coin that do you wanna add doesn't exist
+dic 16, 2024 4:12:55 P. M. PVZException logException
+GRAVE: PVZException: The plant that do you wanna add doesn't exist
+dic 16, 2024 4:12:55 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 4:12:55 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 4:12:55 P. M. PVZException logException
+GRAVE: PVZException: In this position can't cerate a coin
+dic 16, 2024 4:12:55 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 4:12:56 P. M. PVZException logException
+GRAVE: PVZException: You don´t select a coin
+dic 16, 2024 4:12:56 P. M. PVZException logException
+GRAVE: PVZException: There isn´t a plant in this position
+dic 16, 2024 4:12:56 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 5:14:16 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add
+dic 16, 2024 5:14:24 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 5:14:25 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 5:14:37 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 5:16:17 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 5:16:20 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 5:16:21 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 5:16:22 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 5:16:25 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 5:16:26 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 5:18:45 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:20:17 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 5:20:20 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 5:20:21 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 5:20:24 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 5:20:28 P. M. PVZException logException
+GRAVE: PVZException: The zombie that do you wanna add doesn't exist
+dic 16, 2024 5:23:24 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:23:33 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 5:23:42 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:23:59 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:24:01 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:24:23 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:24:31 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:24:47 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:25:41 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 5:25:54 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 5:25:55 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 5:26:18 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 5:26:29 P. M. PVZException logException
+GRAVE: PVZException: You don't select a zombie to add
+dic 16, 2024 5:26:48 P. M. PVZException logException
+GRAVE: PVZException: Can't plant on this cell
+dic 16, 2024 5:26:54 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:26:54 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:26:55 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:26:55 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:26:55 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:27:01 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:27:01 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:27:01 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:27:01 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:27:05 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:27:05 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:30:07 P. M. PVZException logException
+GRAVE: PVZException: You don't choose a name to plant player
+dic 16, 2024 5:30:45 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: Excepción no manejada en el hilo 'AWT-EventQueue-0': null
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: java.base/java.util.ArrayList$Itr.checkForComodification(ArrayList.java:1095)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: java.base/java.util.ArrayList$Itr.next(ArrayList.java:1049)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: ZombieStrategic.zombieAction(ZombieStrategic.java:169)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: ZombieStrategic.lambda$startGame$0(ZombieStrategic.java:43)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: java.desktop/javax.swing.Timer.fireActionPerformed(Timer.java:311)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: java.desktop/javax.swing.Timer$DoPostEvent.run(Timer.java:243)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+dic 16, 2024 5:31:12 P. M. PVZGUI lambda$main$5
+GRAVE: java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+dic 16, 2024 5:31:59 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 5:32:14 P. M. PVZException logException
+GRAVE: PVZException: One plant is already in this cell
+dic 16, 2024 5:36:55 P. M. PVZException logException
+GRAVE: PVZException: The suns aren't enough
+dic 16, 2024 5:37:43 P. M. PVZException logException
+GRAVE: PVZException: You don't select a plant to add

@@ -6,6 +6,8 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.sound.sampled.*;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.logging.Logger;
 
 /**
@@ -139,8 +141,6 @@ public class PVZGUI extends JFrame implements GeneralInterface {
                 closeWindowAction();
             }
         });
-
-        open.addActionListener(e -> closeWindowAction());
         PvsP.addActionListener(e -> openDifficultyWindow("PvsP"));
         MvsM.addActionListener(e -> openDifficultyWindow("MvsM"));
         PvsM.addActionListener(e -> openDifficultyWindow("PvsM"));

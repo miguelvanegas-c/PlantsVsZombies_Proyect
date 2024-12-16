@@ -1,4 +1,6 @@
-public class Wallnut extends Plant{
+import java.io.Serializable;
+
+public class Wallnut extends Plant implements Serializable {
 
 
     /**

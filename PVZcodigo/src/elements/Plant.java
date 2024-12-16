@@ -1,3 +1,4 @@
+import java.io.Serializable;
 
 /**
  * This is an interfaces to all the plants.
@@ -5,7 +6,7 @@
  * @author Miguel Angel Vanegas y Julian Castiblanco.
  * @version 1.0
  */
-public abstract class Plant implements Element {
+public abstract class Plant implements Element, Serializable {
     protected String name;
     protected int xPosition = 140;
     protected int yPosition = 55;
