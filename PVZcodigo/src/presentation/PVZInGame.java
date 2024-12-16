@@ -24,7 +24,7 @@ public class PVZInGame extends JFrame implements GeneralInterface{
     private JButton[][] cells = new JButton[5][10];
     private PVZ pvz;
     private Timer timer;
-    private JLabel sunsLabel,brainsLabel;
+    private JLabel sunsLabel,brainsLabel,zombiePoints, plantPoints;
     private boolean shovelBoolean = false;
     private JButton shovelButton;
 
@@ -42,13 +42,13 @@ public class PVZInGame extends JFrame implements GeneralInterface{
      * @param hordesNumber   The number of hordes for game.
      *
      */
-    public PVZInGame(String gameMode, HashSet<String> plantasToPlay,HashSet<String> zombiesToPlay,String plantPlayer,String zombieType, int startingSuns, int gameTime, int hordesTime,int hordesNumber) {
+    public PVZInGame(String gameMode, HashSet<String> plantasToPlay,HashSet<String> zombiesToPlay,String plantPlayer,String zombieType,int startingBrains, int startingSuns, int gameTime, int hordesTime,int hordesNumber) {
         this.gameMode = gameMode;
         this.plantsToPlay = plantasToPlay.toArray(new String[0]);
         plantsButtons = new JButton[this.plantsToPlay.length];
         this.zombiesToPlay = zombiesToPlay.toArray(new String[0]);
         boolean booleanZombieType = (zombieType.equals("ZombiesOriginal"));
-        pvz = new PVZ(this.plantsToPlay,this.zombiesToPlay, booleanZombieType,startingSuns,gameTime,hordesNumber,hordesTime);
+        pvz = new PVZ(this.plantsToPlay,this.zombiesToPlay, booleanZombieType,startingSuns,startingBrains,gameTime,hordesNumber,hordesTime);
         this.plantPlayer = plantPlayer;
         this.zombieType = zombieType;
         prepareElements();
@@ -76,7 +76,6 @@ public class PVZInGame extends JFrame implements GeneralInterface{
         this.zombiePlayer = zombiePlayer;
         prepareElements();
         prepareActions();
-        test();
 
     }
 
@@ -97,7 +96,7 @@ public class PVZInGame extends JFrame implements GeneralInterface{
         plantsButtons = new JButton[this.plantsToPlay.length];
         this.zombiesToPlay = zombiesToPlay.toArray(new String[0]);
         boolean booleanZombieType = (zombieType.equals("ZombiesOriginal"));
-        boolean booleanPlantType = (plantType.equals("PlantOriginal"));
+        boolean booleanPlantType = (plantType.equals("PlantsIntelligent"));
         pvz = new PVZ(this.plantsToPlay,this.zombiesToPlay, booleanZombieType,booleanPlantType,startingSuns,startingBrains,gameTime,hordesNumber,hordesTime);
         this.plantsType = plantType;
         this.zombieType = zombieType;
@@ -144,14 +143,18 @@ public class PVZInGame extends JFrame implements GeneralInterface{
         }
         changeSizeToImage("fondoTablero.png");
         if(!gameMode.equals("MvsM"))prepareButtonsTablero();
-        timer = new Timer(200, e -> refresh());
+        timer = new Timer(100, e -> refresh());
         timer.start();
         shovelButton = new BorderButton(" ");
-        shovelButton.setBounds(410, 5, 40, 40);
+        shovelButton.setBounds(540, 5, 40, 40);
         sunsLabel = new JLabel();
         brainsLabel = new JLabel();
+        zombiePoints = new JLabel();
+        plantPoints = new JLabel();
+        gamePanel.add(plantPoints);
+        gamePanel.add(zombiePoints);
         gamePanel.add(shovelButton);
-        gamePanel.add(sunsLabel);
+        gamePanel.add(brainsLabel);
         gamePanel.add(sunsLabel);
 
 
@@ -174,7 +177,7 @@ public class PVZInGame extends JFrame implements GeneralInterface{
                 g.drawImage(originalImage, 0, 0, getWidth(), getHeight(), null);
                 ImageIcon icon = getImageIcon("pala.png");
                 Image originalImage = icon.getImage();
-                g.drawImage(originalImage, 410, 5, 40, 40, null);
+                g.drawImage(originalImage, 540, 5, 40, 40, null);
                 int count = 50;
                 for (String planta : plantsToPlay) {
                     ImageIcon iconPlant = getImageIcon(planta+".png");
@@ -222,8 +225,15 @@ public class PVZInGame extends JFrame implements GeneralInterface{
                 g.drawImage(originalImageBrain, 765, 10, 30, 30, null);
                 brainsLabel.setText("<html><span style='font-size:20px; letter-spacing:5px;'>"+pvz.getBrains()+"</span></html>");
                 brainsLabel.setBounds(800 ,5,80,40);
-
-
+                // zombiePoints
+                g.setColor(new Color(150, 150, 150));
+                g.fillRect(630, 5, 120, 40);
+                zombiePoints.setText("<html><span style='font-size:20px; letter-spacing:5px;'>"+pvz.getZombiePoints()+"</span></html>");
+                zombiePoints.setBounds(640 ,5,80,40);
+                g.setColor(new Color(139, 69, 19));
+                g.fillRect(410, 5, 120, 40);
+                plantPoints.setText("<html><span style='font-size:20px; letter-spacing:5px;'>"+pvz.getPlantPoints()+"</span></html>");
+                plantPoints.setBounds(420,5,80,40);
             }
         };
 
@@ -390,11 +400,11 @@ public class PVZInGame extends JFrame implements GeneralInterface{
     private void openPrincipalWindow() {
         int opcion = JOptionPane.showConfirmDialog(this, "Do you want to come to the start screen?", "Confirm back", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (opcion == JOptionPane.YES_OPTION) {
+            pvz.endGame();
             pvz = null;
             timer.stop();
             PVZGUI pvzguiwindow = new PVZGUI();
             pvzguiwindow.setVisible(true);
-
             dispose();
         }
     }
@@ -450,6 +460,8 @@ public class PVZInGame extends JFrame implements GeneralInterface{
             pvz.makeDamage();
             pvz.moveBoard();
             pvz.garbageColector();
+            pvz.zombieInLastCell();
+            if(pvz.gameIsFinished()) finishGame();
             repaint();
         } catch (PVZException e) {
             timerMessage(e.getMessage());
@@ -475,15 +487,50 @@ public class PVZInGame extends JFrame implements GeneralInterface{
         new Timer(1500, s -> dialog.dispose()).start();
     }
 
-    private void test(){
-        addCoin(1,3,4,"eciSun");
-        try {
-            pvz.addZombie(0, "zombie");
 
-        } catch (PVZException e) {
-            throw new RuntimeException(e);
+    private void finishGame() {
+        // Crear panel con las plantas que se van a jugar
+        ImageIcon icon = getImageIcon("fondoTablero.png");
+        Image originalImage = icon.getImage();
+
+        // Obtener puntos
+        int zombiePoints = pvz.getZombiePoints();
+        int plantPoints = pvz.getPlantPoints();
+
+        // Determinar el ganador
+        String ganador = "";
+        if (gameMode.equals("PvsP")) {
+            ganador = zombiePoints > plantPoints ? zombiePlayer : plantPlayer;
+        } else if (gameMode.equals("PvsM")) {
+            ganador = zombiePoints > plantPoints ? zombieType : plantPlayer;
+        } else if (gameMode.equals("MvsM")) {
+            ganador = zombiePoints > plantPoints ? zombieType : plantsType;
         }
+
+        // Crear etiquetas
+        JLabel labelWinner = new JLabel("<html><span style='font-size:30px; color:white;'>¡Ganador!</span></html>");
+        JLabel label = new JLabel("<html><span style='font-size:30px; letter-spacing:20px; color:white;'>" + ganador + "</span></html>");
+
+        // Establecer posiciones
+        labelWinner.setBounds(gamePanel.getWidth() / 4, gamePanel.getHeight() / 2 - 100, 400, 100);
+        label.setBounds(gamePanel.getWidth() / 4, gamePanel.getHeight() / 2, 400, 100);
+
+        // Personalizar estilos
+        labelWinner.setHorizontalAlignment(SwingConstants.CENTER);
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // Añadir las etiquetas al panel
+        gamePanel.add(labelWinner);
+        gamePanel.add(label);
+
+        // Finalizar el juego
+        if (gameMode.equals("PvsM"))pvz.endGame();
+        if (gameMode.equals("MvsM"))pvz.endGameTwo();
+        timer.stop();
+
+
     }
+
 
 
 

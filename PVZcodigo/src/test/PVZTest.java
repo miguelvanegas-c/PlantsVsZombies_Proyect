@@ -31,7 +31,7 @@ public class PVZTest {
 
     @Test
     public void shouldCreatePVZToPvsM() {
-        PVZ pvzTest = new PVZ(plantasDeJuego,this.zombiesDeJuego,true,10,10,2,2);
+        PVZ pvzTest = new PVZ(plantasDeJuego,this.zombiesDeJuego,true,10,10,10,2,2);
         String[] plantasDeJuegoTest = {"peashooter,sunflower"};
         String[] zombiesDeJuegoTest = {"zombieCono,zombie"};
         int expectedSuns = pvzTest.getSuns();

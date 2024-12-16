@@ -19,6 +19,7 @@ public abstract class Zombie implements Element, Mover,Attacker {
     protected String extension ="G.png";
     protected int damage = 100;
     protected boolean inAttack = false;
+    protected int index;
 
 
     /**
@@ -51,7 +52,7 @@ public abstract class Zombie implements Element, Mover,Attacker {
     public int getLife() {return life;}
     public void move(){
         if(!inAttack) {
-            xPosition -= 2;
+            xPosition -= 1;
             if (((xPosition - 140) % 70) == 0) col -= 1;
             name = "zombie";
         }
@@ -65,14 +66,19 @@ public abstract class Zombie implements Element, Mover,Attacker {
         life -= damage;
     }
     public void makeDamage(Element element){
-        if (element instanceof PotatoMine p){
-            if(p.getFlag()){
-                life = - 10;
+        if (index == 5) {
+            if (element instanceof PotatoMine p) {
+                if (p.getFlag()) {
+                    life = -10;
+                }
             }
+            element.takeDamage(damage);
+            index = 0;
         }
-        element.takeDamage(damage);
+        index ++;
     }
     public void makeAttack(){
+
         inAttack = true;
         name = "zombieComiendo";
 

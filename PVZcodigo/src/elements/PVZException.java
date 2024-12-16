@@ -1,4 +1,4 @@
-
+import java.util.logging.Logger;
 
 public class PVZException extends Exception {
     public static final String NOT_PLANTS_CHOOSED_TO_PLAY ="No plant has been selected, so you cannot start the game."; //Exception push next without select plants.
@@ -17,7 +17,7 @@ public class PVZException extends Exception {
     public static final String ERROR_NOT_STARTING_SUNS = "The suns is less or equal that 0";
     public static final String ERROR_NOT_STARTING_BRAINS = "The brains is less or equal that 0";
     public static final String ERROR_LOW_GAME_TIME = "The game time is less than 180 that is the minimum game time, or more than 360 that is the maximum game time";
-    public static final String ERROR_INCORRECT_HORDES_NUMBER = "The hordes number is less or equal than 0 or is bigger than 4";
+    public static final String ERROR_INCORRECT_HORDES_NUMBER = "The number of zombies in the hordes is less than 0 or more than 10";
     public static final String ERROR_LOW_HORDES_TIME = "The Hordes time is more than 10 that is the maximum hordes time, or less than 0";
     public static final String COIN_BAD_POSITION = "In this position can't cerate a coin";
     public static final String ERROR_ZOMBIE_NOT_SELECTED = "You don't select a zombie to add";
@@ -26,6 +26,15 @@ public class PVZException extends Exception {
     public static final String ERROR_NOT_ENOUGH_BRAINS ="The brains aren't enough";
     public static final String NOT_PLANT_TO_DELETE = "There isn´t a plant in this position";
 
-    public PVZException(String message) {super(message);}
+    private static final Logger logger = GameLogger.getLogger();
+
+    public PVZException(String message) {
+        super(message);
+        logException(message);
+    }
+
+    private void logException(String message){
+        logger.severe("PVZException: " + message);
+    }
 
 }

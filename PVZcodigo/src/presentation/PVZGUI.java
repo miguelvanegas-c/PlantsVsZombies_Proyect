@@ -6,6 +6,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.sound.sampled.*;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 /**
  * This is the main screen of the interface for the game POOB vs ZOMBIES.
@@ -216,6 +217,14 @@ public class PVZGUI extends JFrame implements GeneralInterface {
     }
 
     public static void main(String[] args) {
+        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
+            Logger logger = GameLogger.getLogger();
+
+            logger.severe("Excepción no manejada en el hilo '" + thread.getName() + "': " + throwable.getMessage() );
+            for (StackTraceElement stackTraceElement : throwable.getStackTrace()) {
+                logger.severe(stackTraceElement.toString());
+            }
+        });
         PVZGUI pvzGUI = new PVZGUI();
     }
 }

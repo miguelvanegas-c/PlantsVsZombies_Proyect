@@ -8,7 +8,7 @@ public class Pea extends Missile{
 
     @Override
     public void move(){
-        xPosition += 14;
+        xPosition += 7;
         if(((xPosition - 170)%70)==0){
             col ++;
             if (col == 10) {

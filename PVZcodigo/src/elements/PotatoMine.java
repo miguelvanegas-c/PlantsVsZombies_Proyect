@@ -35,11 +35,9 @@ public class PotatoMine extends Plant implements Attacker {
     }
 
     public void makeBoom(){
-        name = "boom";
-        width = 80;
-        height = 80;
-        life = -1;
+        life = -173;
     }
+
 
     @Override
     public void takeDamage(int damage){

@@ -14,8 +14,6 @@ public class BasicZombie extends Zombie{
      */
     public BasicZombie(int row) {
         super(row,9);
-        value = 100;
-
     }
 
 

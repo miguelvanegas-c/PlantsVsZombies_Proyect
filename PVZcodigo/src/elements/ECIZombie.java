@@ -9,8 +9,8 @@ public class ECIZombie extends Zombie implements Mover,Shooter{
         value = 250;
         damage = 0;
     }
-    public Missile shoot(){
-        if(index == 16){
+    public Missile shoot(boolean bandera ){
+        if(index >= 30 && bandera){
             index = 0;
             return new POOmBa(xPosition,yPosition,row,col);
         }

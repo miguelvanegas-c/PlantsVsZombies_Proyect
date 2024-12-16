@@ -20,15 +20,16 @@ public class Peashooter extends Plant implements Shooter{
         name = "peashooter";
         life = 300;
         value = 100;
+
     }
 
-    public Missile shoot(){
-        if( index == 6) {
-            index++;
+    public Missile shoot(boolean bandera){
+        if( index >= 15 && bandera) {
+            index = 0;
             return new Pea(xPosition, yPosition, row, col);
+
         }
         index++;
-        if(index >= 7) index = 0;
         return null;
     }
 

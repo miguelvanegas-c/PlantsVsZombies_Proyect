@@ -9,7 +9,7 @@ public class POOmBa extends Missile{
 
     @Override
     public void move() {
-        xPosition -= 14;
+        xPosition -= 7;
         if(((xPosition - 140)%70)==0){
             col --;
             if (col == 0) {

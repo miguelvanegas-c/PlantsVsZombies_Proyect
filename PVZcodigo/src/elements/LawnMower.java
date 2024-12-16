@@ -75,7 +75,7 @@ public class LawnMower implements Element,Mover,Attacker{
 
     public void move(){
         if(attacker) {
-            xPosition += 7;
+            xPosition += 14;
             if (((xPosition - 140) % 70) == 0) {
                 col++;
                 if (col == 10) {

@@ -8,7 +8,7 @@ public class ECIPlant extends Sunflower{
     }
     @Override
     public void makeCoins(PVZ game) throws PVZException {
-        if( index == 100) {
+        if( index == 200) {
             game.addCoin(getRow(), getCol(), getRow(), "eciSun");
             index = 0;
             return;

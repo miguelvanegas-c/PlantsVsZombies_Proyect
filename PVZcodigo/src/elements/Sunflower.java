@@ -9,7 +9,7 @@ public class Sunflower extends  Plant implements GenerateCoins{
 
     @Override
     public void makeCoins(PVZ game) throws PVZException {
-        if( index == 100) {
+        if( index == 200) {
             game.addCoin(getRow(), getCol(), getRow(), "sun");
             index = 0;
             return;

@@ -9,7 +9,7 @@ public abstract class Coin implements Element, Mover {
     protected String name;
     protected int value;
     protected int xPosition = 140;
-    protected int yPosition = 70;
+    protected int yPosition = 40;
     protected int row;
     protected int col;
     protected int life;
@@ -46,8 +46,8 @@ public abstract class Coin implements Element, Mover {
 
     public void move(){
         if (row < finishRow) {
-            yPosition += 15;
-            if (((yPosition - 70) % 75) == 0) row += 1;
+            yPosition += 5;
+            if (((yPosition - 40) % 75) == 0) row += 1;
         }
     }
 
