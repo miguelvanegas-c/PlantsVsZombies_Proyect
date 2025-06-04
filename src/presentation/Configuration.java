@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.io.Serializable;
 import java.util.HashSet;
 /**
  * This is the configuration screen of a new game for the POOB vs ZOMBIES game interface.

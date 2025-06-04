@@ -1,5 +1,3 @@
-import java.io.Serializable;
-
 /**
  * A button that only displays its border.
  *
