@@ -66,3 +66,175 @@ may 14, 2025 8:01:10 P. M. PVZException logException
 SEVERE: PVZException: There isn´t a plant in this position
 may 14, 2025 8:01:10 P. M. PVZException logException
 SEVERE: PVZException: You don't select a plant to add
+jun 04, 2025 4:38:07 P. M. PVZException logException
+SEVERE: PVZException: The brains is less or equal that 0
+jun 04, 2025 4:38:54 P. M. PVZException logException
+SEVERE: PVZException: Can't plant on this cell
+jun 04, 2025 4:39:29 P. M. PVZException logException
+SEVERE: PVZException: One plant is already in this cell
+jun 04, 2025 4:39:51 P. M. PVZException logException
+SEVERE: PVZException: Can't plant on this cell
+jun 04, 2025 4:39:54 P. M. PVZException logException
+SEVERE: PVZException: Can't plant on this cell
+jun 04, 2025 4:39:58 P. M. PVZException logException
+SEVERE: PVZException: Can't plant on this cell
+jun 04, 2025 4:40:02 P. M. PVZException logException
+SEVERE: PVZException: Can't plant on this cell
+jun 04, 2025 4:40:21 P. M. PVZException logException
+SEVERE: PVZException: The brains aren't enough
+jun 04, 2025 4:40:33 P. M. PVZException logException
+SEVERE: PVZException: The brains aren't enough
+jun 04, 2025 4:40:35 P. M. PVZException logException
+SEVERE: PVZException: The brains aren't enough
+jun 04, 2025 4:40:36 P. M. PVZException logException
+SEVERE: PVZException: The brains aren't enough
+jun 04, 2025 4:40:38 P. M. PVZException logException
+SEVERE: PVZException: The brains aren't enough
+jun 04, 2025 4:40:48 P. M. PVZException logException
+SEVERE: PVZException: The brains aren't enough
+jun 04, 2025 4:40:55 P. M. PVZException logException
+SEVERE: PVZException: You don't select a zombie to add
+jun 04, 2025 4:41:11 P. M. PVZException logException
+SEVERE: PVZException: You don't select a zombie to add
+jun 04, 2025 4:41:12 P. M. PVZException logException
+SEVERE: PVZException: You don't select a zombie to add
+jun 04, 2025 4:41:17 P. M. PVZException logException
+SEVERE: PVZException: You don't select a zombie to add
+jun 04, 2025 4:41:18 P. M. PVZException logException
+SEVERE: PVZException: You don't select a zombie to add
+jun 04, 2025 4:41:36 P. M. PVZException logException
+SEVERE: PVZException: You don't select a zombie to add
+jun 04, 2025 4:41:37 P. M. PVZException logException
+SEVERE: PVZException: You don't select a zombie to add
+jun 04, 2025 4:41:38 P. M. PVZException logException
+SEVERE: PVZException: You don't select a zombie to add
+jun 04, 2025 4:41:39 P. M. PVZException logException
+SEVERE: PVZException: You don't select a zombie to add
+jun 04, 2025 4:41:39 P. M. PVZException logException
+SEVERE: PVZException: You don't select a zombie to add
+jun 04, 2025 4:41:41 P. M. PVZException logException
+SEVERE: PVZException: You don't select a zombie to add
+jun 04, 2025 4:42:06 P. M. PVZException logException
+SEVERE: PVZException: You don't select a zombie to add
+jun 04, 2025 4:42:07 P. M. PVZException logException
+SEVERE: PVZException: You don't select a zombie to add
+jun 04, 2025 4:42:08 P. M. PVZException logException
+SEVERE: PVZException: You don't select a zombie to add
+jun 04, 2025 4:42:12 P. M. PVZException logException
+SEVERE: PVZException: The brains aren't enough
+jun 04, 2025 4:42:13 P. M. PVZException logException
+SEVERE: PVZException: The brains aren't enough
+jun 04, 2025 4:42:20 P. M. PVZException logException
+SEVERE: PVZException: You don't select a zombie to add
+jun 04, 2025 4:42:27 P. M. PVZException logException
+SEVERE: PVZException: The brains aren't enough
+jun 04, 2025 4:42:29 P. M. PVZException logException
+SEVERE: PVZException: The brains aren't enough
+jun 04, 2025 4:42:42 P. M. PVZException logException
+SEVERE: PVZException: You don't select a zombie to add
+jun 04, 2025 4:54:22 P. M. PVZException logException
+SEVERE: PVZException: The value isn't a number
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: Excepción no manejada en el hilo 'AWT-EventQueue-0': null
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.base/java.io.FileInputStream.<init>(FileInputStream.java:151)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: PVZInGame.open(PVZInGame.java:586)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: Configuration.optionOpen(Configuration.java:281)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: Configuration.lambda$prepareActionsToPlantsElection$3(Configuration.java:248)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/javax.swing.AbstractButton.doClick(AbstractButton.java:374)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/javax.swing.plaf.basic.BasicMenuItemUI.doClick(BasicMenuItemUI.java:1029)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/javax.swing.plaf.basic.BasicMenuItemUI$Handler.mouseReleased(BasicMenuItemUI.java:1073)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3404)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.Component.processEvent(Component.java:6386)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.Container.processEvent(Container.java:2266)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+jun 04, 2025 5:02:51 P. M. PVZGUI lambda$main$5
+SEVERE: java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+jun 04, 2025 5:09:00 P. M. PVZException logException
+SEVERE: PVZException: The brains is less or equal that 0
+jun 04, 2025 5:09:19 P. M. PVZException logException
+SEVERE: PVZException: You don't select a plant to add
+jun 04, 2025 5:09:48 P. M. PVZException logException
+SEVERE: PVZException: One plant is already in this cell
+jun 04, 2025 5:11:48 P. M. PVZException logException
+SEVERE: PVZException: One plant is already in this cell
+jun 04, 2025 5:11:49 P. M. PVZException logException
+SEVERE: PVZException: One plant is already in this cell
+jun 04, 2025 5:11:49 P. M. PVZException logException
+SEVERE: PVZException: One plant is already in this cell
+jun 04, 2025 5:11:49 P. M. PVZException logException
+SEVERE: PVZException: One plant is already in this cell
+jun 04, 2025 5:11:50 P. M. PVZException logException
+SEVERE: PVZException: One plant is already in this cell
+jun 04, 2025 5:12:09 P. M. PVZException logException
+SEVERE: PVZException: One plant is already in this cell
+jun 04, 2025 5:12:41 P. M. PVZException logException
+SEVERE: PVZException: One plant is already in this cell

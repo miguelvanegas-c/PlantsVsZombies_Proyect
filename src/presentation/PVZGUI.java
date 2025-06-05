@@ -122,7 +122,6 @@ public class PVZGUI extends JFrame implements GeneralInterface {
         exit.setBounds(790, 450, 60, 30);
 
         // Adding buttons to the background
-        background.add(PvsP);
         background.add(MvsM);
         background.add(PvsM);
         background.add(controls);
